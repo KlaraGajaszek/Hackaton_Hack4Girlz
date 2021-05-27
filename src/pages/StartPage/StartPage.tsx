@@ -1,5 +1,6 @@
 import React from 'react'
+import { Button } from 'react-rainbow-components';
 
 export const StartPage = () => {
-  return <div>START</div>
+  return <Button>START</Button>
 }
