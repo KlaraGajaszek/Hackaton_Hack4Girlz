@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from 'react-rainbow-components';
 import { db } from '../../firebase';
@@ -17,4 +18,5 @@ export const StartPage = () => {
 			<button onClick={() => db.app.auth().signOut()}>Sign out</button>
 		</div>
 	);
+
 };
