@@ -1,4 +1,6 @@
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_KEY,
@@ -12,8 +14,8 @@ const firebaseConfig = {
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
-
 const db = firebaseApp.firestore();
+const auth = firebase.auth();
+// auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
-db.collection('User').add({ name: 'value' });
-export default db;
+export { auth, db };

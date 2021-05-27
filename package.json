@@ -19,6 +19,7 @@
     "jest-styled-components": "^7.0.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-firebase-hooks": "^3.0.4",
     "react-icons": "^3.11.0",
     "react-rainbow-components": "^1.25.0",
     "react-router-dom": "^5.2.0",
