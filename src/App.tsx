@@ -16,7 +16,7 @@ const theme: DefaultTheme = {
             success: '#44d7b6',
             error: '#f14336',
             warning: '#f7b500',
-            brand: '#6860db',
+            brand: '#00CAFD',
             mainBackground: '#f4f5f7',
             black: '#000000'
         }
