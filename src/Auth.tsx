@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { db } from "./firebase";
-import * as firebase from "firebase/app";
+import React, { useEffect, useState } from 'react';
+import { db } from './firebase';
 
 export const AuthContext = React.createContext<any>({});
 
@@ -10,15 +9,13 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         db.app.auth().onAuthStateChanged((user: any) => {
-
-            setCurrentUser(user)
-            setPending(false)
-
+            setCurrentUser(user);
+            setPending(false);
         });
     }, []);
 
     if (pending) {
-        return <>Loading...</>
+        return <>Loading...</>;
     }
 
     return (
