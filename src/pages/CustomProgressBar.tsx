@@ -3,20 +3,14 @@ import React from 'react';
 import { ProgressBar } from 'react-rainbow-components';
 import LevelMarker from './LevelMarker';
 
-const CustomProgressBar = ({
-    currentExp,
-    levelCapExp,
-    avatarIcon,
-    levelIcon = null,
-    levelText = '',
-    color,
-    variant,
-    text
-}) => {
+const CustomProgressBar = ({ currentExp, levelCapExp, avatarIcon, levelNumber = 1, levelIcon = null }) => {
     const progressBarPercentage = (currentExp / levelCapExp) * 100;
+    const levelText = levelIcon ? 'mentorka' : 'level';
+    const variant = levelIcon ? 'success' : 'brand';
+    const colorUsed = levelIcon ? '#FC5B82' : '#01B6F5';
 
     return (
-        <Box d="flex" flexDirection="column" m={3} color={color} fontWeight="700">
+        <Box d="flex" flexDirection="column" m={3} color={colorUsed} fontWeight="700">
             <Box d="flex" alignItems="center">
                 <Text mr={3}>EXP</Text>
 
@@ -28,14 +22,15 @@ const CustomProgressBar = ({
                         w="50px"
                         position="absolute"
                         zIndex={1}
+                        mb={3}
                         ml={`calc(${currentExp}% - 25px)`}
                     />
-                    <ProgressBar value={progressBarPercentage} variant={variant} />
+                    <ProgressBar value={progressBarPercentage} variant={variant} className="" />
                 </Box>
 
-                <LevelMarker levelIcon={levelIcon} text="21" bgColor={color} />
+                <LevelMarker levelIcon={levelIcon} text={levelNumber} color={colorUsed} />
 
-                <Text ml={2}>{text}</Text>
+                <Text ml={2}>{levelText}</Text>
             </Box>
             {`${currentExp} / ${levelCapExp} pkt`}
         </Box>

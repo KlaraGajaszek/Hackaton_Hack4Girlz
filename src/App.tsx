@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
-
+import { Application } from 'react-rainbow-components';
 import { AuthProvider } from './FirebaseDB/Auth';
 import PrivateRoute from './routing/PrivateRoute';
 import { Registration } from './pages/Registration';
@@ -40,18 +40,28 @@ const theme: DefaultTheme = {
     }
 };
 
+const rainbowTheme = {
+    rainbow: {
+        palette: {
+            success: '#FF507A'
+        }
+    }
+};
+
 const App = () => {
     return (
         <ThemeProvider theme={theme}>
-            <AuthProvider>
-                <Router>
-                    <Route path={Routes.Setup} component={SetupPage} />
-                    <PrivateRoute exact path={Routes.Home} component={StartPage} />
-                    <Route exact path={Routes.Login} component={Login} />
-                    <Route exact path={Routes.Profile} component={Profile} />
-                    <Route exact path={Routes.Registration} component={Registration} />
-                </Router>
-            </AuthProvider>
+            <Application theme={rainbowTheme}>
+                <AuthProvider>
+                    <Router>
+                        <Route path={Routes.Setup} component={SetupPage} />
+                        <PrivateRoute exact path={Routes.Home} component={StartPage} />
+                        <Route exact path={Routes.Login} component={Login} />
+                        <Route exact path={Routes.Profile} component={Profile} />
+                        <Route exact path={Routes.Registration} component={Registration} />
+                    </Router>
+                </AuthProvider>
+            </Application>
         </ThemeProvider>
     );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Text, Image } from '@chakra-ui/react';
 
-const LevelMarker = ({ levelIcon = null, text = '', bgColor }) => {
+const LevelMarker = ({ levelIcon = null, text, color }) => {
     let levelImg = levelIcon;
     if (levelIcon == null) {
         levelImg = (
@@ -12,10 +12,10 @@ const LevelMarker = ({ levelIcon = null, text = '', bgColor }) => {
                 borderRadius="full"
                 w="40px"
                 h="40px"
-                bgColor={bgColor}
+                bgColor={color}
                 position="relative"
                 zIndex={0}
-                ml={-2}
+                ml={-3}
             >
                 <Text color="white" fontSize={16} fontWeight="700" position="relative" zIndex={1}>
                     {text}
@@ -23,7 +23,7 @@ const LevelMarker = ({ levelIcon = null, text = '', bgColor }) => {
             </Box>
         );
     } else {
-        levelImg = <Image src={levelIcon} w="80px" />;
+        levelImg = <Image src={levelIcon} w="100px" position="relative" zIndex={1} mb={2} ml={-3} />;
     }
 
     return <Box>{levelImg}</Box>;

@@ -10,6 +10,7 @@ import { Carouzel } from '../components/Carouzel';
 import { Box } from '@chakra-ui/react';
 import CustomProgressBar from './CustomProgressBar';
 import cori_cat from '../assets/png/cat/Walk (5).png';
+import crown from '../assets/crown.svg';
 
 const Wrapper = styled.div`
     display: flex;
@@ -31,14 +32,7 @@ export const Profile = () => {
             </div>
             <Wrapper>
                 <UserInfo name="Ela Popiel" avatarSrc={profile} />
-                <CustomProgressBar
-                    currentExp={35}
-                    levelCapExp={100}
-                    avatarIcon={cori_cat}
-                    color="#1AD1A3"
-                    variant="success"
-                    text="level"
-                />
+                <CustomProgressBar currentExp={25} levelCapExp={100} avatarIcon={cori_cat} />
                 <div style={{ marginTop: '20px' }}>
                     <SectionInfo text="W jaki sposób mogę zbierać punkty?" />
                 </div>
@@ -51,25 +45,11 @@ export const Profile = () => {
                 </div>
                 <div style={{ marginTop: '30px', marginBottom: '30px' }}>
                     <Title title="UI/UX design" />
-                    <CustomProgressBar
-                        currentExp={35}
-                        levelCapExp={100}
-                        avatarIcon={cori_cat}
-                        color="#1AD1A3"
-                        variant="success"
-                        text="mentorka"
-                    />
+                    <CustomProgressBar currentExp={25} levelCapExp={100} avatarIcon={cori_cat} levelIcon={crown} />
                 </div>
                 <div style={{ marginTop: '30px', marginBottom: '20px' }}>
                     <Title title="Frontend developer" />
-                    <CustomProgressBar
-                        currentExp={35}
-                        levelCapExp={100}
-                        avatarIcon={cori_cat}
-                        color="#1AD1A3"
-                        variant="success"
-                        text="mentorka"
-                    />
+                    <CustomProgressBar currentExp={25} levelCapExp={100} avatarIcon={cori_cat} levelIcon={crown} />
                 </div>
                 <SectionInfo text="Kim jest mentor?" />
             </Wrapper>
