@@ -9,6 +9,7 @@ import { Login } from './pages/Login';
 import { SetupPage } from './pages/Setup';
 import { StartPage } from './pages/StartPage';
 import { Routes } from './routing/router';
+import { Profile } from './pages/Profile';
 
 const theme: DefaultTheme = {
     rainbow: {
@@ -44,6 +45,7 @@ const App = () => {
                     <Route path={Routes.Setup} component={SetupPage} />
                     <PrivateRoute exact path={Routes.Home} component={StartPage} />
                     <Route exact path={Routes.Login} component={Login} />
+                    <Route exact path={Routes.Profile} component={Profile} />
                     <Route exact path={Routes.Registration} component={Registration} />
                 </Router>
             </AuthProvider>
