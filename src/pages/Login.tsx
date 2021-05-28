@@ -35,6 +35,15 @@ const StyledLink = styled.a`
     cursor: pointer;
   `
 
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    border-radius: 2500px;
+`;
+
+const MainWrapper = styled.div`
+    padding: 32px 19px 117px;
+`;
 
 const Login = ({history}) => {
   const handleLogin = useCallback(
@@ -58,9 +67,11 @@ const Login = ({history}) => {
   }
   
   return (
-    <Container pr={8} pl={8} centerContent>
-      <div>
-        <SectionTitle subtitle="Wpisz swoje dane lub zaloguj się za pomocą:" title="Logowanie"/>
+    <MainWrapper>
+      <div style={{ backgroundColor: '#E5E5E5', margin: '-32px -19px 0 -19px', padding: '32px 21px' }}>
+        <SectionTitle subtitle="Rozpocznij swoją podróż wypełniając poniższe pola lub kliknij:" title="Rejestracja"/>
+      </div>
+      <Wrapper>
         <LogWithGoogle/>
         <form onSubmit={handleLogin}>
           <Input
@@ -89,8 +100,8 @@ const Login = ({history}) => {
             <StyledLink href="/rejestracja">Zarejestruj się</StyledLink>
           </Box>
         </form>
-      </div>
-    </Container>
+      </Wrapper>
+    </MainWrapper>
   );
 };
 

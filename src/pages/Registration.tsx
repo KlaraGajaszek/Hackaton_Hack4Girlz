@@ -6,6 +6,7 @@ import {LogWithGoogle} from '../components/Googlelogin';
 import {SectionTitle} from "../components/SectionTitle";
 import {Button, Input} from "react-rainbow-components";
 import {Center, Container} from "@chakra-ui/react";
+import styled from "styled-components";
 
 const SignUp = ({history}) => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -23,6 +24,16 @@ const SignUp = ({history}) => {
     paddingLeft: 30,
     paddingRight: 30
   }
+  
+  const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    border-radius: 2500px;
+`;
+  
+  const MainWrapper = styled.div`
+    padding: 32px 19px 117px;
+`;
   
   const handleSignUp = useCallback(
     async (event) => {
@@ -55,9 +66,11 @@ const SignUp = ({history}) => {
   };
   
   return (
-    <Container pr={8} pl={8} centerContent>
-      <div>
-        <SectionTitle subtitle="Rozpocznij swoją podróż wypełniając poniższe pola lub kliknij:" title="Rejestracja"/>
+      <MainWrapper>
+        <div style={{ backgroundColor: '#E5E5E5', margin: '-32px -19px 0 -19px', padding: '32px 21px' }}>
+          <SectionTitle subtitle="Rozpocznij swoją podróż wypełniając poniższe pola lub kliknij:" title="Rejestracja"/>
+        </div>
+        <Wrapper>
         <LogWithGoogle/>
         <form onSubmit={handleSignUp}>
           <Input
@@ -99,8 +112,8 @@ const SignUp = ({history}) => {
             />
           </Center>
         </form>
-      </div>
-    </Container>
+        </Wrapper>
+      </MainWrapper>
   );
 };
 
