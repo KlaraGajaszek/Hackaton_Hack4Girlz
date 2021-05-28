@@ -26,8 +26,11 @@ const theme: DefaultTheme = {
             },
             text: {
                 primary: '#000000',
-                secondary: '#061C3F'
+                secondary: '#061C3F',
+                gray: '#595454',
+                lightGray: '#8898AA'
             },
+
             success: '#1AD1A3',
             error: '#f14336',
             warning: '#f7b500',

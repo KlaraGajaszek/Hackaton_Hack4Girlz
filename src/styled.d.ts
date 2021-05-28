@@ -18,7 +18,10 @@ declare module 'styled-components' {
                 text: {
                     primary: string;
                     secondary: string;
+                    gray: string;
+                    lightGray: string;
                 };
+
                 secondary: string;
                 success: string;
                 error: string;

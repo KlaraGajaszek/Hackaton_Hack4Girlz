@@ -7,7 +7,7 @@ const Wrapper = styled.div`
 `;
 
 const H1 = styled.span`
-    font-size: 24px;
+    font-size: 27px;
     line-height: 40px;
     font-weight: 700;
     padding: 48px 0 0;
