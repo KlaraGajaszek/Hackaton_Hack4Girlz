@@ -12,8 +12,6 @@ import { Box } from '@chakra-ui/react';
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    width: 375px;
-    height: 812px;
 `;
 
 const SectionInfoWrapper = styled.div`
