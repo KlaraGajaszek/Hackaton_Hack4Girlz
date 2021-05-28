@@ -1,13 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { StartPage } from './pages/StartPage/StartPage';
-import Login from './pages/StartPage/login';
-import Registration from './pages/StartPage/Registration';
-import { Routes } from './routing/router';
-import PrivateRoute from './PrivateRoute';
-import { AuthProvider } from './Auth';
-
 import { DefaultTheme, ThemeProvider } from 'styled-components';
+
+import { AuthProvider } from './Auth';
+import PrivateRoute from './PrivateRoute';
+import { Registration } from './pages/Registration';
+import { Login } from './pages/Login';
+import { SetupPage } from './pages/Setup';
+import { StartPage } from './pages/StartPage';
+import { Routes } from './routing/router';
 
 const theme: DefaultTheme = {
     rainbow: {
@@ -27,6 +28,7 @@ const App = () => {
         <ThemeProvider theme={theme}>
             <AuthProvider>
                 <Router>
+                    <Route path={Routes.Setup} component={SetupPage} />
                     <PrivateRoute exact path={Routes.Home} component={StartPage} />
                     <Route exact path={Routes.Login} component={Login} />
                     <Route exact path={Routes.Registration} component={Registration} />
