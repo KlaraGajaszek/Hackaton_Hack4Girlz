@@ -14,7 +14,6 @@ const SignUp = ({ history }) => {
 		async (event) => {
 			event.preventDefault();
 			const { email, password } = event.target.elements;
-
 			try {
 				await db.app.auth().createUserWithEmailAndPassword(email.value, password.value).then(
 					db.app.auth().onAuthStateChanged((user) => {
@@ -23,7 +22,6 @@ const SignUp = ({ history }) => {
 						}
 					})
 				);
-
 				history.push('/');
 			} catch (error) {
 				alert(error);
@@ -32,10 +30,12 @@ const SignUp = ({ history }) => {
 		[ history ]
 	);
 
-	const insertDetails = async () => {
+	const insertDetails = async (e) => {
 		await db.app.auth().onAuthStateChanged((user) => {
+			e.preventDefault();
 			if (user) {
 				setCurrentUser(user.uid);
+                db.collection('Users').add({ email: user.email, displayName: firstname + ' ' + lastname });
 			}
 		});
 	};
@@ -60,7 +60,7 @@ const SignUp = ({ history }) => {
 					Hasło
 					<input name="password" type="password" placeholder="Password" />
 				</label>
-				<button type="submit" onChange={insertDetails}>
+				<button type="submit" onClick={insertDetails}>
 					Sign Up
 				</button>
 			</form>
