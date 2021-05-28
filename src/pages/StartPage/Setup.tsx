@@ -1,11 +1,15 @@
-import React from 'react'
+import React from 'react';
+import { SectionTitle } from '../../components/SectionTitle';
 
-const Setup = () => {
+const SetupPage = () => {
     return (
         <div>
-            
+            <SectionTitle
+                title="Konfiguracja konta"
+                subtitle="Dodaj swoje zdjęcie, uzupełnij opis oraz wybierz branżę i specjalizację, które cię interesują."
+            />
         </div>
-    )
-}
+    );
+};
 
-export default Setup
+export { SetupPage };
