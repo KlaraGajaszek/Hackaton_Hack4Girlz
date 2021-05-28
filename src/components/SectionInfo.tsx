@@ -9,8 +9,7 @@ const Wrapper = styled.div`
 
 const InfoText = styled.span`
     font-size: 14px;
-    margin: 0;
-    margin-left: 1px;
+    margin-left: 5px;
     display: block;
     color: ${props => props.theme.rainbow.palette.text.gray};
 `;

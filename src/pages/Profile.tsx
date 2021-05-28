@@ -21,21 +21,42 @@ export const Profile = () => {
         <Wrapper>
             <SectionTitle title="Profil" subtitle="W tym miejscu możesz zobaczyć swoje dotychczasowe osiągnięcia." />
             <UserInfo name="Ela Popiel" avatarSrc={profile} />
-            <CustomProgressBar currentExp={35} levelCapExp={100} avatarIcon={cori_cat} />
-            <div>
+            <CustomProgressBar
+                currentExp={35}
+                levelCapExp={100}
+                avatarIcon={cori_cat}
+                color="#1AD1A3"
+                variant="success"
+            />
+            <div style={{ marginTop: '20px' }}>
                 <SectionInfo text="W jaki sposób mogę zbierać punkty?" />
             </div>
-            <Title title="Doświadczenie zdobyte w branżach" />
+            <div style={{ marginTop: '30px', marginBottom: '11px' }}>
+                <Title title="Doświadczenie zdobyte w branżach" />
+            </div>
+
             <div>
                 <Carouzel />
             </div>
-            <div>
-                <Title title="Doświadczenie zdobyte w branżach" />
-                <CustomProgressBar currentExp={35} levelCapExp={100} avatarIcon={cori_cat} />
+            <div style={{ marginTop: '30px', marginBottom: '30px' }}>
+                <Title title="UI/UX design" />
+                <CustomProgressBar
+                    currentExp={35}
+                    levelCapExp={100}
+                    avatarIcon={cori_cat}
+                    color="#1AD1A3"
+                    variant="success"
+                />
             </div>
-            <div>
-                <Title title="Doświadczenie zdobyte w branżach" />
-                <CustomProgressBar currentExp={35} levelCapExp={100} avatarIcon={cori_cat} />
+            <div style={{ marginTop: '30px', marginBottom: '20px' }}>
+                <Title title="Frontend developer" />
+                <CustomProgressBar
+                    currentExp={35}
+                    levelCapExp={100}
+                    avatarIcon={cori_cat}
+                    color="#1AD1A3"
+                    variant="success"
+                />
             </div>
             <SectionInfo text="Kim jest mentor?" />
         </Wrapper>
