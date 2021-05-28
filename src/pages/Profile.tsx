@@ -14,51 +14,65 @@ import cori_cat from '../assets/png/cat/Walk (5).png';
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
+    border-radius: 2500px;
 `;
 
+const MainWrapper = styled.div`
+    padding: 32px 19px 117px;
+`;
 export const Profile = () => {
     return (
-        <Wrapper>
-            <SectionTitle title="Profil" subtitle="W tym miejscu możesz zobaczyć swoje dotychczasowe osiągnięcia." />
-            <UserInfo name="Ela Popiel" avatarSrc={profile} />
-            <CustomProgressBar
-                currentExp={35}
-                levelCapExp={100}
-                avatarIcon={cori_cat}
-                color="#1AD1A3"
-                variant="success"
-            />
-            <div style={{ marginTop: '20px' }}>
-                <SectionInfo text="W jaki sposób mogę zbierać punkty?" />
+        <MainWrapper>
+            <div style={{ backgroundColor: '#E5E5E5', margin: '-32px -19px 0 -19px', padding: '32px 21px' }}>
+                <SectionTitle
+                    title="Ścieżka kariery"
+                    subtitle="W tym miejscu możesz zobaczyć swoje dotychczasowe osiągnięcia"
+                />
             </div>
-            <div style={{ marginTop: '30px', marginBottom: '11px' }}>
-                <Title title="Doświadczenie zdobyte w branżach" />
-            </div>
+            <Wrapper>
+                <UserInfo name="Ela Popiel" avatarSrc={profile} />
+                <CustomProgressBar
+                    currentExp={35}
+                    levelCapExp={100}
+                    avatarIcon={cori_cat}
+                    color="#1AD1A3"
+                    variant="success"
+                    text="level"
+                />
+                <div style={{ marginTop: '20px' }}>
+                    <SectionInfo text="W jaki sposób mogę zbierać punkty?" />
+                </div>
+                <div style={{ marginTop: '30px', marginBottom: '11px' }}>
+                    <Title title="Doświadczenie zdobyte w branżach" />
+                </div>
 
-            <div>
-                <Carouzel />
-            </div>
-            <div style={{ marginTop: '30px', marginBottom: '30px' }}>
-                <Title title="UI/UX design" />
-                <CustomProgressBar
-                    currentExp={35}
-                    levelCapExp={100}
-                    avatarIcon={cori_cat}
-                    color="#1AD1A3"
-                    variant="success"
-                />
-            </div>
-            <div style={{ marginTop: '30px', marginBottom: '20px' }}>
-                <Title title="Frontend developer" />
-                <CustomProgressBar
-                    currentExp={35}
-                    levelCapExp={100}
-                    avatarIcon={cori_cat}
-                    color="#1AD1A3"
-                    variant="success"
-                />
-            </div>
-            <SectionInfo text="Kim jest mentor?" />
-        </Wrapper>
+                <div>
+                    <Carouzel />
+                </div>
+                <div style={{ marginTop: '30px', marginBottom: '30px' }}>
+                    <Title title="UI/UX design" />
+                    <CustomProgressBar
+                        currentExp={35}
+                        levelCapExp={100}
+                        avatarIcon={cori_cat}
+                        color="#1AD1A3"
+                        variant="success"
+                        text="mentorka"
+                    />
+                </div>
+                <div style={{ marginTop: '30px', marginBottom: '20px' }}>
+                    <Title title="Frontend developer" />
+                    <CustomProgressBar
+                        currentExp={35}
+                        levelCapExp={100}
+                        avatarIcon={cori_cat}
+                        color="#1AD1A3"
+                        variant="success"
+                        text="mentorka"
+                    />
+                </div>
+                <SectionInfo text="Kim jest mentor?" />
+            </Wrapper>
+        </MainWrapper>
     );
 };

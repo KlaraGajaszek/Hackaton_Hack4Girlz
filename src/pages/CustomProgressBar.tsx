@@ -10,7 +10,8 @@ const CustomProgressBar = ({
     levelIcon = null,
     levelText = '',
     color,
-    variant
+    variant,
+    text
 }) => {
     const progressBarPercentage = (currentExp / levelCapExp) * 100;
 
@@ -34,7 +35,7 @@ const CustomProgressBar = ({
 
                 <LevelMarker levelIcon={levelIcon} text="21" bgColor={color} />
 
-                <Text ml={2}>level</Text>
+                <Text ml={2}>{text}</Text>
             </Box>
             {`${currentExp} / ${levelCapExp} pkt`}
         </Box>
