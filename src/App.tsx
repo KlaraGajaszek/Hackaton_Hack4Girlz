@@ -1,9 +1,12 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
-import { Routes } from './routing/router';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { StartPage } from './pages/StartPage/StartPage';
-import { SetupPage } from './pages/StartPage/Setup';
+import Login from './pages/StartPage/login';
+import Registration from './pages/StartPage/Registration';
+import { Routes } from './routing/router';
+import PrivateRoute from './PrivateRoute';
+import { AuthProvider } from './Auth';
+
 import { DefaultTheme, ThemeProvider } from 'styled-components';
 
 const theme: DefaultTheme = {
@@ -22,12 +25,13 @@ const theme: DefaultTheme = {
 const App = () => {
     return (
         <ThemeProvider theme={theme}>
-            <BrowserRouter>
-                <Switch>
-                    <Route path={Routes.Setup} component={SetupPage} />
-                    <Route exact path={Routes.Home} component={StartPage} />
-                </Switch>
-            </BrowserRouter>
+            <AuthProvider>
+                <Router>
+                    <PrivateRoute exact path={Routes.Home} component={StartPage} />
+                    <Route exact path={Routes.Login} component={Login} />
+                    <Route exact path={Routes.Registration} component={Registration} />
+                </Router>
+            </AuthProvider>
         </ThemeProvider>
     );
 };
