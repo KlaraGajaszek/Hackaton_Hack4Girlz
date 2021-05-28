@@ -12,7 +12,7 @@ const H1 = styled.span`
     font-weight: 700;
     padding: 48px 0 0;
     display: block;
-    color: ${props => props.theme.rainbow.palette.black};
+    color: ${props => props.theme.rainbow.palette.text.primary};
 `;
 
 const H2 = styled.span`
@@ -20,7 +20,7 @@ const H2 = styled.span`
     margin: 0;
     padding: 0 20px;
     display: block;
-    color: ${props => props.theme.rainbow.palette.black};
+    color: ${props => props.theme.rainbow.palette.text.primary};
 `;
 
 type Props = {

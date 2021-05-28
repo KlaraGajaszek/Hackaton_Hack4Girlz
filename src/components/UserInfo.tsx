@@ -8,7 +8,7 @@ const UserName = styled.span`
     margin-left: 24px;
     font-weight: 700;
     font-size: 27px;
-    color: ${props => props.theme.rainbow.palette.brand};
+    color: ${props => props.theme.rainbow.palette.text.primary};
 `;
 
 const UserInfo = () => {

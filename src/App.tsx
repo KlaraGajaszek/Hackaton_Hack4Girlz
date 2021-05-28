@@ -13,12 +13,25 @@ import { Routes } from './routing/router';
 const theme: DefaultTheme = {
     rainbow: {
         palette: {
-            success: '#44d7b6',
+            primary: {
+                main: '#01B6F5',
+                light: '#DAF8FF',
+                dark: '#061C3F'
+            },
+            secondary: {
+                main: '#FF507A',
+                light: '#FC5B82',
+                dark: ''
+            },
+            text: {
+                primary: '#000000',
+                secondary: '#061C3F'
+            },
+            success: '#1AD1A3',
             error: '#f14336',
             warning: '#f7b500',
             brand: '#00CAFD',
-            mainBackground: '#f4f5f7',
-            black: '#000000'
+            mainBackground: '#f4f5f7'
         }
     }
 };

@@ -5,12 +5,26 @@ declare module 'styled-components' {
     export interface DefaultTheme {
         rainbow: {
             palette: {
+                primary: {
+                    main: string;
+                    light: string;
+                    dark: string;
+                };
+                secondary: {
+                    main: string;
+                    light: string;
+                    dark: string;
+                };
+                text: {
+                    primary: string;
+                    secondary: string;
+                };
+                secondary: string;
                 success: string;
                 error: string;
                 warning: string;
                 brand: string;
                 mainBackground: string;
-                black: string;
             };
         };
     }
