@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 const InfoText = styled.span`
     font-size: 14px;
     margin: 0;
-    padding: 0 20px;
+    margin-left: 1px;
     display: block;
     color: ${props => props.theme.rainbow.palette.text.gray};
 `;

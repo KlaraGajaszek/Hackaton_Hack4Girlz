@@ -8,9 +8,15 @@ import App from './App';
 
 import * as serviceWorker from './serviceWorker';
 
+const Wrapper = styled.div`
+    padding: 48px 23px 53px;
+`;
+
 ReactDOM.render(
     <ChakraProvider>
-        <App />
+        <Wrapper>
+            <App />
+        </Wrapper>
     </ChakraProvider>,
     document.getElementById('root')
 );

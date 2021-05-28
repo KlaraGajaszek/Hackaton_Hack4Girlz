@@ -16,42 +16,26 @@ const Wrapper = styled.div`
     flex-direction: column;
 `;
 
-const SectionInfoWrapper = styled.div`
-    margin: 25px 0 11px 0;
-`;
-
-const SectionCarouzel = styled.div`
-    margin: 11px 0 40px;
-`;
-
-const SectionInfoWrapperDown = styled.div`
-    margin: 11px 0 40px;
-`;
-
 export const Profile = () => {
     return (
         <Wrapper>
             <SectionTitle title="Profil" subtitle="W tym miejscu możesz zobaczyć swoje dotychczasowe osiągnięcia." />
             <UserInfo name="Ela Popiel" avatarSrc={profile} />
-            <CustomProgressBar 
-                currentExp={35}
-                levelCapExp={100}
-                avatarIcon={cori_cat}
-            />
-            <SectionInfoWrapper>
-                <SectionInfo text="W jaki sposób mogę zbierać punkty?" />
-            </SectionInfoWrapper>
-            <Title title="Doświadczenie zdobyte w branżach" />
-            <SectionCarouzel>
-                <Carouzel />
-            </SectionCarouzel>
+            <CustomProgressBar currentExp={35} levelCapExp={100} avatarIcon={cori_cat} />
             <div>
-                <Title title="Doświadczenie zdobyte w branżach" />
-                <h1>CatBar</h1>
+                <SectionInfo text="W jaki sposób mogę zbierać punkty?" />
+            </div>
+            <Title title="Doświadczenie zdobyte w branżach" />
+            <div>
+                <Carouzel />
             </div>
             <div>
                 <Title title="Doświadczenie zdobyte w branżach" />
-                <h1>CatBar</h1>
+                <CustomProgressBar currentExp={35} levelCapExp={100} avatarIcon={cori_cat} />
+            </div>
+            <div>
+                <Title title="Doświadczenie zdobyte w branżach" />
+                <CustomProgressBar currentExp={35} levelCapExp={100} avatarIcon={cori_cat} />
             </div>
             <SectionInfo text="Kim jest mentor?" />
         </Wrapper>

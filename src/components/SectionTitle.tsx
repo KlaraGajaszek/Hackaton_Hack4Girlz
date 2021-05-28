@@ -10,7 +10,7 @@ const H1 = styled.span`
     font-size: 27px;
     line-height: 40px;
     font-weight: 700;
-    padding: 48px 0 0;
+    padding: 0 0 0 48px;
     display: block;
     color: ${props => props.theme.rainbow.palette.text.primary};
 `;
