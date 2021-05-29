@@ -46,7 +46,7 @@ const Subtitle = styled.h4`
 `;
 const titles = ['IT', 'SPORT', 'KULTURA', 'SZKOŁA'];
 
-const CarouselContainer = props => {
+export const CarouselContainer = props => {
     return (
         <CarouselCard>
             <Wrapper>
