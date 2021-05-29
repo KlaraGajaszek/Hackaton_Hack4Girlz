@@ -7,7 +7,7 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 import SlideX from '../assets/png/cat/SlideX.png';
 
-export const EditObjective = () => {
+export const EditGoal = () => {
     const [values, setValues] = useState<any>([]);
 
     const onSave = () => {

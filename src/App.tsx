@@ -10,11 +10,11 @@ import { SetupPage } from './pages/SetupPage';
 import { StartPage } from './pages/StartPage';
 import { Routes } from './routing/router';
 import { Profile } from './pages/Profile';
-import { AddedObjectiveWithoutSubTarget } from './pages/AddedObjectiveWithoutSubTarget';
-import { EditObjective } from './pages/EditObjective';
+import { AddedGoalsWithoutSubTarget } from './pages/AddedGoalsWithoutSubTarget';
+import { EditGoal } from './pages/EditGoal';
 import { Goals } from './pages/PersonalGoals';
-import { AddObjective } from './pages/AddObjective';
-import { UnderTheGoals } from './pages/UnderTheGoals';
+import { AddTask } from './pages/AddTask';
+import { AddSubtask } from './pages/AddSubTask';
 
 const theme: DefaultTheme = {
     rainbow: {
@@ -65,16 +65,11 @@ const App = () => {
                         <PrivateRoute exact path={Routes.Home} component={StartPage} />
                         <Route exact path={Routes.Login} component={Login} />
                         <Route exact path={Routes.Profile} component={Profile} />
-                        <Route exact path={Routes.Profile} component={Profile} />
-                        <Route exact path={Routes.AddObjective} component={AddObjective} />
-                        <Route exact path={Routes.UnderTheGoal} component={UnderTheGoals} />
-                        <Route
-                            exact
-                            path={Routes.AddedObjectiveWithoutSubTarget}
-                            component={AddedObjectiveWithoutSubTarget}
-                        />
-                        <PrivateRoute exact path={Routes.Goals} component={Goals} />
-                        <Route exact path={Routes.EditObjective} component={EditObjective} />
+                        <Route exact path={Routes.AddTask} component={AddTask} />
+                        <Route exact path={Routes.AddSubtask} component={AddSubtask} />
+                        <Route exact path={Routes.Goals} component={Goals} />
+                        <Route exact path={Routes.AddedGoalsWithoutSubTarget} component={AddedGoalsWithoutSubTarget} />
+                        <Route exact path={Routes.EditGoal} component={EditGoal} />
                         <Route exact path={Routes.Registration} component={Registration} />
                     </Router>
                 </AuthProvider>

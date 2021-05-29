@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Button } from 'react-rainbow-components';
 import { Input } from 'react-rainbow-components';
-
 import { Select } from 'react-rainbow-components';
+import { useHistory } from 'react-router-dom';
+
 import { GoBack } from '../components/GoBack';
+import { Routes } from '../routing/router';
+import { GoalButton } from '../components/GoalButton';
 
 const View = styled.div`
     height: 750px;
@@ -48,19 +50,22 @@ const CustomInput = styled(Input)`
     border: 1px solid #081449;
 `;
 
-export const AddObjective = () => {
+export const AddTask = () => {
     const [values, setValues] = useState({
         objective: '',
         starttime: '',
         endtime: '',
         isTime: false,
         prize: '',
-        industry: ''
+        industry: '',
+        subtasks: []
     });
-
+    const history = useHistory();
     const onSave = () => {
         // add to FB
         console.log('values', values);
+        // when try
+        history.push(Routes.AddSubtask);
     };
 
     const options = [
@@ -71,7 +76,7 @@ export const AddObjective = () => {
     return (
         <Wrapper>
             <Main>
-                <GoBack url="Pati page" />
+                <GoBack url="/goals" />
             </Main>
             <View>
                 <div style={{ margin: '23px' }}>
@@ -142,14 +147,7 @@ export const AddObjective = () => {
                     />
 
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '31px' }}>
-                        <Button
-                            label="Dalej"
-                            onClick={onSave}
-                            variant="brand"
-                            className="rainbow-m-around_medium "
-                            size="medium"
-                            style={buttonSize}
-                        />
+                        <GoalButton title="Dalej" onClick={onSave} />
                     </div>
                 </div>
             </View>

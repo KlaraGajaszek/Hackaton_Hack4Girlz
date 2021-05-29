@@ -30,7 +30,7 @@ const Wrapper = styled.div`
     flex-direction: column;
 `;
 
-export const UnderTheGoals = () => {
+export const AddSubtask = () => {
     return (
         <Wrapper>
             <Main>

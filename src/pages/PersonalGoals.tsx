@@ -13,32 +13,30 @@ import { db } from '../firebase';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase';
+import { useHistory } from 'react-router-dom';
+import { Routes } from '../routing/router';
 
-const Goals = () => {
-
+export const Goals = () => {
     const [docId, setDocId] = useState('');
     const [email, setEmail] = useState();
+    const history = useHistory();
     db.app.auth().onAuthStateChanged(user => {
         if (user) {
-            console.log(user.email)
-
+            console.log(user.email);
         }
     });
 
-
-    db.collection("Users").where("email", "==", "pat.kowalczyk646@gmail.com")
+    db.collection('Users')
+        .where('email', '==', 'pat.kowalczyk646@gmail.com')
         .get()
-        .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                setDocId(doc.id)
+        .then(querySnapshot => {
+            querySnapshot.forEach(doc => {
+                setDocId(doc.id);
             });
         })
-        .catch((error) => {
-            console.log("Error getting documents: ", error);
-        })
-
-
-
+        .catch(error => {
+            console.log('Error getting documents: ', error);
+        });
 
     const styleTab = {
         boxShadow: 'none'
@@ -62,9 +60,7 @@ const Goals = () => {
             <Tabs isFitted variant="enclosed">
                 <div>
                     <div style={{ display: 'flex' }}>
-                        <p style={{ fontWeight: 900, color: '#01B6F5', marginRight: 5, marginBottom: 10 }}>
-
-                        </p>
+                        <p style={{ fontWeight: 900, color: '#01B6F5', marginRight: 5, marginBottom: 10 }}></p>
                         <Avatar
                             style={{ width: 30, height: 30, backgroundColor: 'white' }}
                             icon={<AiOutlineUser size="small" />}
@@ -74,37 +70,41 @@ const Goals = () => {
                     <p style={{ fontSize: 14, marginBottom: 20, fontFamily: 'Lato' }}>
                         Nie od razu Rzym zbudowano, ale cegły noszono codziennie! Zaplanuj swoje cele i drogę do ich
                         osiagnięcia.
-					</p>
+                    </p>
                     <TabList>
                         <Tab style={styleTab} _hover={{ color: '#01B6F5', fontWeight: 700 }}>
                             TWOJE CELE
-						</Tab>
+                        </Tab>
                         <Tab style={styleTab} _hover={{ color: '#01B6F5', fontWeight: 700 }}>
                             TWÓJ POSTĘP
-						</Tab>
+                        </Tab>
                     </TabList>
                 </div>
                 <TabPanels>
                     <TabPanel style={styleBox as React.CSSProperties}>
                         <Image src={RunCat} alt="run cat" boxSize="180px" marginTop="10" />
                         <p style={{ maxWidth: 200, marginBottom: 20 }}>Nie masz jeszcze wyznaczonych żadnych celów</p>
-                        <Button variant="brand" className="rainbow-m-around_medium">
+                        <Button
+                            variant="brand"
+                            className="rainbow-m-around_medium"
+                            onClick={() => {
+                                history.push(Routes.AddTask);
+                            }}
+                        >
                             <FontAwesomeIcon icon={faPlus} style={{ marginRight: 5 }} />
-							Dodaj cel
-						</Button>
+                            Dodaj cel
+                        </Button>
                     </TabPanel>
                     <TabPanel style={styleBox as React.CSSProperties}>
                         <Image src={RunCat} alt="run cat" boxSize="180px" marginTop="10" />
                         <p style={{ maxWidth: 200, marginBottom: 20 }}>Wszystko co najlepsze jeszcze przed Tobą!</p>
                         <Button variant="brand" className="rainbow-m-around_medium">
                             <FontAwesomeIcon icon={faPlus} style={{ marginRight: 5 }} />
-							Dodaj cel
-						</Button>
+                            Dodaj cel
+                        </Button>
                     </TabPanel>
                 </TabPanels>
             </Tabs>
         </div>
     );
 };
-
-export { Goals };
