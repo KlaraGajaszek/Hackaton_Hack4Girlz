@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
 import { Application } from 'react-rainbow-components';
 import { AuthProvider } from './contexts/Auth';
@@ -22,7 +22,7 @@ const theme: DefaultTheme = {
         palette: {
             primary: {
                 main: '#01B6F5',
-                light: '#DAF8FF',
+                light: '#B0EFFE',
                 dark: '#061C3F'
             },
             secondary: {
@@ -62,23 +62,24 @@ const App = () => {
             <Application theme={rainbowTheme}>
                 <AuthProvider>
                     <Router>
-                        <Route exact path={Routes.Login} component={Login} />
-                        <Route exact path={Routes.Registration} component={Registration} />
-
-                        <PrivateRoute path={Routes.Setup} component={SetupPage} />
-                        <Layout>
-                            <PrivateRoute exact path={Routes.Home} component={StartPage} />
-                            <Route exact path={Routes.Profile} component={Profile} />
-                            <Route exact path={Routes.AddTask} component={AddTask} />
-                            <Route exact path={Routes.AddSubtask} component={AddSubtask} />
-                            <Route exact path={Routes.Goals} component={Goals} />
-                            <Route
-                                exact
-                                path={Routes.AddedGoalsWithoutSubTarget}
-                                component={AddedGoalsWithoutSubTarget}
-                            />
-                            <Route exact path={Routes.EditGoal} component={EditGoal} />
-                        </Layout>
+                        <Switch>
+                            <Route exact path={Routes.Login} component={Login} />
+                            <Route exact path={Routes.Registration} component={Registration} />
+                            <PrivateRoute path={Routes.Setup} component={SetupPage} />
+                            <Layout>
+                                <PrivateRoute exact path={Routes.Home} component={StartPage} />
+                                <Route exact path={Routes.Profile} component={Profile} />
+                                <Route exact path={Routes.AddTask} component={AddTask} />
+                                <Route exact path={Routes.AddSubtask} component={AddSubtask} />
+                                <Route exact path={Routes.Goals} component={Goals} />
+                                <Route
+                                    exact
+                                    path={Routes.AddedGoalsWithoutSubTarget}
+                                    component={AddedGoalsWithoutSubTarget}
+                                />
+                                <Route exact path={Routes.EditGoal} component={EditGoal} />
+                            </Layout>
+                        </Switch>
                     </Router>
                 </AuthProvider>
             </Application>
