@@ -51,15 +51,29 @@ const Title = styled.span`
 
 //Get data from fb
 export const AddSubtask = () => {
-    const { currentGoal } = useCurrentGoalContext();
+    const { currentGoal, setGoal } = useCurrentGoalContext();
     const allGoals = db.collection('Goals').doc('4NGXdhMPGGxbXG24GpSA');
-    console.log('allGoals', allGoals);
+
     const onSave = () => {
         db.collection('Goals')
             .doc('4NGXdhMPGGxbXG24GpSA')
-            .set({ userId: currentGoal.userId, goals: currentGoal })
+            .set({
+                userId: currentGoal.userId,
+                goals: currentGoal,
+                name: currentGoal.objective,
+                subtasks: currentGoal.subtasks
+            })
             .then(() => {
-                console.log('ADD POPUP Success');
+                setGoal({
+                    userId: '',
+                    objective: '',
+                    starttime: '',
+                    endtime: '',
+                    isTime: false,
+                    prize: '',
+                    industry: '',
+                    subtasks: []
+                });
             })
             .catch(error => {
                 console.error('Error writing document: ', error);
