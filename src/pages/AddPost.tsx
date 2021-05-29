@@ -28,7 +28,7 @@ export const AddPost = () => {
         height: 750px;
         padding: 54px;
         background-color: white;
-        padding: 20px;
+        padding: 40px;
         border-radius: 20px 20px 0px 0px;
         position: fixed;
         left: 0;

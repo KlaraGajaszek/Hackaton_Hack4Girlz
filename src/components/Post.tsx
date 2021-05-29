@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Card, Avatar, MenuDivider, Input } from 'react-rainbow-components';
-import { useUserData } from '../hooks/useUserData';
-import Loader from './Loader';
 import { AiFillHeart, AiOutlineSend } from 'react-icons/ai';
 import { Comments } from './Comments';
+import { useAuthContext } from '../contexts/Auth';
+import { addComment } from '../db/addComment';
+import { addLike } from '../db/addLike';
 
 const MyCard = styled(Card)`
     margin: 16px 16px;
@@ -42,12 +43,25 @@ const MyInput = styled(Input)`
 `;
 
 const Post = ({ id, displayName, photoURL, text, likes }: any) => {
+    const [comment, setComment] = useState('');
+    const {
+        user: { uid: myuid, displayName: mydisplayName, photoURL: myphotoURL }
+    } = useAuthContext();
+
+    const handleCommentAdd = async () => {
+        const isSuccess = await addComment(
+            { uid: myuid, displayName: mydisplayName, photoURL: myphotoURL },
+            id,
+            comment
+        );
+    };
+
     return (
         <MyCard
             title={displayName}
             icon={<Avatar src={photoURL} />}
             actions={
-                <Heart>
+                <Heart onClick={() => addLike(likes, id)}>
                     {likes}
                     <AiFillHeart size="1em" />
                 </Heart>
@@ -56,11 +70,16 @@ const Post = ({ id, displayName, photoURL, text, likes }: any) => {
             <Divider />
             <Content>{text}</Content>
             <Divider />
-            <Comments />
+            <Comments postId={id} />
             <Divider />
             <Footer>
-                <MyInput placeholder="Dodaj komentarz" />
-                <AiOutlineSend size="2.5em" />
+                <MyInput
+                    placeholder="Dodaj komentarz"
+                    value={comment}
+                    onKeyDown={e => e.key === 'Enter' && handleCommentAdd()}
+                    onChange={e => setComment(e.target.value)}
+                />
+                <AiOutlineSend size="2.5em" onClick={handleCommentAdd} />
             </Footer>
         </MyCard>
     );

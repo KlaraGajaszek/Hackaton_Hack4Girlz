@@ -15,7 +15,7 @@ const View = styled.div`
     height: 750px;
     padding: 54px;
     background-color: white;
-    padding: 5px;
+    padding: 20px;
     border-radius: 20px 20px 0px 0px;
     /* align-items: end; */
     position: fixed;
@@ -30,7 +30,7 @@ const View = styled.div`
 `;
 
 const Main = styled.div`
-    background: '#E5E5E5';
+    background-color: ${props => props.theme.rainbow.palette.background.grey};
     height: 100vh;
 `;
 

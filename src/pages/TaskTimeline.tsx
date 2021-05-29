@@ -50,8 +50,9 @@ export const TaskTimeline = () => {
                 <div>
                     <div>
                         <TaskCard
-                            startData="27.05.2021"
-                            endData="27.05.2022"
+                            startDate="27.05.2021"
+                            endDate="27.05.2022"
+                            isTime={false}
                             title="Zdobycie pierwszej pracy jako UX designer"
                             editUrl="/cele/nowy/podcel/formularz"
                         />

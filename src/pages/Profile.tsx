@@ -20,7 +20,7 @@ const Wrapper = styled.div`
 `;
 
 const MainWrapper = styled.div`
-    padding: 32px 19px 117px;
+    padding: 32px 20px 117px;
 `;
 export const Profile = () => {
     const {
@@ -30,7 +30,7 @@ export const Profile = () => {
 
     return (
         <MainWrapper>
-            <div style={{ backgroundColor: '#E5E5E5', margin: '-32px -19px 0 -19px', padding: '32px 21px' }}>
+            <div style={{ backgroundColor: '#E5E5E5', margin: '-32px -20px 0 -20px', padding: '32px 20px' }}>
                 <SectionTitle title="Profil" subtitle="W tym miejscu możesz zobaczyć swoje dotychczasowe osiągnięcia" />
             </div>
             <Wrapper>
