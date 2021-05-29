@@ -5,6 +5,9 @@ import { GoBack } from '../components/GoBack';
 import { TaskCard } from '../components/TaskCard';
 import { Routes } from '../routing/router';
 import { AddGoalButton } from '../components/AddGoalButton';
+import { Button } from 'react-rainbow-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 const View = styled.div`
     height: 750px;
@@ -58,6 +61,7 @@ export const SaveTaskAndSubTasks = () => {
                         editUrl="/cele/nowy"
                     />
                 </div>
+
                 <AddGoalButton url="/cele/nowy/podcel/formularz" />
             </View>
         </Wrapper>

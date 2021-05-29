@@ -5,6 +5,8 @@ import { GoBack } from '../components/GoBack';
 import { TaskCard } from '../components/TaskCard';
 import { Routes } from '../routing/router';
 import { AddGoalButton } from '../components/AddGoalButton';
+import { GoalButton } from '../components/GoalButton';
+import { Button } from 'react-rainbow-components';
 
 const View = styled.div`
     height: 750px;
@@ -43,6 +45,9 @@ const Title = styled.span`
 
 //Get data from fb
 export const AddSubtask = () => {
+    const onSave = () => {
+        console.log('request aim goal');
+    };
     return (
         <Wrapper>
             <Main>
@@ -59,6 +64,9 @@ export const AddSubtask = () => {
                     />
                 </div>
                 <AddGoalButton url="/cele/nowy/podcel/formularz" />
+                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '330px' }}>
+                    <GoalButton title="Zapisz tylko główny cel" onClick={onSave} />
+                </div>
             </View>
         </Wrapper>
     );
