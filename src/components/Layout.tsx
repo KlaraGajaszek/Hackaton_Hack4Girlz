@@ -14,7 +14,7 @@ const Container = styled.div`
 `;
 
 const Menu = styled(Card)`
-    position: fixed;
+    position: sticky;
     bottom: 0;
     left: 0;
     height: 72px;

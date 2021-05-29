@@ -12,9 +12,11 @@ const Posts = () => {
     if (loading) return <Loader />;
     if (error) return <span>Cos poszlo nie tak</span>;
 
+    const sort = (a, b) => b.data().createdAt.seconds - a.data().createdAt.seconds;
+
     return (
         <div>
-            {snapshot.docs.map(post => (
+            {snapshot.docs.sort(sort).map(post => (
                 <Post key={post.id} id={post.id} {...post.data()} />
             ))}
         </div>

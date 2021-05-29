@@ -1,8 +1,11 @@
 import React, { FC } from 'react';
 import { Avatar } from 'react-rainbow-components';
 import styled from 'styled-components';
-import { useUserData } from '../hooks/useUserData';
 import { FaCheck } from 'react-icons/fa';
+import Loader from './Loader';
+import { useCollection } from 'react-firebase-hooks/firestore';
+import { db } from '../firebase';
+import { format } from 'date-fns';
 
 const Container = styled.div`
     display: flex;
@@ -27,7 +30,7 @@ const Bubble = styled.div`
     box-shadow: 5px 5px 2px 0px #a3a3a3;
     text-align: center;
     width: 220px;
-    height: 40px;
+    min-height: 40px;
     border-radius: 15px;
     padding: 12px;
     &:after {
@@ -45,7 +48,7 @@ const Bubble = styled.div`
     }
 `;
 
-const Date = styled.div`
+const DateField = styled.div`
     margin-top: 4px;
     font-size: 10px;
     line-height: 12px;
@@ -65,30 +68,39 @@ const Main = styled.div`
     justify-content: flex-end;
 `;
 
-const Comment: FC = ({ children }) => {
-    const { userData, loading } = useUserData();
-
+const Comment: FC = ({ children, photoURL, createdAt }) => {
+    const date = createdAt ? format(createdAt.toDate(), 'dd-MM-RR HH:mm') : '';
     return (
         <div>
             <Container>
                 <Main>
                     <Bubble>{children}</Bubble>
-                    <Date>
-                        <span>1:08 PM</span> <Icon />
-                    </Date>
+                    <DateField>
+                        <span>{date}</span> <Icon />
+                    </DateField>
                 </Main>
-                <MyAvatar src={userData?.photoURL} />
+                <MyAvatar src={photoURL} />
             </Container>
         </div>
     );
 };
 
-const Comments = () => {
+const sort = (a, b) => b.data().createdAt.seconds - a.data().createdAt.seconds;
+
+const Comments = ({ postId }) => {
+    const ref = db.collection('Comments').where('postId', '==', postId);
+    const [snapshot, loading, error] = useCollection(ref);
+
+    if (loading) return <Loader />;
+    if (error) return <span>Cos poszlo nie tak</span>;
+
     return (
         <>
-            <Comment>Nie pierdol, aplikuj!!!</Comment>
-            <Comment></Comment>
-            <Comment></Comment>
+            {snapshot.docs.sort(sort).map(comment => (
+                <Comment key={comment.id} photoURL={comment.data().photoURL} createdAt={comment.data().createdAt}>
+                    {comment.data().text}
+                </Comment>
+            ))}
         </>
     );
 };

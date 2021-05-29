@@ -33,7 +33,6 @@ export const AuthProvider = ({ children }) => {
         (async () => {
             if (!user) return;
             db.doc(`Users/${user.uid}`).onSnapshot((doc): any => {
-                console.log('🚀 ~ file: Auth.tsx ~ line 36 ~ db.doc ~ doc', doc);
                 setUserData(doc?.data());
             });
         })();

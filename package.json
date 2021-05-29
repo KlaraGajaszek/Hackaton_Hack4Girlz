@@ -23,6 +23,7 @@
     "@types/testing-library__jest-dom": "^5.9.5",
     "@types/yup": "^0.29.11",
     "axios": "^0.21.0",
+    "date-fns": "^2.22.1",
     "emotion-theming": "^11.0.0",
     "firebase": "^8.6.2",
     "formik": "^2.2.6",
