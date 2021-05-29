@@ -174,7 +174,13 @@ export const Goals = () => {
                         <TabPanel style={styleBox as React.CSSProperties}>
                             <Image src={RunCat} alt="run cat" boxSize="180px" marginTop="10" />
                             <p style={{ maxWidth: 200, marginBottom: 20 }}>Wszystko co najlepsze jeszcze przed Tobą!</p>
-                            <Button variant="brand" className="rainbow-m-around_medium">
+                            <Button
+                                onClick={() => {
+                                    history.push(Routes.AddTask);
+                                }}
+                                variant="brand"
+                                className="rainbow-m-around_medium"
+                            >
                                 <FontAwesomeIcon icon={faPlus} style={{ marginRight: 5 }} />
                                 Dodaj cel
                             </Button>
@@ -212,7 +218,13 @@ export const Goals = () => {
                                 marginTop="10"
                             />
                             <p style={{ maxWidth: 200, marginBottom: 20 }}>Wszystko co najlepsze jeszcze przed Tobą!</p>
-                            <Button variant="brand" className="rainbow-m-around_medium">
+                            <Button
+                                onClick={() => {
+                                    history.push(Routes.AddTask);
+                                }}
+                                variant="brand"
+                                className="rainbow-m-around_medium"
+                            >
                                 <FontAwesomeIcon icon={faPlus} style={{ marginRight: 5 }} />
                                 Dodaj cel
                             </Button>

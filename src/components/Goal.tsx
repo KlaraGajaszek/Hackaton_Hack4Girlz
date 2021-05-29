@@ -1,7 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Button } from 'react-rainbow-components';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useHistory } from 'react-router-dom';
+import { Routes } from '../routing/router';
 
 export const Goal = ({ goals }) => {
+    const history = useHistory();
     const Date = styled.p`
         font-size: 11px;
         color: #7c7878;
@@ -47,8 +53,15 @@ export const Goal = ({ goals }) => {
         flex-wrap: wrap;
     `;
 
+    const buttonStyles = {
+        position: 'fixed',
+        bottom: '130px',
+        right: 0,
+        marginRight: '24px'
+    };
+
     return (
-        <div>
+        <div style={{ position: 'relative' }}>
             <StyledDiv>
                 {goals.map(g => (
                     <CarouselCard>
@@ -59,6 +72,16 @@ export const Goal = ({ goals }) => {
                     </CarouselCard>
                 ))}
             </StyledDiv>
+            <Button
+                onClick={() => {
+                    history.push(Routes.AddTask);
+                }}
+                style={buttonStyles}
+                variant="brand"
+            >
+                <FontAwesomeIcon icon={faPlus} style={{ marginRight: 5 }} />
+                Dodaj cel
+            </Button>
         </div>
     );
 };
