@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Button } from 'react-rainbow-components';
 import { ButtonIcon } from 'react-rainbow-components';
@@ -9,6 +9,7 @@ import { useHistory } from 'react-router';
 import { db } from '../firebase';
 import { useCurrentGoalContext } from '../contexts/CurrentGoal';
 import { GoalButton } from '../components/GoalButton';
+import { Notification } from 'react-rainbow-components';
 
 import SlideX from '../assets/png/cat/SlideX.png';
 
@@ -88,6 +89,7 @@ const Wrapper = styled.div`
 
 export const AddedGoalsWithoutSubTarget = () => {
     const { currentGoal, setGoal } = useCurrentGoalContext();
+    const [sended, setSended] = useState(false);
     const allGoals = db.collection('Goals').doc('4NGXdhMPGGxbXG24GpSA');
     const history = useHistory();
     const onSave = () => {
@@ -100,6 +102,7 @@ export const AddedGoalsWithoutSubTarget = () => {
                 subtasks: currentGoal.subtasks
             })
             .then(() => {
+                setSended(true);
                 setGoal({
                     userId: '',
                     objective: '',
@@ -110,6 +113,9 @@ export const AddedGoalsWithoutSubTarget = () => {
                     industry: '',
                     subtasks: []
                 });
+                setTimeout(() => {
+                    history.push('/cele');
+                }, [1000]);
             })
             .catch(error => {
                 console.error('Error writing document: ', error);
@@ -123,7 +129,13 @@ export const AddedGoalsWithoutSubTarget = () => {
     };
     return (
         <Wrapper>
-            <Main></Main>
+            <Main>
+                {sended && (
+                    <div className="rainbow-p-bottom_x-small" style={{ zIndex: '50000' }}>
+                        <Notification description="Cel został dodany" icon="success" />
+                    </div>
+                )}
+            </Main>
             <View>
                 <Navbar>
                     <div></div>
@@ -138,8 +150,8 @@ export const AddedGoalsWithoutSubTarget = () => {
                 </Navbar>
                 <img src={SlideX} style={{ width: '180px', height: '180px' }} />
                 <Test>
-                    <Title>Zdobycie pierwszej pracy jako UX</Title>
-                    <Data>27.05.2021 - 27.05.2022</Data>
+                    <Title>{currentGoal.objective}</Title>
+                    <Data>{`${currentGoal?.starttime} - ${currentGoal?.endtime} `}</Data>
                 </Test>
                 <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1px' }}>
                     <GoalButton title="Zapisz" onClick={onSave} />

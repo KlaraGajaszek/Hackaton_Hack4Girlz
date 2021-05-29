@@ -21,6 +21,7 @@ import { SaveTaskAndSubTasks } from './pages/SaveTaskAndSubTasks';
 import { GoalContextProvider } from './contexts/CurrentGoal';
 import { AddSubTaskForm } from './pages/AddSubTaskForm';
 import { AddPost } from './pages/AddPost';
+import { AddResult } from './pages/AddResult';
 
 const theme: DefaultTheme = {
     rainbow: {
@@ -83,6 +84,7 @@ const App = () => {
                                 <Route exact path={Routes.AddSubTaskForm} component={AddSubTaskForm} />
                                 <PrivateRoute exact path={Routes.AddSubtask} component={AddSubtask} />
                                 <PrivateRoute exact path={Routes.Goals} component={Goals} />
+                                <PrivateRoute exact path={Routes.AddGoalReasults} component={AddResult} />
                                 <PrivateRoute
                                     exact
                                     path={Routes.AddedGoalsWithoutSubTarget}

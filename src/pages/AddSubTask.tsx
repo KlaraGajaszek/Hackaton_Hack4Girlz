@@ -53,7 +53,7 @@ const Title = styled.span`
 //Get data from fb
 export const AddSubtask = () => {
     const { currentGoal, setGoal } = useCurrentGoalContext();
-    const allGoals = db.collection('Goals').doc('4NGXdhMPGGxbXG24GpSA');
+    // const allGoals = db.collection('Goals').doc('4NGXdhMPGGxbXG24GpSA');
     const history = useHistory();
 
     const onSave = () => {
