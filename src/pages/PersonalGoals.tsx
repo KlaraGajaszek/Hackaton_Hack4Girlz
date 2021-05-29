@@ -41,7 +41,15 @@ export const Goals = () => {
         });
 
     const styleTab = {
-        boxShadow: 'none'
+        boxShadow: 'none',
+        color: '#576574',
+        borderBottom: 'none'
+    };
+
+    const moreStyledTab = {
+        color: '#01B6F5',
+        fontWeight: 900,
+        borderBottom: 'none'
     };
 
     const icon = {
@@ -53,8 +61,7 @@ export const Goals = () => {
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-        textAlign: 'center',
-        fontSize: 14
+        textAlign: 'center'
     };
 
     return (
@@ -69,20 +76,28 @@ export const Goals = () => {
                             src={UserCat}
                         />
                     </div>
-                    <p style={{ fontSize: 14, marginBottom: 20, fontFamily: 'Lato', color: '#000000', padding: 30 }}>
+                    <p
+                        style={{
+                            fontSize: 14,
+                            marginBottom: 20,
+                            fontFamily: 'Lato',
+                            color: '#000000',
+                            padding: 30
+                        }}
+                    >
                         Nie od razu Rzym zbudowano, ale cegły noszono codziennie! Zaplanuj swoje cele i drogę do ich
                         osiagnięcia.
                     </p>
                     <TabList>
                         <Tab
-                            style={styleTab}
+                            style={achievements ? styleTab : moreStyledTab}
                             _hover={{ color: '#01B6F5', fontWeight: 700 }}
                             onClick={() => setAchievements(false)}
                         >
                             TWOJE CELE
                         </Tab>
                         <Tab
-                            style={styleTab}
+                            style={achievements ? moreStyledTab : styleTab}
                             _hover={{ color: '#01B6F5', fontWeight: 700 }}
                             onClick={() => setAchievements(true)}
                         >

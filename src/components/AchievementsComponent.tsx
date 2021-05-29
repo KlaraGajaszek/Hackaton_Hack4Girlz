@@ -14,6 +14,17 @@ const achievements = [
     }
 ];
 
+const lessons = [
+    {
+        description: 'Mój pierwszy warsztat w apce Networkya',
+        date: '27.05.2021 - 27.05.2022'
+    },
+    {
+        description: 'Podwyżka w pracy',
+        date: '27.05.2021 - 27.05.2022'
+    }
+];
+
 const CarouselCard = styled.div`
     display: flex;
     margin: 15px;
@@ -22,7 +33,7 @@ const CarouselCard = styled.div`
     height: 167px;
     border-width: 2px;
     border-style: solid;
-    background-color: #daf8ff;
+    background-color: #b8ebfb;
     border-radius: 15px;
     padding: 15px;
     :hover {
@@ -41,6 +52,7 @@ const Wrapper = styled.div`
 
 const MainWrapper = styled.div`
     margin-left: -80px;
+    overflow-y: scroll;
 `;
 
 const Subtitle = styled.h4`
@@ -59,11 +71,35 @@ const Date = styled.p`
     text-align: left;
 `;
 
+const LessonDate = styled.p`
+    font-size: 11px;
+    color: #7c7878;
+    padding: 10px;
+    text-align: left;
+`;
+
 const StyledDiv = styled.div`
     color: #000000;
     font-size: 19px;
     font-weight: 500;
     padding: 30px;
+`;
+
+const Lesson = styled.div`
+    width: 311px;
+    left: 32px;
+    background: #daf8ff;
+    border-radius: 14px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 14px;
+`;
+
+const LessonDescription = styled.p`
+    color: black;
+    font-weight: 400;
 `;
 
 export const AchievementsComponent = () => {
@@ -93,6 +129,13 @@ export const AchievementsComponent = () => {
                     ))}
                 </Carousel>
             </MainWrapper>
+            <StyledDiv>Wyniesione lekcje</StyledDiv>
+            {lessons.map(l => (
+                <Lesson>
+                    <LessonDescription>{l.description}</LessonDescription>
+                    <LessonDate>{l.date}</LessonDate>
+                </Lesson>
+            ))}
         </div>
     );
 };
