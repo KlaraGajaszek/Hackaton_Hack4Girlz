@@ -3,5 +3,9 @@ export enum Routes {
     Home = '/',
     Login = '/login',
     Registration = '/rejestracja',
-    Profile = '/profil'
+    Profile = '/profil',
+    AddedObjectiveWithoutSubTarget = '/addedobjectivewithoutsubtarget',
+    EditObjective = '/editobjective',
+    AddObjective = '/addobjective',
+     Goals = '/cele',
 }

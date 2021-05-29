@@ -6,7 +6,7 @@ import { AiOutlineUser } from 'react-icons/ai';
 import { AuthContext } from '../contexts/Auth';
 
 const UserName = styled.span<{ horizontal: boolean }>`
-    margin: ${({ horizontal }) => (horizontal ? '0' : '0 ')};
+    margin: ${({ horizontal }) => (horizontal ? '0 ' : '16px 0 0 ')};
     font-weight: 700;
     font-size: 27px;
     color: ${({ horizontal, theme }) =>
