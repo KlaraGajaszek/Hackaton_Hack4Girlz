@@ -37,7 +37,9 @@ export const SetupPage = () => {
         specialization: '',
         animal: Animals.Szpila
     });
-    const { uid } = useContext(AuthContext);
+    const {
+        user: { uid }
+    } = useContext(AuthContext);
     const history = useHistory();
     const { userData, loading } = useUserData();
 

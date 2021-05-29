@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { GoBack } from '../components/GoBack';
+import { db } from '../firebase';
+import { useCurrentGoalContext } from '../contexts/CurrentGoal';
 import { TaskCard } from '../components/TaskCard';
 import { Routes } from '../routing/router';
 import { AddGoalButton } from '../components/AddGoalButton';
@@ -49,8 +51,19 @@ const Title = styled.span`
 
 //Get data from fb
 export const AddSubtask = () => {
+    const { currentGoal } = useCurrentGoalContext();
+    const allGoals = db.collection('Goals').doc('4NGXdhMPGGxbXG24GpSA');
+    console.log('allGoals', allGoals);
     const onSave = () => {
-        console.log('request aim goal');
+        db.collection('Goals')
+            .doc('4NGXdhMPGGxbXG24GpSA')
+            .set({ userId: currentGoal.userId, goals: currentGoal })
+            .then(() => {
+                console.log('ADD POPUP Success');
+            })
+            .catch(error => {
+                console.error('Error writing document: ', error);
+            });
     };
     return (
         <Wrapper>
@@ -62,15 +75,14 @@ export const AddSubtask = () => {
                     <Title>Twój cel</Title>
                     <div style={{ marginTop: '15px', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
                         <TaskCard
-                            startData="27.05.2021"
-                            endData="27.05.2022"
-                            title="Zdobycie pierwszej pracy jako UX designer"
+                            startData={currentGoal.starttime}
+                            endData={currentGoal?.endtime}
+                            title={currentGoal.objective}
                             editUrl="/cele/nowy"
                         />
                     </div>
                     <AddGoalButton url="/cele/nowy/podcel/formularz" />
                 </div>
-
                 <div style={{ marginBottom: '60px' }}>
                     <GoalButton title="Zapisz tylko główny cel" onClick={onSave} />
                 </div>

@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Input } from 'react-rainbow-components';
 import { Select } from 'react-rainbow-components';
 import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../contexts/Auth';
 import { db } from '../firebase';
 
 import { GoBack } from '../components/GoBack';
+import { useCurrentGoalContext } from '../contexts/CurrentGoal';
 import { Routes } from '../routing/router';
 import { GoalButton } from '../components/GoalButton';
 
@@ -54,30 +56,14 @@ const CustomInput = styled(Input)`
 `;
 
 export const AddTask = () => {
-    const [values, setValues] = useState({
-        objective: '',
-        starttime: '',
-        endtime: '',
-        isTime: false,
-        prize: '',
-        industry: '',
-        subtasks: []
-    });
+    const { currentGoal, setGoal } = useCurrentGoalContext();
+    const { user } = useContext(AuthContext);
+    const [values, setValues] = useState(currentGoal);
     const history = useHistory();
+
     const onSave = () => {
-        // add to FB
+        setGoal({ ...values, userId: user?.uid });
 
-        db.collection('Goals')
-            .add(values)
-            .then(() => {
-                console.log('Document successfully written!');
-            })
-            .catch(error => {
-                console.error('Error writing document: ', error);
-            });
-
-        console.log('values', values);
-        // when try
         history.push(Routes.AddSubtask);
     };
 
@@ -111,6 +97,7 @@ export const AddTask = () => {
                     </h1>
                     <CustomInput
                         label="Nazwa Celu"
+                        value={values.objective}
                         labelAlignment="left"
                         style={inputStyle}
                         name="objective"
@@ -120,6 +107,7 @@ export const AddTask = () => {
                     <Input
                         label="Rozpoczęcie"
                         labelAlignment="left"
+                        value={values.starttime}
                         style={inputStyleTime}
                         name="starttime"
                         type="datetime-local"
@@ -127,6 +115,7 @@ export const AddTask = () => {
                     />
                     <Input
                         label="Zakonczenie"
+                        value={values.endtime}
                         labelAlignment="left"
                         style={inputStyleTime}
                         name="endtime"
@@ -135,6 +124,7 @@ export const AddTask = () => {
                     />
                     <Input
                         labelAlignment="left"
+                        checked={values.isTime}
                         type="checkbox"
                         style={inputStyle}
                         name="isTime"
@@ -143,6 +133,7 @@ export const AddTask = () => {
                     />
                     <Input
                         label="Nagroda"
+                        value={values.prize}
                         labelAlignment="left"
                         style={inputStyle}
                         name="prize"
@@ -151,6 +142,7 @@ export const AddTask = () => {
                     />
                     <Select
                         label="Branża"
+                        value={values.industry}
                         labelAlignment="left"
                         options={options}
                         name="industry"

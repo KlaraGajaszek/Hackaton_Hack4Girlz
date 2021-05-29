@@ -1,6 +1,7 @@
 export enum Routes {
     Setup = '/konfiguracja',
     Home = '/tablica',
+    NewPost = '/tablica/nowypost',
     Login = '/login',
     Registration = '/rejestracja',
     Profile = '/profil',

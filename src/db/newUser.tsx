@@ -11,7 +11,6 @@ export const newUser = async ({ displayName, email, uid, photoURL }: firebase.Us
             displayName,
             photoURL
         };
-
         await db.collection('Users').doc(uid).set(data);
     } catch (error) {
         console.log('🚀 ~ file: newUser.ts ~ line 16 ~ newUser ~ error', error);

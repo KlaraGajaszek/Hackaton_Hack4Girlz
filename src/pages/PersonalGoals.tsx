@@ -30,7 +30,7 @@ export const Goals = () => {
         }
     });
 
-    const { displayName } = useContext(AuthContext);
+    const { displayName }: any = useContext(AuthContext);
 
     db.collection('Users')
         .where('email', '==', 'pat.kowalczyk646@gmail.com')
