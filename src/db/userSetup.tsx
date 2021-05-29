@@ -10,7 +10,10 @@ export type UserSetupOptions = {
 
 export const userSetup = async (userId: string, options: UserSetupOptions) => {
     try {
-        await db.collection('Users').doc(userId).update(options);
+        await db
+            .collection('Users')
+            .doc(userId)
+            .update({ ...options, isSetupCompleted: true });
         return true;
     } catch (ex) {
         console.log(ex);

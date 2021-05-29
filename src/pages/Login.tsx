@@ -8,6 +8,7 @@ import { Button, Input } from 'react-rainbow-components';
 import { Box } from '@chakra-ui/react';
 import { Center, Container } from '@chakra-ui/react';
 import styled from '@emotion/styled';
+import { Routes } from '../routing/router';
 
 const inputStyle = {
     maxWidth: 700,
@@ -52,9 +53,9 @@ const Login = ({ history }) => {
             const { email, password } = event.target.elements;
             try {
                 await db.app.auth().signInWithEmailAndPassword(email.value, password.value);
-                history.push('/');
+                history.push(Routes.Setup);
             } catch (error) {
-                alert(error);
+                console.log(error);
             }
         },
         [history]
@@ -63,7 +64,7 @@ const Login = ({ history }) => {
     const user = useContext(AuthContext);
 
     if (user) {
-        return <Redirect to="/" />;
+        return <Redirect to={Routes.Setup} />;
     }
 
     return (

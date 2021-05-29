@@ -4,6 +4,7 @@ import 'firebase/auth';
 import firebase from 'firebase';
 import { newUser } from '../db/newUser';
 import styled from '@emotion/styled';
+import { Routes } from '../routing/router';
 
 const GoogleLog = ({ history }) => {
     const StyledImage = styled.img`
@@ -23,7 +24,7 @@ const GoogleLog = ({ history }) => {
             const result = await firebase.auth().signInWithPopup(provider);
             const user = result.user;
             await newUser(user);
-            history.push('/');
+            history.push(Routes.Setup);
         } catch (error) {
             console.log(error);
         }

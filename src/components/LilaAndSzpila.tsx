@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { RadioGroup } from 'react-rainbow-components';
 import styled from 'styled-components';
-import Szpila from '../assets/png/cat/Walk (5).png';
-import Lila from '../assets/png/dog/Walk (5).png';
+import Szpila from '../assets/gifs/cat_walking.gif';
+import Lila from '../assets/gifs/dog_walking.gif';
 import { Animals } from '../constants/user';
 
 const Container = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 10px;
+    padding: 0 10px;
 `;
 
 const CatImg = styled.img`

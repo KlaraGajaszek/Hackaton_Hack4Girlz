@@ -7,6 +7,7 @@ import { SectionTitle } from '../components/SectionTitle';
 import { Button, Input } from 'react-rainbow-components';
 import { Center, Container } from '@chakra-ui/react';
 import styled from 'styled-components';
+import { Routes } from '../routing/router';
 
 const SignUp = ({ history }) => {
     const [currentUser, setCurrentUser] = useState(null);
@@ -50,7 +51,7 @@ const SignUp = ({ history }) => {
                             }
                         })
                     );
-                history.push('/');
+                history.push(Routes.Setup);
             } catch (error) {
                 alert(error);
             }

@@ -1,18 +1,19 @@
 import React, { useContext, useState } from 'react';
+import styled from 'styled-components';
 import { Button } from 'react-rainbow-components';
 import { useHistory } from 'react-router';
-import styled from 'styled-components';
 import { LilaAndSzpila } from '../components/LilaAndSzpila';
 import { SectionTitle } from '../components/SectionTitle';
 import { UserBioInputs } from '../components/UserBioInputs';
 import { UserInfo } from '../components/UserInfo';
 import { Animals } from '../constants/user';
 import { AuthContext } from '../contexts/Auth';
-import { userSetup, UserSetupOptions } from '../db/userSetup';
+import { userSetup } from '../db/userSetup';
 import { Routes } from '../routing/router';
+import { useUserData } from '../hooks/useUserData';
+import Loader from '../components/Loader';
 
 const Container = styled.div`
-    height: 100%;
     background-color: ${props => props.theme.rainbow.palette.background.grey};
 `;
 
@@ -38,6 +39,7 @@ export const SetupPage = () => {
     });
     const { uid } = useContext(AuthContext);
     const history = useHistory();
+    const { userData, loading } = useUserData();
 
     const handleInput = ({ name, value }) => {
         setState({ ...state, [name]: value });
@@ -47,6 +49,13 @@ export const SetupPage = () => {
         const isSuccess = await userSetup(uid, state);
         if (isSuccess) history.push(Routes.Home);
     };
+
+    if (loading) return <Loader />;
+
+    if (userData.isSetupCompleted) {
+        history.push(Routes.Home);
+        return null;
+    }
 
     return (
         <Container>
