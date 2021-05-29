@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { AiOutlineUser } from 'react-icons/ai';
 
 const UserName = styled.span<{ horizontal: boolean }>`
-    margin: ${({ horizontal }) => (horizontal ? '0 0 0 24px' : '16px 0 25px ')};
+    margin: ${({ horizontal }) => (horizontal ? '0' : '0 ')};
     font-weight: 700;
     font-size: 27px;
     color: ${({ horizontal, theme }) =>
@@ -17,7 +17,7 @@ const UserName = styled.span<{ horizontal: boolean }>`
 const UserBox = styled(Box)<{ horizontal: boolean }>`
     display: flex;
     flex-direction: ${p => (p.horizontal ? 'row' : 'column')};
-    margin-top: ${p => (p.horizontal ? '20px' : '43px')};
+    margin-top: ${p => (p.horizontal ? '0' : '0')};
     padding-left: ${p => (p.horizontal ? '40px' : '0')};
     align-items: center;
 `;
