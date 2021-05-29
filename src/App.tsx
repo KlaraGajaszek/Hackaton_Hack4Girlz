@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
 import { Application } from 'react-rainbow-components';
-import { AuthProvider } from './FirebaseDB/Auth';
+import { AuthProvider } from './contexts/Auth';
 import PrivateRoute from './routing/PrivateRoute';
 import { Registration } from './pages/Registration';
 import { Login } from './pages/Login';
@@ -12,6 +12,7 @@ import { Routes } from './routing/router';
 import { Profile } from './pages/Profile';
 import { AddedObjectiveWithoutSubTarget } from './pages/AddedObjectiveWithoutSubTarget';
 import { EditObjective } from './pages/EditObjective';
+import { Goals } from './pages/PersonalGoals';
 import { AddObjective } from './pages/AddObjective';
 import { UnderTheGoals } from './pages/UnderTheGoals';
 
@@ -60,7 +61,7 @@ const App = () => {
             <Application theme={rainbowTheme}>
                 <AuthProvider>
                     <Router>
-                        <Route path={Routes.Setup} component={SetupPage} />
+                        <PrivateRoute path={Routes.Setup} component={SetupPage} />
                         <PrivateRoute exact path={Routes.Home} component={StartPage} />
                         <Route exact path={Routes.Login} component={Login} />
                         <Route exact path={Routes.Profile} component={Profile} />
@@ -72,6 +73,7 @@ const App = () => {
                             path={Routes.AddedObjectiveWithoutSubTarget}
                             component={AddedObjectiveWithoutSubTarget}
                         />
+                        <PrivateRoute exact path={Routes.Goals} component={Goals} />
                         <Route exact path={Routes.EditObjective} component={EditObjective} />
                         <Route exact path={Routes.Registration} component={Registration} />
                     </Router>

@@ -3,6 +3,7 @@ import { RadioGroup } from 'react-rainbow-components';
 import styled from 'styled-components';
 import Szpila from '../assets/png/cat/Walk (5).png';
 import Lila from '../assets/png/dog/Walk (5).png';
+import { Animals } from '../constants/user';
 
 const Container = styled.div`
     display: flex;
@@ -22,32 +23,33 @@ const MyRadio = styled(RadioGroup)`
     margin-top: 10px;
 `;
 
-const LilaAndSzpila = () => {
-    const [selected, setSelected] = useState('Cora');
+const LilaAndSzpila = ({ handleInput }) => {
+    const [selected, setSelected] = useState<Animals>(Animals.Szpila);
 
-    const select = catName => () => {
-        setSelected(catName);
+    const select = (animal: Animals) => () => {
+        setSelected(animal);
+        handleInput({ name: 'animal', value: animal });
     };
 
-    const value = catName => (catName === selected ? catName : null);
+    const value = (animalName: Animals) => (animalName === selected ? animalName : null);
 
     return (
         <Container>
-            <div onClick={select('Cora')}>
+            <div onClick={select(Animals.Szpila)}>
                 <CatImg src={Szpila} alt="Szpila" />
                 <MyRadio
                     hideLabel
-                    options={[{ value: 'Cora', label: 'Cora' }]}
-                    value={value('Cora')}
+                    options={[{ value: Animals.Szpila, label: Animals.Szpila }]}
+                    value={value(Animals.Szpila)}
                     orientation="horizontal"
                 />
             </div>
-            <div onClick={select('Lila')}>
+            <div onClick={select(Animals.Lila)}>
                 <CatImg src={Lila} alt="Lila" />
                 <MyRadio
                     hideLabel
-                    options={[{ value: 'Lila', label: 'Lila' }]}
-                    value={value('Lila')}
+                    options={[{ value: Animals.Lila, label: Animals.Lila }]}
+                    value={value(Animals.Lila)}
                     orientation="horizontal"
                 />
             </div>

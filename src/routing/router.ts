@@ -7,5 +7,6 @@ export enum Routes {
     AddedObjectiveWithoutSubTarget = '/addedobjectivewithoutsubtarget',
     EditObjective = '/editobjective',
     AddObjective = '/addobjective',
-    UnderTheGoal = '/underthegoal'
+    UnderTheGoal = '/underthegoal',
+    Goals = '/cele'
 }

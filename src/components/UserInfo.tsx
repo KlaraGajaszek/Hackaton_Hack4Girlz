@@ -1,8 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { Box } from '@chakra-ui/react';
 import { Avatar } from 'react-rainbow-components';
 import styled from 'styled-components';
 import { AiOutlineUser } from 'react-icons/ai';
+import { AuthContext } from '../contexts/Auth';
 
 const UserName = styled.span<{ horizontal: boolean }>`
     margin: ${({ horizontal }) => (horizontal ? '0 ' : '16px 0 0 ')};
@@ -29,16 +30,15 @@ const UserAvatar = styled(Avatar)`
 `;
 
 type UserInfoProps = {
-    name: string;
-    avatarSrc?: string;
     horizontal?: boolean;
 };
 
-const UserInfo: FC<UserInfoProps> = ({ name, avatarSrc, horizontal }) => {
+const UserInfo: FC<UserInfoProps> = ({ horizontal }) => {
+    const { photoURL, displayName } = useContext(AuthContext);
     return (
         <UserBox horizontal={horizontal}>
-            <UserAvatar icon={<AiOutlineUser size="large" />} src={avatarSrc} />
-            <UserName horizontal={horizontal}>{name}</UserName>
+            <UserAvatar icon={<AiOutlineUser size="large" />} src={photoURL ? photoURL : null} />
+            <UserName horizontal={horizontal}>{displayName}</UserName>
         </UserBox>
     );
 };

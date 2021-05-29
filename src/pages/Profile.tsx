@@ -28,7 +28,7 @@ export const Profile = () => {
                 <SectionTitle title="Profil" subtitle="W tym miejscu możesz zobaczyć swoje dotychczasowe osiągnięcia" />
             </div>
             <Wrapper>
-                <UserInfo name="Ela Popiel" avatarSrc={profile} />
+                <UserInfo />
                 <CustomProgressBar currentExp={25} levelCapExp={100} avatarIcon={cori_cat} />
                 <div style={{ marginTop: '15px' }}>
                     <SectionInfo text="W jaki sposób mogę zbierać punkty?" />

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Textarea, Select, Picklist, Option } from 'react-rainbow-components';
+import { Textarea, Picklist, Option } from 'react-rainbow-components';
 import styled from 'styled-components';
+import { Industries, Specials } from '../constants/user';
 
 const MyOptions = styled(Picklist)`
     margin: 6px 40px;
@@ -14,7 +15,7 @@ type Props = {
     label: string;
     required?: boolean;
     disabled?: boolean;
-    onChange?: () => void;
+    onChange?: (v: any) => void;
     options: { value: string; label: string; disabled?: boolean }[];
 };
 
@@ -22,7 +23,7 @@ const SelectList = ({ options, label, required = false, disabled = false, onChan
     const [selected, setSelected] = useState(null);
 
     const handleChange = value => {
-        onChange();
+        onChange(value);
         setSelected(value);
     };
 
@@ -35,26 +36,37 @@ const SelectList = ({ options, label, required = false, disabled = false, onChan
     );
 };
 
-const UserBioInputs = () => {
+const getOptions = (arr: string[]) => arr.map(name => ({ value: name, label: name }));
+
+const UserBioInputs = ({ handleInput }) => {
     const [disabled, setDisabled] = useState(true);
-
-    const industries = [
-        { value: 'option 1', label: 'Branża 1' },
-        { value: 'option 2', label: 'Branża 2' },
-        { value: 'option 3', label: 'Branża 3' }
-    ];
-
-    const specials = [
-        { value: 'option 1', label: 'specials 1' },
-        { value: 'option 2', label: 'specials 2' },
-        { value: 'option 3', label: 'specials 3' }
-    ];
 
     return (
         <div>
-            <MyTextArea labelAlignment="left" label="Opis" rows={2} placeholder="Dodaj Opis..." />
-            <SelectList label="Branża" options={industries} required onChange={() => setDisabled(false)} />
-            <SelectList label="Specjalizacja" options={specials} disabled={disabled} />
+            <MyTextArea
+                onChange={e => handleInput({ name: 'description', value: e.target.value })}
+                labelAlignment="left"
+                label="Opis"
+                rows={2}
+                placeholder="Dodaj Opis..."
+            />
+            <SelectList
+                label="Branża"
+                options={getOptions(Object.values(Industries))}
+                required
+                onChange={({ value }) => {
+                    handleInput({ name: 'industry', value });
+                    setDisabled(false);
+                }}
+            />
+            <SelectList
+                label="Specjalizacja"
+                options={getOptions(Object.values(Specials))}
+                disabled={disabled}
+                onChange={({ value }) => {
+                    handleInput({ name: 'specialization', value });
+                }}
+            />
         </div>
     );
 };
