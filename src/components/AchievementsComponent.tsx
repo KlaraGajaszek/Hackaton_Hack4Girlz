@@ -3,32 +3,6 @@ import { Center, Container, Box } from '@chakra-ui/react';
 import Carousel, { slidesToShowPlugin } from '@brainhubeu/react-carousel';
 import styled from 'styled-components';
 
-const achievements = [
-    {
-        description: 'Mój pierwszy warsztat w apce Networkya',
-        date: '27.05.2021 - 27.05.2022'
-    },
-    {
-        description: 'Podwyżka w pracy',
-        date: '27.05.2021 - 27.05.2022'
-    }
-];
-
-const lessons = [
-    {
-        description: 'Mój pierwszy warsztat w apce Networkya',
-        date: '27.05.2021 - 27.05.2022',
-        conclusion:
-            'Nie brać na siebie zbyt wielu zadań i skupić się na priorytetyzowaniu tych najważniejszych. Podczas realizacji celu czułam się przytłoczona nadmiarem kroków, które sobie założyłam i nie byłam w stanie ukończyć zadania.'
-    },
-    {
-        description: 'Podwyżka w pracy',
-        date: '27.05.2021 - 27.05.2022',
-        conclusion:
-            'Nie brać na siebie zbyt wielu zadań i skupić się na priorytetyzowaniu tych najważniejszych. Podczas realizacji celu czułam się przytłoczona nadmiarem kroków, które sobie założyłam i nie byłam w stanie ukończyć zadania.'
-    }
-];
-
 const Title = styled.span`
     font-family: Lato;
     font-style: normal;
@@ -208,7 +182,6 @@ export const AchievementsComponent = ({ lessons, achievements }) => {
                     </Lesson>
                     {open && (
                         <View>
-                            {/* <img src={SlideX} style={{ width: '180px', height: '180px' }} /> */}
                             <Test>
                                 <Title>{l.date}</Title>
                                 <Data>{l.description}</Data>

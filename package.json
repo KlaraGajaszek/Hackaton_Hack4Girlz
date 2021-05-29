@@ -39,7 +39,8 @@
     "react-touch-carousel": "^0.9.4",
     "styled-components": "^5.2.0",
     "styled-icons": "^10.27.0",
-    "types": "^0.1.1"
+    "types": "^0.1.1",
+    "universal-cookie": "^4.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
