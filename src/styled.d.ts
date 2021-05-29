@@ -21,13 +21,16 @@ declare module 'styled-components' {
                     gray: string;
                     lightGray: string;
                 };
+                background: {
+                    grey: string;
+                    white: string;
+                };
 
                 secondary: string;
                 success: string;
                 error: string;
                 warning: string;
                 brand: string;
-                mainBackground: string;
             };
         };
     }

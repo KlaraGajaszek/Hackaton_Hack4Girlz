@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
     width: 100%;
+    padding-bottom: 12px;
     text-align: center;
     justify-content: center;
 `;
@@ -11,6 +12,7 @@ const H1 = styled.span`
     font-size: 27px;
     line-height: 40px;
     font-weight: 700;
+    padding: 12px 0 0;
     display: block;
     color: ${props => props.theme.rainbow.palette.text.primary};
 `;

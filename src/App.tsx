@@ -6,7 +6,7 @@ import { AuthProvider } from './FirebaseDB/Auth';
 import PrivateRoute from './routing/PrivateRoute';
 import { Registration } from './pages/Registration';
 import { Login } from './pages/Login';
-import { SetupPage } from './pages/Setup';
+import { SetupPage } from './pages/SetupPage';
 import { StartPage } from './pages/StartPage';
 import { Routes } from './routing/router';
 import { Profile } from './pages/Profile';
@@ -32,12 +32,14 @@ const theme: DefaultTheme = {
                 gray: '#595454',
                 lightGray: '#8898AA'
             },
-
+            background: {
+                grey: '#E5E5E5',
+                white: '#FFFFFF'
+            },
             success: '#1AD1A3',
             error: '#f14336',
             warning: '#f7b500',
-            brand: '#00CAFD',
-            mainBackground: '#f4f5f7'
+            brand: '#00CAFD'
         }
     }
 };

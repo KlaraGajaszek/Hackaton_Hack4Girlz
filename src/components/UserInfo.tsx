@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { AiOutlineUser } from 'react-icons/ai';
 
 const UserName = styled.span<{ horizontal: boolean }>`
-    margin: ${({ horizontal }) => (horizontal ? '0 0 0 24px' : '16px 0 0 ')};
+    margin: ${({ horizontal }) => (horizontal ? '0 ' : '16px 0 0 ')};
     font-weight: 700;
     font-size: 27px;
     color: ${({ horizontal, theme }) =>
@@ -17,9 +17,15 @@ const UserName = styled.span<{ horizontal: boolean }>`
 const UserBox = styled(Box)<{ horizontal: boolean }>`
     display: flex;
     flex-direction: ${p => (p.horizontal ? 'row' : 'column')};
-    margin-top: ${p => (p.horizontal ? '20px' : '43px')};
+    margin-top: ${p => (p.horizontal ? '0' : '0')};
     padding-left: ${p => (p.horizontal ? '40px' : '0')};
     align-items: center;
+`;
+
+const UserAvatar = styled(Avatar)`
+    width: 64px;
+    height: 64px;
+    margin-top: 12px;
 `;
 
 type UserInfoProps = {
@@ -31,7 +37,7 @@ type UserInfoProps = {
 const UserInfo: FC<UserInfoProps> = ({ name, avatarSrc, horizontal }) => {
     return (
         <UserBox horizontal={horizontal}>
-            <Avatar style={{ width: 72, height: 72 }} icon={<AiOutlineUser size="large" />} src={avatarSrc} />
+            <UserAvatar icon={<AiOutlineUser size="large" />} src={avatarSrc} />
             <UserName horizontal={horizontal}>{name}</UserName>
         </UserBox>
     );
