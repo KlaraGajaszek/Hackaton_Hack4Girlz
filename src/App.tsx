@@ -13,6 +13,7 @@ import { Profile } from './pages/Profile';
 import { AddedObjectiveWithoutSubTarget } from './pages/AddedObjectiveWithoutSubTarget';
 import { EditObjective } from './pages/EditObjective';
 import { AddObjective } from './pages/AddObjective';
+import { UnderTheGoals } from './pages/UnderTheGoals';
 
 const theme: DefaultTheme = {
     rainbow: {
@@ -65,6 +66,7 @@ const App = () => {
                         <Route exact path={Routes.Profile} component={Profile} />
                         <Route exact path={Routes.Profile} component={Profile} />
                         <Route exact path={Routes.AddObjective} component={AddObjective} />
+                        <Route exact path={Routes.UnderTheGoal} component={UnderTheGoals} />
                         <Route
                             exact
                             path={Routes.AddedObjectiveWithoutSubTarget}

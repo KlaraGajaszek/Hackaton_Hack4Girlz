@@ -6,5 +6,6 @@ export enum Routes {
     Profile = '/profil',
     AddedObjectiveWithoutSubTarget = '/addedobjectivewithoutsubtarget',
     EditObjective = '/editobjective',
-    AddObjective = '/addobjective'
+    AddObjective = '/addobjective',
+    UnderTheGoal = '/underthegoal'
 }
