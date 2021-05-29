@@ -5,6 +5,8 @@ import { Input } from 'react-rainbow-components';
 
 import { Select } from 'react-rainbow-components';
 import { GoBack } from '../components/GoBack';
+import { TaskCard } from '../components/TaskCard';
+import { Routes } from '../routing/router';
 
 const View = styled.div`
     height: 750px;
@@ -34,9 +36,11 @@ export const AddSubtask = () => {
     return (
         <Wrapper>
             <Main>
-                <GoBack url="url" />
+                <GoBack url={Routes.AddTask} />
             </Main>
-            <View></View>
+            <View>
+                <TaskCard startData="start" endData="end" title="title" onClick={() => console.log('onClick')} />
+            </View>
         </Wrapper>
     );
 };

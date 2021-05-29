@@ -42,9 +42,6 @@ const inputStyleTime = {
     border: 1,
     paddingBottom: 20
 };
-const buttonSize = {
-    width: '200px'
-};
 
 const CustomInput = styled(Input)`
     border: 1px solid #081449;
@@ -110,7 +107,6 @@ export const AddTask = () => {
                         style={inputStyleTime}
                         name="starttime"
                         type="datetime-local"
-                        // className="rainbow-p-around_medium"
                         onChange={e => setValues({ ...values, starttime: e.target.value })}
                     />
                     <Input
@@ -119,7 +115,6 @@ export const AddTask = () => {
                         style={inputStyleTime}
                         name="endtime"
                         type="datetime-local"
-                        // className="rainbow-p-around_medium"
                         onChange={e => setValues({ ...values, endtime: e.target.value })}
                     />
                     <Input
