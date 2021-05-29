@@ -59,6 +59,8 @@ export const AddSubtask = () => {
     const onSave = () => {
         history.push('/cele/dodane/bezpodcelu');
     };
+
+    console.log('addsubtask isTime: ', currentGoal.isTime);
     return (
         <Wrapper>
             <Main>
@@ -69,8 +71,9 @@ export const AddSubtask = () => {
                     <Title>Twój cel</Title>
                     <div style={{ marginTop: '15px', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
                         <TaskCard
-                            startData={currentGoal.starttime}
-                            endData={currentGoal?.endtime}
+                            startDate={currentGoal.starttime}
+                            endDate={currentGoal?.endtime}
+                            isTime={currentGoal?.isTime}
                             title={currentGoal.objective}
                             editUrl="/cele/nowy"
                         />

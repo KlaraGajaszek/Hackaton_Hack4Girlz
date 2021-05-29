@@ -15,7 +15,7 @@ const View = styled.div`
     height: 750px;
     padding: 54px;
     background-color: white;
-    padding: 5px;
+    padding: 20px;
     border-radius: 20px 20px 0px 0px;
     /* align-items: end; */
     position: fixed;
