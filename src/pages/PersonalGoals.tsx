@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { Button, ButtonIcon } from 'react-rainbow-components';
 import { Tabs, TabList, TabPanels, Tab, TabPanel, extendTheme } from '@chakra-ui/react';
 import RunCat from '../assets/png/cat/Run (8).png';
@@ -14,7 +14,9 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase';
 import { useHistory } from 'react-router-dom';
+import { useUserData } from '../hooks/useUserData';
 import { Routes } from '../routing/router';
+import { AuthContext } from '../contexts/Auth';
 import { AchievementsComponent } from '../components/AchievementsComponent';
 
 export const Goals = () => {
@@ -27,6 +29,8 @@ export const Goals = () => {
             console.log(user.email);
         }
     });
+
+    const { photoURL, displayName } = useContext(AuthContext);
 
     db.collection('Users')
         .where('email', '==', 'pat.kowalczyk646@gmail.com')
@@ -69,9 +73,9 @@ export const Goals = () => {
             <Tabs isFitted variant="enclosed">
                 <div>
                     <div style={{ display: 'flex' }}>
-                        <p style={{ fontWeight: 900, color: '#01B6F5', marginRight: 5, marginBottom: 10 }}></p>
+                        <p style={{ fontWeight: 900, color: '#01B6F5', marginLeft: 20, marginTop: 10, marginRight: 5, fontSize: 23 }}>{displayName},</p>
                         <Avatar
-                            style={{ width: 30, height: 30, backgroundColor: 'white' }}
+                            style={{ width: 40, height: 40, backgroundColor: 'white', marginTop: 10 }}
                             icon={<AiOutlineUser size="small" />}
                             src={UserCat}
                         />
@@ -82,7 +86,7 @@ export const Goals = () => {
                             marginBottom: 20,
                             fontFamily: 'Lato',
                             color: '#000000',
-                            padding: 30
+                            padding: 20
                         }}
                     >
                         Nie od razu Rzym zbudowano, ale cegły noszono codziennie! Zaplanuj swoje cele i drogę do ich
