@@ -82,7 +82,7 @@ const Wrapper = styled.div`
     flex-direction: column;
 `;
 
-export const OnlyObjective = () => {
+export const AddedObjectiveWithoutSubTarget = () => {
     const onSave = () => {
         console.log('onsave');
     };

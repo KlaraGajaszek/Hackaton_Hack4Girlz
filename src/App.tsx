@@ -10,9 +10,10 @@ import { SetupPage } from './pages/SetupPage';
 import { StartPage } from './pages/StartPage';
 import { Routes } from './routing/router';
 import { Profile } from './pages/Profile';
-import { OnlyObjective } from './pages/OnlyObjective';
+import { AddedObjectiveWithoutSubTarget } from './pages/AddedObjectiveWithoutSubTarget';
 import { EditObjective } from './pages/EditObjective';
 import { Goals } from './pages/PersonalGoals';
+import { AddObjective } from './pages/AddObjective';
 
 const theme: DefaultTheme = {
     rainbow: {
@@ -63,8 +64,14 @@ const App = () => {
                         <PrivateRoute exact path={Routes.Home} component={StartPage} />
                         <Route exact path={Routes.Login} component={Login} />
                         <Route exact path={Routes.Profile} component={Profile} />
+                        <Route exact path={Routes.Profile} component={Profile} />
+                        <Route exact path={Routes.AddObjective} component={AddObjective} />
+                        <Route
+                            exact
+                            path={Routes.AddedObjectiveWithoutSubTarget}
+                            component={AddedObjectiveWithoutSubTarget}
+                        />
                         <PrivateRoute exact path={Routes.Goals} component={Goals} />
-                        <Route exact path={Routes.OnlyObjective} component={OnlyObjective} />
                         <Route exact path={Routes.EditObjective} component={EditObjective} />
                         <Route exact path={Routes.Registration} component={Registration} />
                     </Router>
