@@ -15,6 +15,7 @@ import { EditGoal } from './pages/EditGoal';
 import { Goals } from './pages/PersonalGoals';
 import { AddTask } from './pages/AddTask';
 import { AddSubtask } from './pages/AddSubTask';
+import { Layout } from './components/Layout';
 
 const theme: DefaultTheme = {
     rainbow: {
@@ -61,16 +62,23 @@ const App = () => {
             <Application theme={rainbowTheme}>
                 <AuthProvider>
                     <Router>
-                        <PrivateRoute path={Routes.Setup} component={SetupPage} />
-                        <PrivateRoute exact path={Routes.Home} component={StartPage} />
                         <Route exact path={Routes.Login} component={Login} />
-                        <Route exact path={Routes.Profile} component={Profile} />
-                        <Route exact path={Routes.AddTask} component={AddTask} />
-                        <Route exact path={Routes.AddSubtask} component={AddSubtask} />
-                        <Route exact path={Routes.Goals} component={Goals} />
-                        <Route exact path={Routes.AddedGoalsWithoutSubTarget} component={AddedGoalsWithoutSubTarget} />
-                        <Route exact path={Routes.EditGoal} component={EditGoal} />
                         <Route exact path={Routes.Registration} component={Registration} />
+
+                        <PrivateRoute path={Routes.Setup} component={SetupPage} />
+                        <Layout>
+                            <PrivateRoute exact path={Routes.Home} component={StartPage} />
+                            <Route exact path={Routes.Profile} component={Profile} />
+                            <Route exact path={Routes.AddTask} component={AddTask} />
+                            <Route exact path={Routes.AddSubtask} component={AddSubtask} />
+                            <Route exact path={Routes.Goals} component={Goals} />
+                            <Route
+                                exact
+                                path={Routes.AddedGoalsWithoutSubTarget}
+                                component={AddedGoalsWithoutSubTarget}
+                            />
+                            <Route exact path={Routes.EditGoal} component={EditGoal} />
+                        </Layout>
                     </Router>
                 </AuthProvider>
             </Application>

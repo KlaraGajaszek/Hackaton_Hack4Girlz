@@ -1,6 +1,6 @@
 export enum Routes {
     Setup = '/konfiguracja',
-    Home = '/',
+    Home = '/tablica',
     Login = '/login',
     Registration = '/rejestracja',
     Profile = '/profil',
@@ -8,5 +8,7 @@ export enum Routes {
     EditGoal = '/editgoal',
     AddTask = '/addgoal',
     AddSubtask = '/underthegoal',
-    Goals = '/goals'
+    Goals = '/goals',
+    Chat = '/czat',
+    Events = '/wydarzenia'
 }

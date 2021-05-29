@@ -4,7 +4,6 @@ import { db } from '../firebase';
 export const newUser = async ({ displayName, email, uid, photoURL }: firebase.User) => {
     try {
         const user = await db.collection('Users').doc(uid).get();
-        console.log('🚀 ~ file: newUser.tsx ~ line 7 ~ newUser ~ user', user);
         if (user.exists) return;
 
         const data = {
