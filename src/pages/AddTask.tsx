@@ -30,7 +30,7 @@ const View = styled.div`
 `;
 
 const Main = styled.div`
-    background: '#E5E5E5';
+    background-color: ${props => props.theme.rainbow.palette.background.grey};
     height: 100vh;
 `;
 
