@@ -124,7 +124,13 @@ export const AddResult = () => {
                             label="Znalezienie mentora/ki"
                             description="data"
                             icon={
-                                <FontAwesomeIcon icon={faStar} size="lg" style={{ color: isDone ? 'red' : 'green' }} />
+                                <button>
+                                    <FontAwesomeIcon
+                                        icon={faStar}
+                                        size="lg"
+                                        style={{ color: isDone ? 'red' : 'green' }}
+                                    />
+                                </button>
                             }
                         />
                     ))}
