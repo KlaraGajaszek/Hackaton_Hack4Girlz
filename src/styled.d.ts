@@ -19,12 +19,15 @@ declare module 'styled-components' {
                     primary: string;
                     secondary: string;
                 };
+                background: {
+                    grey: string;
+                    white: string;
+                };
                 secondary: string;
                 success: string;
                 error: string;
                 warning: string;
                 brand: string;
-                mainBackground: string;
             };
         };
     }

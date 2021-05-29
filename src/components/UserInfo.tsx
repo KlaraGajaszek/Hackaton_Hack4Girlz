@@ -22,6 +22,12 @@ const UserBox = styled(Box)<{ horizontal: boolean }>`
     align-items: center;
 `;
 
+const UserAvatar = styled(Avatar)`
+    width: 64px;
+    height: 64px;
+    margin-top: 12px;
+`;
+
 type UserInfoProps = {
     name: string;
     avatarSrc?: string;
@@ -31,7 +37,7 @@ type UserInfoProps = {
 const UserInfo: FC<UserInfoProps> = ({ name, avatarSrc, horizontal }) => {
     return (
         <UserBox horizontal={horizontal}>
-            <Avatar style={{ width: 72, height: 72 }} icon={<AiOutlineUser size="large" />} src={avatarSrc} />
+            <UserAvatar icon={<AiOutlineUser size="large" />} src={avatarSrc} />
             <UserName horizontal={horizontal}>{name}</UserName>
         </UserBox>
     );

@@ -6,7 +6,7 @@ import { AuthProvider } from './FirebaseDB/Auth';
 import PrivateRoute from './routing/PrivateRoute';
 import { Registration } from './pages/Registration';
 import { Login } from './pages/Login';
-import { SetupPage } from './pages/Setup';
+import { SetupPage } from './pages/SetupPage';
 import { StartPage } from './pages/StartPage';
 import { Routes } from './routing/router';
 import { Profile } from './pages/Profile';
@@ -28,11 +28,14 @@ const theme: DefaultTheme = {
                 primary: '#000000',
                 secondary: '#061C3F'
             },
+            background: {
+                grey: '#E5E5E5',
+                white: '#FFFFFF'
+            },
             success: '#1AD1A3',
             error: '#f14336',
             warning: '#f7b500',
-            brand: '#00CAFD',
-            mainBackground: '#f4f5f7'
+            brand: '#00CAFD'
         }
     }
 };
@@ -44,8 +47,8 @@ const App = () => {
                 <Router>
                     <Route path={Routes.Setup} component={SetupPage} />
                     <PrivateRoute exact path={Routes.Home} component={StartPage} />
-                    <Route exact path={Routes.Login} component={Login} />
                     <Route exact path={Routes.Profile} component={Profile} />
+                    <Route exact path={Routes.Login} component={Login} />
                     <Route exact path={Routes.Registration} component={Registration} />
                 </Router>
             </AuthProvider>
