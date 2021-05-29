@@ -18,6 +18,7 @@ import { AddSubtask } from './pages/AddSubTask';
 import { Layout } from './components/Layout';
 import { AddSubTaskForm } from './pages/AddSubTaskForm';
 import { SaveTaskAndSubTasks } from './pages/SaveTaskAndSubTasks';
+import { AddPost } from './pages/AddPost';
 
 const theme: DefaultTheme = {
     rainbow: {
@@ -70,6 +71,7 @@ const App = () => {
                             <PrivateRoute path={Routes.Setup} component={SetupPage} />
                             <Layout>
                                 <PrivateRoute exact path={Routes.Home} component={StartPage} />
+                                <PrivateRoute exact path={Routes.NewPost} component={AddPost} />
                                 <PrivateRoute exact path={Routes.Profile} component={Profile} />
                                 <PrivateRoute exact path={Routes.AddTask} component={AddTask} />
                                 <Route exact path={Routes.AddSubTaskForm} component={AddSubTaskForm} />
