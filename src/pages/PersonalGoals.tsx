@@ -1,48 +1,30 @@
-import React, { FC, useContext, useState } from 'react';
-import { Button, ButtonIcon } from 'react-rainbow-components';
-import { Tabs, TabList, TabPanels, Tab, TabPanel, extendTheme } from '@chakra-ui/react';
-import RunCat from '../assets/png/cat/Run (8).png';
-import UserCat from '../assets/png/cat/Walk (11).png';
+import React, { useState } from 'react';
+import { Button } from 'react-rainbow-components';
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+import Szpila from '../assets/png/cat/Head.png';
+import Lila from '../assets/png/dog/Head.png';
+import SzpilaJump from '../assets/gifs/cat_jumping.gif';
+import LilaJump from '../assets/gifs/dog_jumping.gif';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Image } from '@chakra-ui/react';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { useDocument } from 'react-firebase-hooks/firestore';
 import { AiOutlineUser } from 'react-icons/ai';
 import { Avatar } from 'react-rainbow-components';
-import { db } from '../firebase';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../firebase';
 import { useHistory } from 'react-router-dom';
-import { useUserData } from '../hooks/useUserData';
 import { Routes } from '../routing/router';
-import { AuthContext } from '../contexts/Auth';
+import { useAuthContext } from '../contexts/Auth';
 import { AchievementsComponent } from '../components/AchievementsComponent';
+import { Animals } from '../constants/user';
 
 export const Goals = () => {
-    const [docId, setDocId] = useState('');
-    const [email, setEmail] = useState();
     const history = useHistory();
     const [achievements, setAchievements] = useState(false);
-    db.app.auth().onAuthStateChanged(user => {
-        if (user) {
-            console.log(user.email);
-        }
-    });
 
-    const { photoURL, displayName } = useContext(AuthContext);
-
-    db.collection('Users')
-        .where('email', '==', 'pat.kowalczyk646@gmail.com')
-        .get()
-        .then(querySnapshot => {
-            querySnapshot.forEach(doc => {
-                setDocId(doc.id);
-            });
-        })
-        .catch(error => {
-            console.log('Error getting documents: ', error);
-        });
+    const {
+        user: { displayName },
+        userData: { animal }
+    } = useAuthContext();
+    const firstName = displayName.split(' ')[0];
 
     const styleTab = {
         boxShadow: 'none',
@@ -73,11 +55,22 @@ export const Goals = () => {
             <Tabs isFitted variant="enclosed">
                 <div>
                     <div style={{ display: 'flex' }}>
-                        <p style={{ fontWeight: 900, color: '#01B6F5', marginLeft: 20, marginTop: 10, marginRight: 5, fontSize: 23 }}>{displayName},</p>
+                        <p
+                            style={{
+                                fontWeight: 900,
+                                color: '#01B6F5',
+                                marginLeft: 20,
+                                marginTop: 10,
+                                marginRight: 5,
+                                fontSize: 23
+                            }}
+                        >
+                            {firstName}
+                        </p>
                         <Avatar
                             style={{ width: 40, height: 40, backgroundColor: 'white', marginTop: 10 }}
                             icon={<AiOutlineUser size="small" />}
-                            src={UserCat}
+                            src={animal === Animals.Szpila ? Szpila : Lila}
                         />
                     </div>
                     <p
@@ -113,7 +106,12 @@ export const Goals = () => {
                 {!achievements && (
                     <TabPanels>
                         <TabPanel style={styleBox as React.CSSProperties}>
-                            <Image src={RunCat} alt="run cat" boxSize="180px" marginTop="10" />
+                            <Image
+                                src={animal === Animals.Szpila ? SzpilaJump : LilaJump}
+                                alt="run cat"
+                                boxSize="180px"
+                                marginTop="10"
+                            />
                             <p style={{ maxWidth: 200, marginBottom: 20 }}>
                                 Nie masz jeszcze wyznaczonych żadnych celów
                             </p>
@@ -129,7 +127,12 @@ export const Goals = () => {
                             </Button>
                         </TabPanel>
                         <TabPanel style={styleBox as React.CSSProperties}>
-                            <Image src={RunCat} alt="run cat" boxSize="180px" marginTop="10" />
+                            <Image
+                                src={animal === Animals.Szpila ? SzpilaJump : LilaJump}
+                                alt="run cat"
+                                boxSize="180px"
+                                marginTop="10"
+                            />
                             <p style={{ maxWidth: 200, marginBottom: 20 }}>Wszystko co najlepsze jeszcze przed Tobą!</p>
                             <Button variant="brand" className="rainbow-m-around_medium">
                                 <FontAwesomeIcon icon={faPlus} style={{ marginRight: 5 }} />

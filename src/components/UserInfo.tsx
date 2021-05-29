@@ -34,7 +34,9 @@ type UserInfoProps = {
 };
 
 const UserInfo: FC<UserInfoProps> = ({ horizontal }) => {
-    const { photoURL, displayName } = useContext(AuthContext);
+    const {
+        user: { photoURL, displayName }
+    } = useContext(AuthContext);
     return (
         <UserBox horizontal={horizontal}>
             <UserAvatar icon={<AiOutlineUser size="large" />} src={photoURL ? photoURL : null} />

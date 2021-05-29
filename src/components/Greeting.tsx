@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import Szpila from '../assets/png/cat/Head.png';
+import Lila from '../assets/png/dog/Head.png';
+import { Animals } from '../constants/user';
+import { useAuthContext } from '../contexts/Auth';
 
 const Container = styled.div`
     padding: 30px 30px 0 30px;
@@ -31,14 +34,18 @@ const AnimalImage = styled.img`
 `;
 
 const Greeting = () => {
-    const firstName = 'Ela';
+    const {
+        user,
+        userData: { animal }
+    } = useAuthContext();
+    const firstName = user.displayName.split(' ')[0];
     return (
         <Container>
             <Top>
                 <span>
                     Cześć <Span>{firstName}!</Span>
                 </span>
-                <AnimalImage src={Szpila} />
+                <AnimalImage src={animal === Animals.Szpila ? Szpila : Lila} />
             </Top>
             <Bottom>Podziel się z innymi swoimi osiągnięciami lub poszukaj tematu, który Cię interesuje.</Bottom>
         </Container>
