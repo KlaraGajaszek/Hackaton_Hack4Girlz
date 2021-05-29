@@ -15,6 +15,7 @@ import { Routes } from '../routing/router';
 import { useAuthContext } from '../contexts/Auth';
 import { AchievementsComponent } from '../components/AchievementsComponent';
 import { Animals } from '../constants/user';
+import styled from 'styled-components';
 
 export const Goals = () => {
     const history = useHistory();
@@ -31,6 +32,10 @@ export const Goals = () => {
         color: '#576574',
         borderBottom: 'none'
     };
+
+    const Container = styled.div`
+        background-color: ${props => props.theme.rainbow.palette.background.grey};
+    `;
 
     const moreStyledTab = {
         color: '#01B6F5',
@@ -88,7 +93,7 @@ export const Goals = () => {
     return (
         <div>
             <Tabs isFitted variant="enclosed">
-                <div>
+                <Container>
                     <div style={{ display: 'flex' }}>
                         <p
                             style={{
@@ -125,6 +130,7 @@ export const Goals = () => {
                             style={achievements ? styleTab : moreStyledTab}
                             _hover={{ color: '#01B6F5', fontWeight: 700 }}
                             onClick={() => setAchievements(false)}
+                            _selected={{ bg: 'white' }}
                         >
                             TWOJE CELE
                         </Tab>
@@ -132,11 +138,12 @@ export const Goals = () => {
                             style={achievements ? moreStyledTab : styleTab}
                             _hover={{ color: '#01B6F5', fontWeight: 700 }}
                             onClick={() => setAchievements(true)}
+                            _selected={{ bg: 'white' }}
                         >
                             TWÓJ POSTĘP
                         </Tab>
                     </TabList>
-                </div>
+                </Container>
                 {achievements && (lessons.length > 0 || achieveSet.length > 0) && (
                     <AchievementsComponent lessons={lessons} achievements={achieveSet} />
                 )}
