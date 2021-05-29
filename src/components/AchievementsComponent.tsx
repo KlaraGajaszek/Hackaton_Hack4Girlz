@@ -163,7 +163,7 @@ const styledBack = {
     display: 'none'
 };
 
-export const AchievementsComponent = () => {
+export const AchievementsComponent = ({ lessons, achievements }) => {
     const [open, setOpen] = useState(false);
     return (
         <div>
