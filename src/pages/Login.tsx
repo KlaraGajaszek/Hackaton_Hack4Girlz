@@ -1,7 +1,7 @@
 import React, { useCallback, useContext } from 'react';
 import { withRouter, Redirect } from 'react-router';
 import { db } from '../firebase';
-import { AuthContext } from '../FirebaseDB/Auth';
+import { AuthContext } from '../contexts/Auth';
 import { LogWithGoogle } from '../components/Googlelogin';
 import { SectionTitle } from '../components/SectionTitle';
 import { Button, Input } from 'react-rainbow-components';
@@ -60,9 +60,9 @@ const Login = ({ history }) => {
         [history]
     );
 
-    const { currentUser } = useContext(AuthContext);
+    const user = useContext(AuthContext);
 
-    if (currentUser) {
+    if (user) {
         return <Redirect to="/" />;
     }
 

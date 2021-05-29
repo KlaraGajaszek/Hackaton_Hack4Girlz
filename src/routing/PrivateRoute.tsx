@@ -1,22 +1,15 @@
-import React, { useContext } from "react";
-import { Route, Redirect } from "react-router-dom";
-import { AuthContext } from "../FirebaseDB/Auth";
+import React, { useContext } from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import { AuthContext } from '../contexts/Auth';
 
 const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
-    const { currentUser } = useContext(AuthContext);
+    const user = useContext(AuthContext);
     return (
         <Route
             {...rest}
-            render={routeProps =>
-                !!currentUser ? (
-                    <RouteComponent {...routeProps} />
-                ) : (
-                    <Redirect to={"/login"} />
-                )
-            }
+            render={routeProps => (!!user ? <RouteComponent {...routeProps} /> : <Redirect to={'/login'} />)}
         />
     );
 };
 
-
-export default PrivateRoute
+export default PrivateRoute;

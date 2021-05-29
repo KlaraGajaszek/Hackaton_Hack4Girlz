@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Button } from 'react-rainbow-components';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import { LilaAndSzpila } from '../components/LilaAndSzpila';
 import { SectionTitle } from '../components/SectionTitle';
 import { UserBioInputs } from '../components/UserBioInputs';
 import { UserInfo } from '../components/UserInfo';
+import { Animals } from '../constants/user';
+import { AuthContext } from '../contexts/Auth';
+import { userSetup, UserSetupOptions } from '../db/userSetup';
 import { Routes } from '../routing/router';
 
 const Container = styled.div`
@@ -21,15 +24,30 @@ const Main = styled.div`
     flex-direction: column;
 `;
 
-const MyLink = styled(Link)`
-    margin: 6px auto;
-`;
-
 const MyButton = styled(Button)`
+    margin: 6px auto;
     width: 130px;
 `;
 
 export const SetupPage = () => {
+    const [state, setState] = useState({
+        description: '',
+        industry: '',
+        specialization: '',
+        animal: Animals.Szpila
+    });
+    const { uid } = useContext(AuthContext);
+    const history = useHistory();
+
+    const handleInput = ({ name, value }) => {
+        setState({ ...state, [name]: value });
+    };
+
+    const handleFormSubmit = async () => {
+        const isSuccess = await userSetup(uid, state);
+        if (isSuccess) history.push(Routes.Home);
+    };
+
     return (
         <Container>
             <SectionTitle
@@ -37,16 +55,14 @@ export const SetupPage = () => {
                 subtitle="Dodaj swoje zdjęcie, uzupełnij opis oraz wybierz branżę i specjalizację, które cię interesują."
             />
             <Main>
-                <UserInfo name="Ela Popiel" />
-                <UserBioInputs />
+                <UserInfo />
+                <UserBioInputs handleInput={handleInput} />
                 <SectionTitle
                     title="Przewodnik"
                     subtitle="Kręte ścieżki kariery łatwiej przemierzać z kimś! Cora lub Lila chętnie wskażą Ci drogę."
                 />
-                <LilaAndSzpila />
-                <MyLink to={Routes.Home}>
-                    <MyButton label="Dalej" variant="brand" />
-                </MyLink>
+                <LilaAndSzpila handleInput={handleInput} />
+                <MyButton onClick={handleFormSubmit} label="Dalej" variant="brand" />
             </Main>
         </Container>
     );
