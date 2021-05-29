@@ -69,7 +69,7 @@ export const Goals = () => {
                             src={UserCat}
                         />
                     </div>
-                    <p style={{ fontSize: 14, marginBottom: 20, fontFamily: 'Lato' }}>
+                    <p style={{ fontSize: 14, marginBottom: 20, fontFamily: 'Lato', color: '#000000', padding: 30 }}>
                         Nie od razu Rzym zbudowano, ale cegły noszono codziennie! Zaplanuj swoje cele i drogę do ich
                         osiagnięcia.
                     </p>

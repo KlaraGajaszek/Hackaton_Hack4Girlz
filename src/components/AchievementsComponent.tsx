@@ -59,10 +59,17 @@ const Date = styled.p`
     text-align: left;
 `;
 
+const StyledDiv = styled.div`
+    color: #000000;
+    font-size: 19px;
+    font-weight: 500;
+    padding: 30px;
+`;
+
 export const AchievementsComponent = () => {
     return (
         <div>
-            <div>Cele, które udało Ci się zrealizować w tym tygodniu</div>
+            <StyledDiv>Cele, które udało Ci się zrealizować w tym tygodniu</StyledDiv>
             <MainWrapper>
                 <Carousel
                     plugins={[
