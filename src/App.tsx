@@ -67,22 +67,21 @@ const App = () => {
                         <Switch>
                             <Route exact path={Routes.Login} component={Login} />
                             <Route exact path={Routes.Registration} component={Registration} />
-
                             <PrivateRoute path={Routes.Setup} component={SetupPage} />
                             <Layout>
                                 <PrivateRoute exact path={Routes.Home} component={StartPage} />
-                                <Route exact path={Routes.Profile} component={Profile} />
-                                <Route exact path={Routes.AddTask} component={AddTask} />
-                                <Route exact path={Routes.AddSubtask} component={AddSubtask} />
-                                <Route exact path={Routes.AddSubtaskForm} component={AddSubtaskForm} />
-                                <Route exact path={Routes.Goals} component={Goals} />
-                                <Route exact path={Routes.SaveTaskAndSubtask} component={SaveTaskAndSubTasks} />
-                                <Route
+                                <PrivateRoute exact path={Routes.Profile} component={Profile} />
+                                <PrivateRoute exact path={Routes.AddTask} component={AddTask} />
+                                <PrivateRoute exact path={Routes.AddSubtask} component={AddSubtask} />
+                                <PrivateRoute exact path={Routes.AddSubtaskForm} component={AddSubtaskForm} />
+                                <PrivateRoute exact path={Routes.Goals} component={Goals} />
+                                <PrivateRoute exact path={Routes.SaveTaskAndSubtask} component={SaveTaskAndSubTasks} />
+                                <PrivateRoute
                                     exact
                                     path={Routes.AddedGoalsWithoutSubTarget}
                                     component={AddedGoalsWithoutSubTarget}
                                 />
-                                <Route exact path={Routes.EditGoal} component={EditGoal} />
+                                <PrivateRoute exact path={Routes.EditGoal} component={EditGoal} />
                             </Layout>
                         </Switch>
                     </Router>
