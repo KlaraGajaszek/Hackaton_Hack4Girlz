@@ -27,13 +27,14 @@ export type UserData = {
 
 export const AuthProvider = ({ children }) => {
     const [user, loading, error] = useAuthState(auth);
-    const [userData, setUserData] = useState<UserData>(null);
+    const [userData, setUserData] = useState<any>(null);
 
     useEffect(() => {
         (async () => {
             if (!user) return;
-            db.doc(`Users/${user.uid}`).onSnapshot(doc => {
-                setUserData(doc.data());
+            db.doc(`Users/${user.uid}`).onSnapshot((doc): any => {
+                console.log('🚀 ~ file: Auth.tsx ~ line 36 ~ db.doc ~ doc', doc);
+                setUserData(doc?.data());
             });
         })();
     }, [user]);

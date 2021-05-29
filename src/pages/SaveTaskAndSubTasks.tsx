@@ -58,7 +58,6 @@ export const SaveTaskAndSubTasks = () => {
                         editUrl="/cele/nowy"
                     />
                 </div>
-
                 <AddGoalButton url="/cele/nowy/podcel/formularz" />
             </View>
         </Wrapper>
