@@ -41,27 +41,20 @@ const MyInput = styled(Input)`
     margin-right: 8px;
 `;
 
-const Post = () => {
-    const { userData, loading } = useUserData();
-
-    if (loading) return <Loader />;
-
+const Post = ({ id, displayName, photoURL, text, likes }: any) => {
     return (
         <MyCard
-            title="Nikola Kwiat"
-            icon={<Avatar src={userData.photoURL} />}
+            title={displayName}
+            icon={<Avatar src={photoURL} />}
             actions={
                 <Heart>
-                    5
+                    {likes}
                     <AiFillHeart size="1em" />
                 </Heart>
             }
         >
             <Divider />
-            <Content>
-                Cześć, marzy mi się praca w firmie X i widzę ofertę na interesujące mnie stanowisko, ale nie wiem, czy
-                jestem wystarczająco dobra w tym co robię
-            </Content>
+            <Content>{text}</Content>
             <Divider />
             <Comments />
             <Divider />

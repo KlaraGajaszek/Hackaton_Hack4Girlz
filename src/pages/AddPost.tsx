@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { GoBack } from '../components/GoBack';
 import { Routes } from '../routing/router';
 import { Select, Textarea, Input } from 'react-rainbow-components';
@@ -6,6 +6,9 @@ import styled from 'styled-components';
 import { GoalButton } from '../components/GoalButton';
 import { useHistory } from 'react-router-dom';
 import { AttachmentIcon } from '@chakra-ui/icons';
+import { Industries, Specials } from '../constants/user';
+import { useAuthContext } from '../contexts/Auth';
+import { addPost } from '../db/addPost';
 
 export const AddPost = () => {
     const selectStyles = {
@@ -38,42 +41,44 @@ export const AddPost = () => {
     `;
     const [values, setValues] = useState({
         content: '',
-        spec: '',
-        tags: '',
-        industry: '',
+        spec: Specials.Specials1,
+        tags: 'achievements',
+        industry: Industries.Branza1,
         text: ''
     });
-    const industries = [
-        { value: 'IT', label: 'IT' },
-        { value: 'muzyka', label: 'muzyka' },
-        { value: 'sport', label: 'sport' }
-    ];
+
     const tags = [
         { value: 'achievements', label: 'achievements' },
         { value: 'problems', label: 'problems' },
         { value: 'education', label: 'education' }
     ];
-    const spec = [
-        { value: 'spec1', label: 'spec1' },
-        { value: 'spec2', label: 'spec2' },
-        { value: 'spec3', label: 'spec3' }
-    ];
+
+    const {
+        user: { uid, displayName, photoURL }
+    } = useAuthContext();
+    const ref = useRef();
+    const getOptions = (arr: string[]) => arr.map(name => ({ value: name, label: name }));
+
     const history = useHistory();
-    const onSave = () => {
-        console.log(values);
-        history.push(Routes.Home);
+
+    const onSave = async () => {
+        const isSuccess = await addPost(
+            { uid, displayName, photoURL },
+            { ...values, text: ref?.current?.fieldRef?.current?.textareaRef?.current?.value }
+        );
+        if (isSuccess) history.push(Routes.Home);
     };
     return (
         <Wrapper>
             <GoBack url={Routes.Home} />
             <View>
                 <Textarea
+                    ref={ref}
                     label="Treść"
                     labelAlignment="left"
                     rows={5}
                     placeholder="Wpisz treść"
                     style={selectStyles}
-                    onChange={e => setValues({ ...values, text: e.target.value })}
                 />
                 <Select
                     label="Tagi"
@@ -87,7 +92,7 @@ export const AddPost = () => {
                 <Select
                     label="Branża"
                     labelAlignment="left"
-                    options={industries}
+                    options={getOptions(Object.values(Industries))}
                     value={values.industry}
                     name="industry"
                     style={selectStyles}
@@ -96,7 +101,7 @@ export const AddPost = () => {
                 <Select
                     label="Specjalizacja"
                     labelAlignment="left"
-                    options={spec}
+                    options={getOptions(Object.values(Specials))}
                     value={values.spec}
                     name="spec"
                     style={selectStyles}
