@@ -38,9 +38,7 @@ export const TaskCard = ({ title, startDate, endDate, isTime, editUrl }) => {
     const history = useHistory();
     const formattedStartDate = new Date(Date.parse(startDate)).toLocaleString('pl-PL');
     const formattedEndDate = new Date(Date.parse(endDate)).toLocaleString('pl-PL');
-    console.log('taskCard isTime: ', isTime);
     const hasNoTimeConstraint = isTime;
-    console.log('has time constraint: ', hasNoTimeConstraint);
     const dateRange = hasNoTimeConstraint ? 'no time constraint' : `${formattedStartDate} - ${formattedEndDate}`;
 
     return (

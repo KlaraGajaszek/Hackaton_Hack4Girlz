@@ -60,7 +60,6 @@ export const AddSubtask = () => {
         history.push('/cele/dodane/bezpodcelu');
     };
 
-    console.log('addsubtask isTime: ', currentGoal.isTime);
     return (
         <Wrapper>
             <Main>
