@@ -26,6 +26,7 @@ const StyledDiv = styled.div`
     font-weight: 400;
     font-size: 14px;
     line-height: 40px;
+    color: black;
 `;
 const StyledLink = styled.a`
     padding: 10px;

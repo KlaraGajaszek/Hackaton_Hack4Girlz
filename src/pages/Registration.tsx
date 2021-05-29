@@ -87,7 +87,10 @@ const SignUp = ({ history }) => {
                         name="firstname"
                         type="text"
                         value={firstname}
-                        onChange={e => setName(e.target.value)}
+                        onChange={e => {
+                            e.preventDefault();
+                            setName(e.target.value);
+                        }}
                     />
                     <Input
                         labelAlignment="left"
