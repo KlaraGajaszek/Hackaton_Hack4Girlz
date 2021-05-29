@@ -80,13 +80,9 @@ const App = () => {
                                 <Route exact path={Routes.TimelineGoals} component={TaskTimeline} />
                                 <Route exact path={Routes.SaveTaskAndSubtask} component={SaveTaskAndSubTasks} />
                                 <PrivateRoute exact path={Routes.NewPost} component={AddPost} />
-                                <PrivateRoute exact path={Routes.Profile} component={Profile} />
-                                <PrivateRoute exact path={Routes.AddTask} component={AddTask} />
                                 <Route exact path={Routes.AddSubTaskForm} component={AddSubTaskForm} />
                                 <PrivateRoute exact path={Routes.AddSubtask} component={AddSubtask} />
-                                <PrivateRoute exact path={Routes.AddSubTaskForm} component={AddSubTaskForm} />
                                 <PrivateRoute exact path={Routes.Goals} component={Goals} />
-                                <PrivateRoute exact path={Routes.SaveTaskAndSubtask} component={SaveTaskAndSubTasks} />
                                 <PrivateRoute
                                     exact
                                     path={Routes.AddedGoalsWithoutSubTarget}
