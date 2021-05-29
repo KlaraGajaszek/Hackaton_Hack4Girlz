@@ -37,7 +37,9 @@ export const SetupPage = () => {
         specialization: '',
         animal: Animals.Szpila
     });
-    const { uid } = useContext(AuthContext);
+    const {
+        user: { uid }
+    } = useContext(AuthContext);
     const history = useHistory();
     const { userData, loading } = useUserData();
 
@@ -52,7 +54,7 @@ export const SetupPage = () => {
 
     if (loading) return <Loader />;
 
-    if (userData.isSetupCompleted) {
+    if (userData?.isSetupCompleted) {
         history.push(Routes.Home);
         return null;
     }
