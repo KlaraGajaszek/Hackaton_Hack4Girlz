@@ -47,7 +47,6 @@ type Props = {
 const LinkItem: FC<Props> = ({ to, Icon, name }) => {
     const history = useHistory();
     const match = useRouteMatch(to);
-    console.log('🚀 ~ file: Layout.tsx ~ line 48 ~ match', match);
 
     return (
         <Item isActive={!!match} onClick={() => history.push(to)}>
