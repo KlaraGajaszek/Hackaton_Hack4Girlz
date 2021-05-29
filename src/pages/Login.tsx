@@ -6,7 +6,7 @@ import { LogWithGoogle } from '../components/Googlelogin';
 import { SectionTitle } from '../components/SectionTitle';
 import { Button, Input } from 'react-rainbow-components';
 import { Box } from '@chakra-ui/react';
-import { Center, Container } from '@chakra-ui/react';
+import { Center } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { Routes } from '../routing/router';
 

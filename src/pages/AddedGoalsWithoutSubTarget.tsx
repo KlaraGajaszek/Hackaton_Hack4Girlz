@@ -82,7 +82,7 @@ const Wrapper = styled.div`
     flex-direction: column;
 `;
 
-export const AddedObjectiveWithoutSubTarget = () => {
+export const AddedGoalsWithoutSubTarget = () => {
     const onSave = () => {
         console.log('onsave');
     };

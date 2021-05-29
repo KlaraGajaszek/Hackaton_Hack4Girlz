@@ -4,10 +4,11 @@ import { Button, Input } from 'react-rainbow-components';
 import { ButtonIcon } from 'react-rainbow-components';
 import { MdEdit } from 'react-icons/md';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { Routes } from '../routing/router';
 
 import SlideX from '../assets/png/cat/SlideX.png';
 
-export const EditObjective = () => {
+export const EditGoal = () => {
     const [values, setValues] = useState<any>([]);
 
     const onSave = () => {
