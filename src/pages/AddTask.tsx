@@ -3,10 +3,15 @@ import styled from 'styled-components';
 import { Input } from 'react-rainbow-components';
 import { Select } from 'react-rainbow-components';
 import { useHistory } from 'react-router-dom';
-
+import { db } from '../firebase';
 import { GoBack } from '../components/GoBack';
 import { Routes } from '../routing/router';
 import { GoalButton } from '../components/GoalButton';
+import { userSetup } from '../db/userSetup';
+import { useUserData } from '../hooks/useUserData';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 
 const View = styled.div`
     height: 750px;
@@ -47,7 +52,35 @@ const CustomInput = styled(Input)`
     border: 1px solid #081449;
 `;
 
+
+
 export const AddTask = () => {
+
+  
+    // db.collection("Goals").add({
+    //     name: "Los Angeles",
+    //     industry: "IT",
+    //     country: "USA",
+    //     nested: ['1','2']
+    // })
+    //     .then(() => {
+    //         console.log("Document successfully written!");
+    //     })
+    //     .catch((error) => {
+    //         console.error("Error writing document: ", error);
+    //     });
+
+
+ //   db.collection('Goals').doc('Aqd8aP8uLSvuAgsMs5aW').update({"nested": ['12','14']})
+ //   db.collection('Goals').doc('Aqd8aP8uLSvuAgsMs5aW').set({ "nested": ['19', '20'] }, { merge: true });
+   // db.app.database().ref("Goals/").set({Aqd8aP8uLSvuAgsMs5aW: {nested: [4,8]}});
+
+    const cityRef = db.collection('Goals').doc('diceC0e4DwYyVKH00FtN');
+
+     cityRef.set({
+        nested: '6'
+    }, { merge: true });
+ 
     const [values, setValues] = useState({
         objective: '',
         starttime: '',
@@ -57,6 +90,7 @@ export const AddTask = () => {
         industry: '',
         subtasks: []
     });
+    
     const history = useHistory();
     const onSave = () => {
         // add to FB
@@ -64,6 +98,31 @@ export const AddTask = () => {
         // when try
         history.push(Routes.AddSubtask);
     };
+    db.collection('Goals').where('name', '==', 'name1')
+    .where('name', '==', 'name1')
+    .get()
+    .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+
+            console.log(doc.id)
+        });
+    })
+    .catch(error => {
+        console.log('Error getting documents: ', error);
+    });
+
+    // db.collection('Goals').where('name', '==', 'name1')
+    // .where('name', '==', 'name1')
+    // .get()
+    // .then(querySnapshot => {
+    //     querySnapshot.forEach(doc => {
+           
+    //         console.log(doc.id)
+    //     });
+    // })
+    // .catch(error => {
+    //     console.log('Error getting documents: ', error);
+    // });
 
     const options = [
         { value: 'IT', label: 'IT' },

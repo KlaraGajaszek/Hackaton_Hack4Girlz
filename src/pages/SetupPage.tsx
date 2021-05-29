@@ -52,7 +52,7 @@ export const SetupPage = () => {
 
     if (loading) return <Loader />;
 
-    if (userData.isSetupCompleted) {
+    if (userData?.isSetupCompleted) {
         history.push(Routes.Home);
         return null;
     }

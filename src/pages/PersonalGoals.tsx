@@ -17,7 +17,10 @@ import { useHistory } from 'react-router-dom';
 import { useUserData } from '../hooks/useUserData';
 import { Routes } from '../routing/router';
 import { AuthContext } from '../contexts/Auth';
+import 'firebase/auth';
+import 'firebase/firestore';
 import { AchievementsComponent } from '../components/AchievementsComponent';
+import firebase from 'firebase';
 
 export const Goals = () => {
     const [docId, setDocId] = useState('');
@@ -31,13 +34,17 @@ export const Goals = () => {
     });
 
     const { photoURL, displayName } = useContext(AuthContext);
+    
+    db.collection('Goals').doc('diceC0e4DwYyVKH00FtN')
+        .update({ "nested": firebase.firestore.FieldValue.arrayUnion('12') })
 
-    db.collection('Users')
-        .where('email', '==', 'pat.kowalczyk646@gmail.com')
+    db.collection('Goals')
+        .where('name', '==', 'name3')
         .get()
         .then(querySnapshot => {
             querySnapshot.forEach(doc => {
                 setDocId(doc.id);
+                console.log(doc['subtasks'])
             });
         })
         .catch(error => {
