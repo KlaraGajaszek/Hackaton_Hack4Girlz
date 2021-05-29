@@ -42,7 +42,7 @@ const Title = styled.span`
 `;
 
 //Get data from fb
-export const AddSubtask = () => {
+export const SaveTaskAndSubTasks = () => {
     return (
         <Wrapper>
             <Main>

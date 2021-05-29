@@ -27,15 +27,15 @@ const Menu = styled(Card)`
     background-color: ${props => props.theme.rainbow.palette.background.white};
 `;
 
-const Item = styled.div`
+const Item = styled.div<{ isActive: boolean }>`
     width: 20%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: ${props =>
-        props.isActive ? props.theme.rainbow.palette.primary.dark : props.theme.rainbow.palette.primary.main};
+    color: ${({ isActive, theme }) =>
+        isActive ? theme.rainbow.palette.primary.dark : theme.rainbow.palette.primary.main};
 `;
 
 type Props = {

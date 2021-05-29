@@ -42,24 +42,13 @@ const Title = styled.span`
 `;
 
 //Get data from fb
-export const AddSubtask = () => {
+export const AddSubtaskForm = () => {
     return (
         <Wrapper>
             <Main>
-                <GoBack url={Routes.AddTask} />
+                <GoBack url={Routes.AddSubtask} />
             </Main>
-            <View>
-                <Title>Twój cel</Title>
-                <div style={{ marginTop: '15px', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
-                    <TaskCard
-                        startData="27.05.2021"
-                        endData="27.05.2022"
-                        title="Zdobycie pierwszej pracy jako UX designer"
-                        editUrl="/cele/nowy"
-                    />
-                </div>
-                <AddGoalButton url="/cele/nowy/podcel/formularz" />
-            </View>
+            <View>Add Subtask Form</View>
         </Wrapper>
     );
 };
