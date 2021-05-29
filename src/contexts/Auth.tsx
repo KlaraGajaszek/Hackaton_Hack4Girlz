@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { auth, db } from '../firebase';
 import firebase from 'firebase/app';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -51,3 +51,5 @@ export const AuthProvider = ({ children }) => {
 
     return <AuthContext.Provider value={{ user, userData, loading: loading, error }}>{children}</AuthContext.Provider>;
 };
+
+export const useAuthContext = () => useContext(AuthContext);
