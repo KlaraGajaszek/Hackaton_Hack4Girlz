@@ -5,5 +5,6 @@ export enum Routes {
     Registration = '/rejestracja',
     Profile = '/profil',
     OnlyObjective = '/onlyobjective',
-    EditObjective = '/editobjective'
+    EditObjective = '/editobjective',
+    Goals = '/cele',
 }

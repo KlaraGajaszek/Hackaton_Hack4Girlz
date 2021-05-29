@@ -12,6 +12,7 @@ import { Routes } from './routing/router';
 import { Profile } from './pages/Profile';
 import { OnlyObjective } from './pages/OnlyObjective';
 import { EditObjective } from './pages/EditObjective';
+import { Goals } from './pages/PersonalGoals';
 
 const theme: DefaultTheme = {
     rainbow: {
@@ -62,6 +63,7 @@ const App = () => {
                         <PrivateRoute exact path={Routes.Home} component={StartPage} />
                         <Route exact path={Routes.Login} component={Login} />
                         <Route exact path={Routes.Profile} component={Profile} />
+                        <PrivateRoute exact path={Routes.Goals} component={Goals} />
                         <Route exact path={Routes.OnlyObjective} component={OnlyObjective} />
                         <Route exact path={Routes.EditObjective} component={EditObjective} />
                         <Route exact path={Routes.Registration} component={Registration} />
