@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Input } from 'react-rainbow-components';
-import { Select } from 'react-rainbow-components';
-import { useHistory } from 'react-router-dom';
-import { db } from '../firebase';
-
+import { GoalButton } from '../components/GoalButton';
 import { GoBack } from '../components/GoBack';
 import { Routes } from '../routing/router';
-import { GoalButton } from '../components/GoalButton';
 
 const View = styled.div`
     height: 750px;
@@ -21,10 +17,6 @@ const View = styled.div`
 
     right: 0;
     bottom: 0;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 `;
 
 const Main = styled.div`
@@ -53,46 +45,26 @@ const CustomInput = styled(Input)`
     border: 1px solid #081449;
 `;
 
-export const AddTask = () => {
+//Get data from fb
+export const AddSubtaskForm = () => {
     const [values, setValues] = useState({
         objective: '',
         starttime: '',
         endtime: '',
-        isTime: false,
-        prize: '',
-        industry: '',
-        subtasks: []
+        isTime: false
     });
-    const history = useHistory();
+
     const onSave = () => {
-        // add to FB
-
-        db.collection('Goals')
-            .add(values)
-            .then(() => {
-                console.log('Document successfully written!');
-            })
-            .catch(error => {
-                console.error('Error writing document: ', error);
-            });
-
-        console.log('values', values);
-        // when try
-        history.push(Routes.AddSubtask);
+        console.log('request aim goal');
     };
 
-    const options = [
-        { value: 'IT', label: 'IT' },
-        { value: 'muzyka', label: 'muzyka' },
-        { value: 'sport', label: 'sport' }
-    ];
     return (
         <Wrapper>
             <Main>
-                <GoBack url="/cele" />
+                <GoBack url={Routes.AddSubtask} />
             </Main>
             <View>
-                <div>
+                <div style={{ margin: '23px' }}>
                     <h1
                         style={{
                             color: '#9F9F9F',
@@ -107,10 +79,10 @@ export const AddTask = () => {
                             letterSpacing: '-0.01em'
                         }}
                     >
-                        Dodaj cel
+                        Dodaj zadanie
                     </h1>
                     <CustomInput
-                        label="Nazwa Celu"
+                        label="Nazwa"
                         labelAlignment="left"
                         style={inputStyle}
                         name="objective"
@@ -141,25 +113,10 @@ export const AddTask = () => {
                         label="Czas nieokreślony"
                         onChange={e => setValues({ ...values, isTime: !values?.isTime })}
                     />
-                    <Input
-                        label="Nagroda"
-                        labelAlignment="left"
-                        style={inputStyle}
-                        name="prize"
-                        type="text"
-                        onChange={e => setValues({ ...values, prize: e.target.value })}
-                    />
-                    <Select
-                        label="Branża"
-                        labelAlignment="left"
-                        options={options}
-                        name="industry"
-                        onChange={e => setValues({ ...values, industry: e.target.value })}
-                    />
-                </div>
 
-                <div style={{ marginBottom: '60px', display: 'flex', justifyContent: 'flex-end' }}>
-                    <GoalButton title="Dalej" onClick={onSave} />
+                    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '31px' }}>
+                        <GoalButton title="Dalej" onClick={onSave} />
+                    </div>
                 </div>
             </View>
         </Wrapper>

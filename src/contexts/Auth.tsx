@@ -7,7 +7,7 @@ export const AuthContext = React.createContext<firebase.User | null>(null);
 
 export const AuthProvider = ({ children }) => {
     const [user, loading, error] = useAuthState(auth);
-
+    console.log('user', user);
     if (loading) {
         return <>Loading...</>;
     }

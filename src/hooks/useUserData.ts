@@ -19,7 +19,7 @@ export const useUserData = () => {
     const { uid } = useContext(AuthContext);
     const ref = db.doc(`Users/${uid}`);
     const [userData, loading, error] = useDocumentData<UserData>(ref);
-
+    console.log('userData', userData);
     if (error) console.log('🚀 ~ file: useUserData.ts ~ line 10 ~ useUserData ~ error', error);
 
     return { userData, loading, error };
