@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
 import { Application } from 'react-rainbow-components';
 import { AuthProvider } from './contexts/Auth';
@@ -74,13 +74,13 @@ const App = () => {
                             <PrivateRoute path={Routes.Setup} component={SetupPage} />
                             <Layout>
                                 <PrivateRoute exact path={Routes.Home} component={StartPage} />
-                                <Route exact path={Routes.Profile} component={Profile} />
-                                <Route exact path={Routes.AddTask} component={AddTask} />
-                                <Route exact path={Routes.AddSubtask} component={AddSubtask} />
-                                <Route exact path={Routes.TimelineGoals} component={TaskTimeline} />
-                                <Route exact path={Routes.SaveTaskAndSubtask} component={SaveTaskAndSubTasks} />
+                                <PrivateRoute exact path={Routes.Profile} component={Profile} />
+                                <PrivateRoute exact path={Routes.AddTask} component={AddTask} />
+                                <PrivateRoute exact path={Routes.AddSubtask} component={AddSubtask} />
+                                <PrivateRoute exact path={Routes.TimelineGoals} component={TaskTimeline} />
+                                <PrivateRoute exact path={Routes.SaveTaskAndSubtask} component={SaveTaskAndSubTasks} />
                                 <PrivateRoute exact path={Routes.NewPost} component={AddPost} />
-                                <Route exact path={Routes.AddSubTaskForm} component={AddSubTaskForm} />
+                                <PrivateRoute exact path={Routes.AddSubTaskForm} component={AddSubTaskForm} />
                                 <PrivateRoute exact path={Routes.AddSubtask} component={AddSubtask} />
                                 <PrivateRoute exact path={Routes.Goals} component={Goals} />
                                 <PrivateRoute
@@ -88,8 +88,9 @@ const App = () => {
                                     path={Routes.AddedGoalsWithoutSubTarget}
                                     component={AddedGoalsWithoutSubTarget}
                                 />
-                                <Route exact path={Routes.EditGoal} component={EditGoal} />
+                                <PrivateRoute exact path={Routes.EditGoal} component={EditGoal} />
                             </Layout>
+                            <Route path={'/'} component={() => <Redirect to={Routes.Login} />} />
                         </Router>
                     </AuthProvider>
                 </GoalContextProvider>
