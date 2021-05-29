@@ -16,7 +16,7 @@ import { Goals } from './pages/PersonalGoals';
 import { AddTask } from './pages/AddTask';
 import { AddSubtask } from './pages/AddSubTask';
 import { Layout } from './components/Layout';
-import { AddSubtaskForm } from './pages/AddSubTaskForm';
+import { TaskTimeline } from './pages/TaskTimeline';
 import { SaveTaskAndSubTasks } from './pages/SaveTaskAndSubTasks';
 
 const theme: DefaultTheme = {
@@ -73,7 +73,7 @@ const App = () => {
                             <Route exact path={Routes.Profile} component={Profile} />
                             <Route exact path={Routes.AddTask} component={AddTask} />
                             <Route exact path={Routes.AddSubtask} component={AddSubtask} />
-                            <Route exact path={Routes.AddSubtaskForm} component={AddSubtaskForm} />
+                            <Route exact path={Routes.TimelineGoals} component={TaskTimeline} />
                             <Route exact path={Routes.Goals} component={Goals} />
                             <Route exact path={Routes.SaveTaskAndSubtask} component={SaveTaskAndSubTasks} />
                             <Route

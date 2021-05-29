@@ -11,6 +11,7 @@ export enum Routes {
     AddSubtaskForm = '/cele/nowy/podcel/formularz',
     SaveTaskAndSubtask = '/cele/zapisz',
     Goals = '/cele',
+    TimelineGoals = '/cele/nowy/timeline',
     Chat = '/czat',
     Events = '/wydarzenia'
 }

@@ -20,6 +20,10 @@ const View = styled.div`
 
     right: 0;
     bottom: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `;
 
 const Main = styled.div`
@@ -31,6 +35,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
 `;
+
 const inputStyle = {
     maxWidth: 700,
     border: 1,
@@ -73,10 +78,10 @@ export const AddTask = () => {
     return (
         <Wrapper>
             <Main>
-                <GoBack url="/goals" />
+                <GoBack url="/cele" />
             </Main>
             <View>
-                <div style={{ margin: '23px' }}>
+                <div>
                     <h1
                         style={{
                             color: '#9F9F9F',
@@ -140,10 +145,10 @@ export const AddTask = () => {
                         name="industry"
                         onChange={e => setValues({ ...values, industry: e.target.value })}
                     />
+                </div>
 
-                    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '31px' }}>
-                        <GoalButton title="Dalej" onClick={onSave} />
-                    </div>
+                <div style={{ marginBottom: '60px', display: 'flex', justifyContent: 'flex-end' }}>
+                    <GoalButton title="Dalej" onClick={onSave} />
                 </div>
             </View>
         </Wrapper>

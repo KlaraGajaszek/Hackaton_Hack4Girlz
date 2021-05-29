@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ActivityTimeline, TimelineMarker, Card } from 'react-rainbow-components';
 
 import { GoBack } from '../components/GoBack';
 import { TaskCard } from '../components/TaskCard';
 import { Routes } from '../routing/router';
 import { AddGoalButton } from '../components/AddGoalButton';
-import { GoalButton } from '../components/GoalButton';
 import { Button } from 'react-rainbow-components';
+
+const iconStyles = { width: 32, height: 32 };
 
 const View = styled.div`
     height: 750px;
@@ -17,10 +19,8 @@ const View = styled.div`
     /* align-items: end; */
     position: fixed;
     left: 0;
-
     right: 0;
     bottom: 0;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -37,43 +37,39 @@ const Wrapper = styled.div`
     flex-direction: column;
 `;
 
-const Title = styled.span`
-    font-family: Lato;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 22px;
-    margin: 10px;
-    line-height: 100%;
-    color: #9f9f9f;
-    letter-spacing: -0.01em;
-`;
-
-//Get data from fb
-export const AddSubtask = () => {
+export const TaskTimeline = () => {
     const onSave = () => {
-        console.log('request aim goal');
+        console.log('on save');
     };
     return (
         <Wrapper>
             <Main>
-                <GoBack url={Routes.AddTask} />
+                <GoBack url={Routes.AddSubtask} />
             </Main>
             <View>
                 <div>
-                    <Title>Twój cel</Title>
-                    <div style={{ marginTop: '15px', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+                    <div>
                         <TaskCard
                             startData="27.05.2021"
                             endData="27.05.2022"
                             title="Zdobycie pierwszej pracy jako UX designer"
-                            editUrl="/cele/nowy"
+                            editUrl="/cele/nowy/podcel/formularz"
                         />
                     </div>
-                    <AddGoalButton url="/cele/nowy/podcel/formularz" />
+                    <div style={{ marginLeft: '100px' }}>
+                        <ActivityTimeline>
+                            <TimelineMarker
+                                label="Ukończ kurs"
+                                // icon={<UserFirstPostIcon style={iconStyles} />}
+                                description="27.05.2021 - 27.05.2022"
+                            ></TimelineMarker>
+                        </ActivityTimeline>
+                    </div>
+                    <AddGoalButton url="" />
                 </div>
 
                 <div style={{ marginBottom: '60px' }}>
-                    <GoalButton title="Zapisz tylko główny cel" onClick={onSave} />
+                    <Button label="Zapisz" onClick={onSave} variant="brand" className="rainbow-m-around_medium" />
                 </div>
             </View>
         </Wrapper>
