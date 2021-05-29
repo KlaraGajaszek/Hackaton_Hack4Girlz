@@ -16,6 +16,7 @@ import { useAuthContext } from '../contexts/Auth';
 import { AchievementsComponent } from '../components/AchievementsComponent';
 import { Animals } from '../constants/user';
 import styled from 'styled-components';
+import { Goal } from '../components/Goal';
 
 export const Goals = () => {
     const history = useHistory();
@@ -60,6 +61,11 @@ export const Goals = () => {
             description: 'test',
             date: 'date',
             industry: 'industry'
+        },
+        {
+            description: 'second test',
+            date: 'date',
+            industry: 'industry'
         }
     ];
 
@@ -88,7 +94,6 @@ export const Goals = () => {
                 'Nie brać na siebie zbyt wielu zadań i skupić się na priorytetyzowaniu tych najważniejszych. Podczas realizacji celu czułam się przytłoczona nadmiarem kroków, które sobie założyłam i nie byłam w stanie ukończyć zadania.'
         }
     ];
-    console.log(achievements && lessons.length == 0 && achieveSet.length == 0);
 
     return (
         <div>
@@ -144,6 +149,7 @@ export const Goals = () => {
                         </Tab>
                     </TabList>
                 </Container>
+                {!achievements && goalsMocked.length > 0 && <Goal goals={goalsMocked} />}
                 {achievements && (lessons.length > 0 || achieveSet.length > 0) && (
                     <AchievementsComponent lessons={lessons} achievements={achieveSet} />
                 )}
@@ -175,7 +181,7 @@ export const Goals = () => {
                         </TabPanel>
                     </TabPanels>
                 )}
-                {!achievements && (
+                {!achievements && goalsMocked.length === 0 && (
                     <TabPanels>
                         <TabPanel style={styleBox as React.CSSProperties}>
                             <Image
