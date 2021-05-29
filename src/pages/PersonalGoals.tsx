@@ -15,11 +15,13 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase';
 import { useHistory } from 'react-router-dom';
 import { Routes } from '../routing/router';
+import { AchievementsComponent } from '../components/AchievementsComponent';
 
 export const Goals = () => {
     const [docId, setDocId] = useState('');
     const [email, setEmail] = useState();
     const history = useHistory();
+    const [achievements, setAchievements] = useState(false);
     db.app.auth().onAuthStateChanged(user => {
         if (user) {
             console.log(user.email);
@@ -72,38 +74,51 @@ export const Goals = () => {
                         osiagnięcia.
                     </p>
                     <TabList>
-                        <Tab style={styleTab} _hover={{ color: '#01B6F5', fontWeight: 700 }}>
+                        <Tab
+                            style={styleTab}
+                            _hover={{ color: '#01B6F5', fontWeight: 700 }}
+                            onClick={() => setAchievements(false)}
+                        >
                             TWOJE CELE
                         </Tab>
-                        <Tab style={styleTab} _hover={{ color: '#01B6F5', fontWeight: 700 }}>
+                        <Tab
+                            style={styleTab}
+                            _hover={{ color: '#01B6F5', fontWeight: 700 }}
+                            onClick={() => setAchievements(true)}
+                        >
                             TWÓJ POSTĘP
                         </Tab>
                     </TabList>
                 </div>
-                <TabPanels>
-                    <TabPanel style={styleBox as React.CSSProperties}>
-                        <Image src={RunCat} alt="run cat" boxSize="180px" marginTop="10" />
-                        <p style={{ maxWidth: 200, marginBottom: 20 }}>Nie masz jeszcze wyznaczonych żadnych celów</p>
-                        <Button
-                            variant="brand"
-                            className="rainbow-m-around_medium"
-                            onClick={() => {
-                                history.push(Routes.AddTask);
-                            }}
-                        >
-                            <FontAwesomeIcon icon={faPlus} style={{ marginRight: 5 }} />
-                            Dodaj cel
-                        </Button>
-                    </TabPanel>
-                    <TabPanel style={styleBox as React.CSSProperties}>
-                        <Image src={RunCat} alt="run cat" boxSize="180px" marginTop="10" />
-                        <p style={{ maxWidth: 200, marginBottom: 20 }}>Wszystko co najlepsze jeszcze przed Tobą!</p>
-                        <Button variant="brand" className="rainbow-m-around_medium">
-                            <FontAwesomeIcon icon={faPlus} style={{ marginRight: 5 }} />
-                            Dodaj cel
-                        </Button>
-                    </TabPanel>
-                </TabPanels>
+                {achievements && <AchievementsComponent />}
+                {!achievements && (
+                    <TabPanels>
+                        <TabPanel style={styleBox as React.CSSProperties}>
+                            <Image src={RunCat} alt="run cat" boxSize="180px" marginTop="10" />
+                            <p style={{ maxWidth: 200, marginBottom: 20 }}>
+                                Nie masz jeszcze wyznaczonych żadnych celów
+                            </p>
+                            <Button
+                                variant="brand"
+                                className="rainbow-m-around_medium"
+                                onClick={() => {
+                                    history.push(Routes.AddTask);
+                                }}
+                            >
+                                <FontAwesomeIcon icon={faPlus} style={{ marginRight: 5 }} />
+                                Dodaj cel
+                            </Button>
+                        </TabPanel>
+                        <TabPanel style={styleBox as React.CSSProperties}>
+                            <Image src={RunCat} alt="run cat" boxSize="180px" marginTop="10" />
+                            <p style={{ maxWidth: 200, marginBottom: 20 }}>Wszystko co najlepsze jeszcze przed Tobą!</p>
+                            <Button variant="brand" className="rainbow-m-around_medium">
+                                <FontAwesomeIcon icon={faPlus} style={{ marginRight: 5 }} />
+                                Dodaj cel
+                            </Button>
+                        </TabPanel>
+                    </TabPanels>
+                )}
             </Tabs>
         </div>
     );
