@@ -62,7 +62,7 @@ export const AddSubTaskForm = () => {
     const { user } = useContext(AuthContext);
 
     const onSave = () => {
-        setGoal({ ...currentGoal, subTask: [...currentGoal.subTask, values] });
+        // setGoal({ ...currentGoal, subTask: [...currentGoal?.subTask, values] });
         history.push(Routes.TimelineGoals);
     };
 

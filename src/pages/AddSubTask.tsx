@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router';
 
 import { GoBack } from '../components/GoBack';
-import { db } from '../firebase';
+
 import { useCurrentGoalContext } from '../contexts/CurrentGoal';
 import { TaskCard } from '../components/TaskCard';
 import { Routes } from '../routing/router';
@@ -53,31 +54,10 @@ const Title = styled.span`
 export const AddSubtask = () => {
     const { currentGoal, setGoal } = useCurrentGoalContext();
     const allGoals = db.collection('Goals').doc('4NGXdhMPGGxbXG24GpSA');
+    const history = useHistory();
 
     const onSave = () => {
-        db.collection('Goals')
-            .doc('4NGXdhMPGGxbXG24GpSA')
-            .set({
-                userId: currentGoal.userId,
-                goals: currentGoal,
-                name: currentGoal.objective,
-                subtasks: currentGoal.subtasks
-            })
-            .then(() => {
-                setGoal({
-                    userId: '',
-                    objective: '',
-                    starttime: '',
-                    endtime: '',
-                    isTime: false,
-                    prize: '',
-                    industry: '',
-                    subtasks: []
-                });
-            })
-            .catch(error => {
-                console.error('Error writing document: ', error);
-            });
+        history.push('/cele/dodane/bezpodcelu');
     };
     return (
         <Wrapper>
