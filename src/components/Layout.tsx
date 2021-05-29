@@ -2,7 +2,7 @@ import React from 'react';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { Card } from 'react-rainbow-components';
-import { NavLink, useHistory, useRouteMatch } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import { Routes } from '../routing/router';
 import { RiCalendarEventLine, RiDashboardLine, RiWechat2Line } from 'react-icons/ri';
 import { AiOutlineTrophy } from 'react-icons/ai';
@@ -28,7 +28,7 @@ const Menu = styled(Card)`
     background-color: ${props => props.theme.rainbow.palette.background.white};
 `;
 
-const Item = styled.div`
+const Item = styled.div<{ isActive: boolean }>`
     width: 20%;
     height: 100%;
     display: flex;

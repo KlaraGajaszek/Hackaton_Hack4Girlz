@@ -94,7 +94,7 @@ export const AddedGoalsWithoutSubTarget = () => {
     };
     return (
         <Wrapper>
-            <Main>sdfsdfsd</Main>
+            <Main></Main>
             <View>
                 <Navbar>
                     <div></div>

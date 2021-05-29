@@ -26,6 +26,7 @@ const StyledDiv = styled.div`
     font-weight: 400;
     font-size: 14px;
     line-height: 40px;
+    color: black;
 `;
 const StyledLink = styled.a`
     padding: 10px;
@@ -70,10 +71,7 @@ const Login = ({ history }) => {
     return (
         <MainWrapper>
             <div style={{ backgroundColor: '#E5E5E5', margin: '-32px -19px 0 -19px', padding: '32px 21px' }}>
-                <SectionTitle
-                    subtitle="Rozpocznij swoją podróż wypełniając poniższe pola lub kliknij:"
-                    title="Rejestracja"
-                />
+                <SectionTitle subtitle="Wpisz swoje dane lub zaloguj się za pomocą:" title="Logowanie" />
             </div>
             <Wrapper>
                 <LogWithGoogle />

@@ -3,7 +3,6 @@ import Carousel, { slidesToShowPlugin } from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 import styled from 'styled-components';
 
-import profile from '../assets/png/profile.png';
 import carouselCard from '../assets/png/carouselCard.png';
 
 const CarouselCard = styled.div`
@@ -46,7 +45,7 @@ const Subtitle = styled.h4`
 `;
 const titles = ['IT', 'SPORT', 'KULTURA', 'SZKOŁA'];
 
-const CarouselContainer = props => {
+export const CarouselContainer = props => {
     return (
         <CarouselCard>
             <Wrapper>
