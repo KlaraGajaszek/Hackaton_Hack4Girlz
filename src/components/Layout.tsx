@@ -61,7 +61,7 @@ const LinkItem: FC<Props> = ({ to, Icon, name }) => {
 const Layout: FC = ({ children }) => {
     return (
         <Container>
-            {children}
+            <div style={{ minHeight: 'calc(100vh - 72px)' }}>{children}</div>
             <Menu>
                 <LinkItem key={Routes.Home} to={Routes.Home} name="Tablica" Icon={RiDashboardLine} />
                 <LinkItem key={Routes.Goals} to={Routes.Goals} name="Cele" Icon={AiOutlineTrophy} />
