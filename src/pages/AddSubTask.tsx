@@ -6,7 +6,6 @@ import { TaskCard } from '../components/TaskCard';
 import { Routes } from '../routing/router';
 import { AddGoalButton } from '../components/AddGoalButton';
 import { GoalButton } from '../components/GoalButton';
-import { Button } from 'react-rainbow-components';
 
 const View = styled.div`
     height: 750px;

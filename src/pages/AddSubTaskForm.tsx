@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Input } from 'react-rainbow-components';
-
+import { GoalButton } from '../components/GoalButton';
 import { GoBack } from '../components/GoBack';
 import { Routes } from '../routing/router';
 
@@ -45,19 +45,19 @@ const CustomInput = styled(Input)`
     border: 1px solid #081449;
 `;
 
-const Title = styled.span`
-    font-family: Lato;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 22px;
-    margin: 10px;
-    line-height: 100%;
-    color: #9f9f9f;
-    letter-spacing: -0.01em;
-`;
-
 //Get data from fb
 export const AddSubtaskForm = () => {
+    const [values, setValues] = useState({
+        objective: '',
+        starttime: '',
+        endtime: '',
+        isTime: false
+    });
+
+    const onSave = () => {
+        console.log('request aim goal');
+    };
+
     return (
         <Wrapper>
             <Main>
