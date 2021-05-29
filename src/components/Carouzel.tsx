@@ -14,7 +14,7 @@ const CarouselCard = styled.div`
     height: 142px;
     border-width: 2px;
     border-style: solid;
-
+    background-color: '#FFFF';
     border-radius: 15px;
     padding: 15px;
     :hover {

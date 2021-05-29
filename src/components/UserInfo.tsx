@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { AiOutlineUser } from 'react-icons/ai';
 
 const UserName = styled.span<{ horizontal: boolean }>`
-    margin: ${({ horizontal }) => (horizontal ? '0 0 0 24px' : '16px 0 25px ')};
+    margin: ${({ horizontal }) => (horizontal ? '0 0 0 24px' : '16px 0 0 ')};
     font-weight: 700;
     font-size: 27px;
     color: ${({ horizontal, theme }) =>

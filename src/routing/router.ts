@@ -3,5 +3,7 @@ export enum Routes {
     Home = '/',
     Login = '/login',
     Registration = '/rejestracja',
-    Profile = '/profil'
+    Profile = '/profil',
+    OnlyObjective = '/onlyobjective',
+    EditObjective = '/editobjective'
 }

@@ -10,6 +10,8 @@ import { SetupPage } from './pages/Setup';
 import { StartPage } from './pages/StartPage';
 import { Routes } from './routing/router';
 import { Profile } from './pages/Profile';
+import { OnlyObjective } from './pages/OnlyObjective';
+import { EditObjective } from './pages/EditObjective';
 
 const theme: DefaultTheme = {
     rainbow: {
@@ -22,7 +24,7 @@ const theme: DefaultTheme = {
             secondary: {
                 main: '#FF507A',
                 light: '#FC5B82',
-                dark: ''
+                dark: '#E5E5E5'
             },
             text: {
                 primary: '#000000',
@@ -58,6 +60,8 @@ const App = () => {
                         <PrivateRoute exact path={Routes.Home} component={StartPage} />
                         <Route exact path={Routes.Login} component={Login} />
                         <Route exact path={Routes.Profile} component={Profile} />
+                        <Route exact path={Routes.OnlyObjective} component={OnlyObjective} />
+                        <Route exact path={Routes.EditObjective} component={EditObjective} />
                         <Route exact path={Routes.Registration} component={Registration} />
                     </Router>
                 </AuthProvider>

@@ -25,25 +25,22 @@ export const Profile = () => {
     return (
         <MainWrapper>
             <div style={{ backgroundColor: '#E5E5E5', margin: '-32px -19px 0 -19px', padding: '32px 21px' }}>
-                <SectionTitle
-                    title="Ścieżka kariery"
-                    subtitle="W tym miejscu możesz zobaczyć swoje dotychczasowe osiągnięcia"
-                />
+                <SectionTitle title="Profil" subtitle="W tym miejscu możesz zobaczyć swoje dotychczasowe osiągnięcia" />
             </div>
             <Wrapper>
                 <UserInfo name="Ela Popiel" avatarSrc={profile} />
                 <CustomProgressBar currentExp={25} levelCapExp={100} avatarIcon={cori_cat} />
-                <div style={{ marginTop: '20px' }}>
+                <div style={{ marginTop: '15px' }}>
                     <SectionInfo text="W jaki sposób mogę zbierać punkty?" />
                 </div>
-                <div style={{ marginTop: '30px', marginBottom: '11px' }}>
+                <div style={{ marginTop: '15px', marginBottom: '11px' }}>
                     <Title title="Doświadczenie zdobyte w branżach" />
                 </div>
 
                 <div>
                     <Carouzel />
                 </div>
-                <div style={{ marginTop: '30px', marginBottom: '30px' }}>
+                <div style={{ marginTop: '11px', marginBottom: '30px' }}>
                     <Title title="UI/UX design" />
                     <CustomProgressBar currentExp={25} levelCapExp={100} avatarIcon={cori_cat} levelIcon={crown} />
                 </div>
