@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Input } from 'react-rainbow-components';
 import { GoalButton } from '../components/GoalButton';
@@ -46,7 +47,7 @@ const CustomInput = styled(Input)`
 `;
 
 //Get data from fb
-export const AddSubtaskForm = () => {
+export const AddSubTaskForm = () => {
     const [values, setValues] = useState({
         objective: '',
         starttime: '',
@@ -54,8 +55,12 @@ export const AddSubtaskForm = () => {
         isTime: false
     });
 
+    const history = useHistory();
+
     const onSave = () => {
-        console.log('request aim goal');
+        console.log('subtask form values: ', values);
+
+        history.push(Routes.AddSubtask);
     };
 
     return (

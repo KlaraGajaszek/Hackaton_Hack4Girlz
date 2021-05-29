@@ -16,7 +16,7 @@ import { Goals } from './pages/PersonalGoals';
 import { AddTask } from './pages/AddTask';
 import { AddSubtask } from './pages/AddSubTask';
 import { Layout } from './components/Layout';
-import { AddSubtaskForm } from './pages/AddSubTaskForm';
+import { AddSubTaskForm } from './pages/AddSubTaskForm';
 import { SaveTaskAndSubTasks } from './pages/SaveTaskAndSubTasks';
 
 const theme: DefaultTheme = {
@@ -72,8 +72,9 @@ const App = () => {
                                 <PrivateRoute exact path={Routes.Home} component={StartPage} />
                                 <PrivateRoute exact path={Routes.Profile} component={Profile} />
                                 <PrivateRoute exact path={Routes.AddTask} component={AddTask} />
+                                <Route exact path={Routes.AddSubTaskForm} component={AddSubTaskForm} />
                                 <PrivateRoute exact path={Routes.AddSubtask} component={AddSubtask} />
-                                <PrivateRoute exact path={Routes.AddSubtaskForm} component={AddSubtaskForm} />
+                                <PrivateRoute exact path={Routes.AddSubTaskForm} component={AddSubTaskForm} />
                                 <PrivateRoute exact path={Routes.Goals} component={Goals} />
                                 <PrivateRoute exact path={Routes.SaveTaskAndSubtask} component={SaveTaskAndSubTasks} />
                                 <PrivateRoute

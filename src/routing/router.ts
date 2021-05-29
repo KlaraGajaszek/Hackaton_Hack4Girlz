@@ -9,7 +9,7 @@ export enum Routes {
     EditGoal = '/cele/edycja',
     AddTask = '/cele/nowy',
     AddSubtask = '/cele/nowy/podcel',
-    AddSubtaskForm = '/cele/nowy/podcel/formularz',
+    AddSubTaskForm = '/cele/nowy/podcel/formularz',
     SaveTaskAndSubtask = '/cele/zapisz',
     Goals = '/cele',
     Chat = '/czat',
