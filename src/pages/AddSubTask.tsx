@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { db } from '../firebase';
 
 import { GoBack } from '../components/GoBack';
 import { TaskCard } from '../components/TaskCard';
@@ -45,9 +46,51 @@ const Title = styled.span`
 
 //Get data from fb
 export const AddSubtask = () => {
+    const history = useHistory();
     const onSave = () => {
-        console.log('request aim goal');
+        history.push('/cele/dodane/bezpodcelu');
     };
+    const { user }: any = useContext(AuthContext);
+
+    const [id, setDocId] = useState(null);
+
+    const temporaryArray = [];
+
+    // db.collection('Goals')
+    //     .where('userId', '==', 'y0LotDNde8MGDY677au6u8rn08y1')
+    //     .where('name', '==', 'cel1')
+    //     .get()
+    //     .then(querySnapshot => {
+    //         querySnapshot.forEach(doc => console.log('doc.data()', doc));
+    //     });
+
+    db.collection('Goals')
+        .where('name', '==', 'cel1')
+        .where('userId', '==', 'y0LotDNde8MGDY677au6u8rn08y1')
+        .get()
+        .then(querySnapshot => {
+            querySnapshot.forEach((doc): any => {
+                setDocId(doc.id);
+            });
+        })
+        .catch(error => {
+            console.log('Error getting documents: ', error);
+        });
+    console.log('id', id);
+
+    //UPDATE
+    if (id) {
+        db.collection('Goals')
+            .doc(id)
+            .update({
+                subtasks: firebase.firestore.FieldValue.arrayUnion({
+                    name: 'test',
+                    startDate: 'etetdsgvgcd',
+                    endDate: 'sdsfdvsdfvfgfvsdfvddd'
+                })
+            });
+    }
+
     return (
         <Wrapper>
             <Main>
