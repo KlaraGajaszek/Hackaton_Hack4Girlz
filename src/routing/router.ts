@@ -4,11 +4,11 @@ export enum Routes {
     Login = '/login',
     Registration = '/rejestracja',
     Profile = '/profil',
-    AddedGoalsWithoutSubTarget = '/addedgoalswithoutsubtarget',
-    EditGoal = '/editgoal',
-    AddTask = '/addgoal',
-    AddSubtask = '/underthegoal',
-    Goals = '/goals',
+    AddedGoalsWithoutSubTarget = '/cele/dodane/bezpodcelu',
+    EditGoal = '/cele/edycja',
+    AddTask = '/cele/nowy',
+    AddSubtask = '/cele/nowy/podcel',
+    Goals = '/cele',
     Chat = '/czat',
     Events = '/wydarzenia'
 }
