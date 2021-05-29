@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@brainhubeu/react-carousel": "^2.0.4",
     "@chakra-ui/core": "^0.8.0",
     "@chakra-ui/react": "^1.6.3",
     "@emotion/core": "^11.0.0",
@@ -31,6 +32,7 @@
     "react-rainbow-components": "^1.25.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-touch-carousel": "^0.9.4",
     "styled-components": "^5.2.0",
     "styled-icons": "^10.27.0",
     "types": "^0.1.1"

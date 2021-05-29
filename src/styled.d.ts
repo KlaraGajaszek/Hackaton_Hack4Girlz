@@ -18,11 +18,14 @@ declare module 'styled-components' {
                 text: {
                     primary: string;
                     secondary: string;
+                    gray: string;
+                    lightGray: string;
                 };
                 background: {
                     grey: string;
                     white: string;
                 };
+
                 secondary: string;
                 success: string;
                 error: string;
