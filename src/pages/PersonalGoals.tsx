@@ -50,6 +50,41 @@ export const Goals = () => {
         textAlign: 'center'
     };
 
+    const goalsMocked = [
+        {
+            description: 'test',
+            date: 'date',
+            industry: 'industry'
+        }
+    ];
+
+    const achieveSet = [
+        {
+            description: 'Mój pierwszy warsztat w apce Networkya',
+            date: '27.05.2021 - 27.05.2022'
+        },
+        {
+            description: 'Podwyżka w pracy',
+            date: '27.05.2021 - 27.05.2022'
+        }
+    ];
+
+    const lessons = [
+        {
+            description: 'Mój pierwszy warsztat w apce Networkya',
+            date: '27.05.2021 - 27.05.2022',
+            conclusion:
+                'Nie brać na siebie zbyt wielu zadań i skupić się na priorytetyzowaniu tych najważniejszych. Podczas realizacji celu czułam się przytłoczona nadmiarem kroków, które sobie założyłam i nie byłam w stanie ukończyć zadania.'
+        },
+        {
+            description: 'Podwyżka w pracy',
+            date: '27.05.2021 - 27.05.2022',
+            conclusion:
+                'Nie brać na siebie zbyt wielu zadań i skupić się na priorytetyzowaniu tych najważniejszych. Podczas realizacji celu czułam się przytłoczona nadmiarem kroków, które sobie założyłam i nie byłam w stanie ukończyć zadania.'
+        }
+    ];
+    console.log(achievements && lessons.length == 0 && achieveSet.length == 0);
+
     return (
         <div>
             <Tabs isFitted variant="enclosed">
@@ -102,7 +137,37 @@ export const Goals = () => {
                         </Tab>
                     </TabList>
                 </div>
-                {achievements && <AchievementsComponent />}
+                {achievements && (lessons.length > 0 || achieveSet.length > 0) && (
+                    <AchievementsComponent lessons={lessons} achievements={achieveSet} />
+                )}
+                {achievements && lessons.length == 0 && achieveSet.length == 0 && (
+                    <TabPanels>
+                        <TabPanel style={styleBox as React.CSSProperties}>
+                            <Image src={RunCat} alt="run cat" boxSize="180px" marginTop="10" />
+                            <p style={{ maxWidth: 200, marginBottom: 20 }}>
+                                Nie masz jeszcze wyznaczonych żadnych celów
+                            </p>
+                            <Button
+                                variant="brand"
+                                className="rainbow-m-around_medium"
+                                onClick={() => {
+                                    history.push(Routes.AddTask);
+                                }}
+                            >
+                                <FontAwesomeIcon icon={faPlus} style={{ marginRight: 5 }} />
+                                Dodaj cel
+                            </Button>
+                        </TabPanel>
+                        <TabPanel style={styleBox as React.CSSProperties}>
+                            <Image src={RunCat} alt="run cat" boxSize="180px" marginTop="10" />
+                            <p style={{ maxWidth: 200, marginBottom: 20 }}>Wszystko co najlepsze jeszcze przed Tobą!</p>
+                            <Button variant="brand" className="rainbow-m-around_medium">
+                                <FontAwesomeIcon icon={faPlus} style={{ marginRight: 5 }} />
+                                Dodaj cel
+                            </Button>
+                        </TabPanel>
+                    </TabPanels>
+                )}
                 {!achievements && (
                     <TabPanels>
                         <TabPanel style={styleBox as React.CSSProperties}>

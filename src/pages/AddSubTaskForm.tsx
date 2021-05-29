@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Input } from 'react-rainbow-components';
 import { GoalButton } from '../components/GoalButton';
 import { GoBack } from '../components/GoBack';
 import { Routes } from '../routing/router';
+import { useCurrentGoalContext } from '../contexts/CurrentGoal';
+import { AuthContext } from '../contexts/Auth';
 
 const View = styled.div`
     height: 750px;
@@ -46,7 +48,6 @@ const CustomInput = styled(Input)`
     border: 1px solid #081449;
 `;
 
-//Get data from fb
 export const AddSubTaskForm = () => {
     const [values, setValues] = useState({
         objective: '',
@@ -57,10 +58,12 @@ export const AddSubTaskForm = () => {
 
     const history = useHistory();
 
-    const onSave = () => {
-        console.log('subtask form values: ', values);
+    const { currentGoal, setGoal } = useCurrentGoalContext();
+    const { user } = useContext(AuthContext);
 
-        history.push(Routes.AddSubtask);
+    const onSave = () => {
+        // setGoal({ ...currentGoal, subTask: [...currentGoal?.subTask, values] });
+        history.push(Routes.TimelineGoals);
     };
 
     return (

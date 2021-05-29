@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router';
 
 import { GoBack } from '../components/GoBack';
-import { db } from '../firebase';
+
 import { useCurrentGoalContext } from '../contexts/CurrentGoal';
 import { TaskCard } from '../components/TaskCard';
 import { Routes } from '../routing/router';
@@ -51,19 +52,12 @@ const Title = styled.span`
 
 //Get data from fb
 export const AddSubtask = () => {
-    const { currentGoal } = useCurrentGoalContext();
+    const { currentGoal, setGoal } = useCurrentGoalContext();
     const allGoals = db.collection('Goals').doc('4NGXdhMPGGxbXG24GpSA');
-    console.log('allGoals', allGoals);
+    const history = useHistory();
+
     const onSave = () => {
-        db.collection('Goals')
-            .doc('4NGXdhMPGGxbXG24GpSA')
-            .set({ userId: currentGoal.userId, goals: currentGoal })
-            .then(() => {
-                console.log('ADD POPUP Success');
-            })
-            .catch(error => {
-                console.error('Error writing document: ', error);
-            });
+        history.push('/cele/dodane/bezpodcelu');
     };
     return (
         <Wrapper>
