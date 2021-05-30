@@ -5,6 +5,7 @@ import { Input } from 'react-rainbow-components';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { GoBack } from '../components/GoBack';
+import { MessageDisplay } from '../components/MessageDisplay';
 import Loader from '../components/Loader';
 import { useAuthContext } from '../contexts/Auth';
 import { getChatDocId, Message, newMessage } from '../db/newMessage';
@@ -63,8 +64,8 @@ const ChatMsgs = ({ counterParty, me }) => {
 
     return (
         <div>
-            {messages.sort(sortByDateData).map(({ content, sender }) => (
-                <div style={{ textAlign: sender === me.uid ? 'right' : 'left', color: '#000' }}>{content}</div>
+            {messages.sort(sortByDateData).map(({ content, createdAt, sender }) => (
+                <MessageDisplay content={content} createdAt={createdAt} sender={sender} me={me} />
             ))}
             <NewMsg myId={me.uid} counterPartyId={counterParty.id} />
         </div>

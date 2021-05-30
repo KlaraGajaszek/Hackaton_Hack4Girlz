@@ -42,15 +42,15 @@ export const AddPost = () => {
     const [values, setValues] = useState({
         content: '',
         spec: Specials.Specials1,
-        tags: 'achievements',
+        tags: 'osiągnięcia',
         industry: Industries.Branza1,
         text: ''
     });
 
     const tags = [
-        { value: 'achievements', label: 'achievements' },
-        { value: 'problems', label: 'problems' },
-        { value: 'education', label: 'education' }
+        { value: 'achievements', label: 'osiągnięcia' },
+        { value: 'problems', label: 'problemy' },
+        { value: 'education', label: 'edukacja' }
     ];
 
     const {
