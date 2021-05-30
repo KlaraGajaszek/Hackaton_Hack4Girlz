@@ -31,6 +31,23 @@ const Bubble = styled.div`
     min-height: 40px;
     border-radius: 15px;
     padding: 12px;
+
+    &:after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 0;
+        z-index: 1;
+        border-style: solid;
+        border-width: ${props => (props.bubbleSide === 'right' ? '15px 0 0 30px' : '15px 30px 0 0')};
+        border-color: transparent ${props => (props.bubbleSide === 'left' ? props.bgColor : 'transparent')} transparent
+            ${props => (props.bubbleSide === 'right' ? props.bgColor : 'transparent')};
+        top: 50%;
+        right: ${props => (props.bubbleSide === 'right' ? '-10px' : '0')};
+        left: ${props => (props.bubbleSide === 'left' ? '-10px' : 'none')};
+
+        margin-top: -8.5px;
+    }
 `;
 
 const DateField = styled.div`
@@ -60,7 +77,7 @@ const Message: FC = ({ children, photoURL, createdAt, bgColor, side, bubbleSide 
         <div style={{}}>
             <Container side={side}>
                 <Main>
-                    <Bubble bgColor={bgColor} side={bubbleSide}>
+                    <Bubble bgColor={bgColor} bubbleSide={bubbleSide}>
                         {children}
                     </Bubble>
                     <DateField>
@@ -76,14 +93,16 @@ const Message: FC = ({ children, photoURL, createdAt, bgColor, side, bubbleSide 
 export const MessageDisplay = ({ content, createdAt, sender, me, counterParty }) => {
     const messageStyles = {
         color: '#000',
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        width: '90%'
     };
     const userPhoto = sender === me.uid ? me.photoURL : counterParty.photoURL;
     const bgColor = sender === me.uid ? '#01B6F5' : '#FF507A';
     const side = sender === me.uid ? 'flex-end' : 'flex-start';
+    const bubbleSide = sender === me.uid ? 'right' : 'left';
     return (
         <div style={messageStyles}>
-            <Message bgColor={bgColor} photoURL={userPhoto} createdAt={createdAt} side={side}>
+            <Message bgColor={bgColor} photoURL={userPhoto} createdAt={createdAt} side={side} bubbleSide={bubbleSide}>
                 {content}
             </Message>
         </div>
