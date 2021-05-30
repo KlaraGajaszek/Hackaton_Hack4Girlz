@@ -43,7 +43,7 @@ const Subtitle = styled.h4`
     display: block;
     color: ${props => props.theme.rainbow.palette.text.lightGray};
 `;
-const titles = ['IT', 'SPORT', 'KULTURA', 'SZKOŁA'];
+const titles = ['IT', 'MARKETING', 'FINANSE', 'PRAWO', 'SZTUKA'];
 
 export const CarouselContainer = props => {
     return (
