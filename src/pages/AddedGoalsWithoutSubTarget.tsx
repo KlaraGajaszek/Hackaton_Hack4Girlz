@@ -93,33 +93,35 @@ export const AddedGoalsWithoutSubTarget = () => {
     const allGoals = db.collection('Goals').doc('4NGXdhMPGGxbXG24GpSA');
     const history = useHistory();
     const onSave = () => {
-        db.collection('Goals')
-            .doc('4NGXdhMPGGxbXG24GpSA')
-            .set({
-                userId: currentGoal.userId,
-                goals: currentGoal,
-                name: currentGoal.objective,
-                subtasks: currentGoal.subtasks
-            })
-            .then(() => {
-                setSended(true);
-                setGoal({
-                    userId: '',
-                    objective: '',
-                    starttime: '',
-                    endtime: '',
-                    isTime: false,
-                    prize: '',
-                    industry: '',
-                    subtasks: []
-                });
-                setTimeout(() => {
-                    history.push('/cele');
-                }, [1000]);
-            })
-            .catch(error => {
-                console.error('Error writing document: ', error);
-            });
+        history.push('/cele');
+        return;
+        // db.collection('Goals')
+        //     .doc('4NGXdhMPGGxbXG24GpSA')
+        //     .set({
+        //         userId: currentGoal.userId,
+        //         goals: currentGoal,
+        //         name: currentGoal.objective,
+        //         subtasks: currentGoal.subtasks
+        //     })
+        //     .then(() => {
+        //         setSended(true);
+        //         setGoal({
+        //             userId: '',
+        //             objective: '',
+        //             starttime: '',
+        //             endtime: '',
+        //             isTime: false,
+        //             prize: '',
+        //             industry: '',
+        //             subtasks: []
+        //         });
+        //         setTimeout(() => {
+        //             history.push('/cele');
+        //         }, [1000]);
+        //     })
+        //     .catch(error => {
+        //         console.error('Error writing document: ', error);
+        //     });
     };
     const onEdit = () => {
         history.push('/cele/nowy');

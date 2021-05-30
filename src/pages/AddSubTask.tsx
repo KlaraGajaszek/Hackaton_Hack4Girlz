@@ -61,6 +61,8 @@ export const AddSubtask = () => {
     const history = useHistory();
 
     const onSave = () => {
+        history.push('/cele/dodane/bezpodcelu');
+        return;
         if (currentGoal?.objective && currentGoal?.userId) {
             db.collection('Goals')
                 .where('name', '==', currentGoal?.objective)

@@ -68,7 +68,7 @@ export const Profile = () => {
                         levelIcon={crown}
                     />
                 </div>
-                <SectionInfo text="Kim jest mentor?" />
+                <SectionInfo text="Kim jest lider/ka?" />
             </Wrapper>
         </MainWrapper>
     );

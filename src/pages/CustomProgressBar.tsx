@@ -5,7 +5,7 @@ import LevelMarker from './LevelMarker';
 
 const CustomProgressBar = ({ currentExp, levelCapExp, avatarIcon, levelNumber = 1, levelIcon = null }) => {
     const progressBarPercentage = (currentExp / levelCapExp) * 100;
-    const levelText = levelIcon ? 'mentorka' : 'level';
+    const levelText = levelIcon ? 'liderka' : 'level';
     const variant = levelIcon ? 'success' : 'brand';
     const colorUsed = levelIcon ? '#FC5B82' : '#01B6F5';
 
