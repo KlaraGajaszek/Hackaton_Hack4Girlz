@@ -7,6 +7,8 @@ import { GoBack } from '../components/GoBack';
 import { Routes } from '../routing/router';
 import { useCurrentGoalContext } from '../contexts/CurrentGoal';
 import { AuthContext } from '../contexts/Auth';
+import { db } from '../firebase';
+import firebase from 'firebase';
 
 const View = styled.div`
     height: 750px;
@@ -60,12 +62,41 @@ export const AddSubTaskForm = () => {
 
     const { currentGoal, setGoal } = useCurrentGoalContext();
     const { user } = useContext(AuthContext);
+    const [id, setDocId] = useState();
+    const [isSended, setSended] = useState<boolean>(false);
 
     const onSave = () => {
-        // setGoal({ ...currentGoal, subTask: [...currentGoal?.subTask, values] });
+        const { objective, starttime, endtime, isTime } = values;
+
+        if (id) {
+            db.collection('Goals')
+                .doc(id)
+                .update({
+                    subtasks: firebase.firestore.FieldValue.arrayUnion({
+                        name: objective,
+                        startDate: starttime,
+                        endDate: endtime
+                    })
+                });
+        }
+
         history.push(Routes.TimelineGoals);
     };
 
+    db.collection('Goals')
+        .where('name', '==', currentGoal?.objective)
+        .where('userId', '==', currentGoal?.userId)
+        .get()
+        .then(querySnapshot => {
+            querySnapshot.forEach((doc): any => {
+                setDocId(doc.id);
+                setSended(true);
+            });
+        })
+        .catch(error => {
+            console.log('Error getting documents: ', error);
+        });
+    // ADD POPOPO
     return (
         <Wrapper>
             <Main>

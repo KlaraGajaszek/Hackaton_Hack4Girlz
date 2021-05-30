@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { Routes } from '../routing/router';
 
 export const Goal = ({ goals }) => {
+    console.log("goals",goals)
     const history = useHistory();
     const Date = styled.p`
         font-size: 11px;
@@ -63,11 +64,11 @@ export const Goal = ({ goals }) => {
     return (
         <div style={{ position: 'relative' }}>
             <StyledDiv>
-                {goals.map(g => (
+                {goals?.map(g => (
                     <CarouselCard>
                         <Wrapper>
-                            <Subtitle>{g.description}</Subtitle>
-                            <Date>{g.date}</Date>
+                            <Subtitle>{g.name}</Subtitle>
+                            {/* <Date>{g.date}</Date>  */}
                         </Wrapper>
                     </CarouselCard>
                 ))}

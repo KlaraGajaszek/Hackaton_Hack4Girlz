@@ -59,18 +59,21 @@ export const AddTask = () => {
     const { user } = useContext(AuthContext);
     const [values, setValues] = useState(currentGoal);
     const history = useHistory();
-    const [start, setStart] = useState('');
-    const [end, setEnd] = useState('');
-    const [name, setName] = useState('');
-    const [prc, setPrc] = useState('');
-    const [industry, setIndustry] = useState('');
-    const [time, setTime] = useState(false);
 
-console.log(values)
     const onSave = () => {
         setGoal({ ...values, userId: user?.uid });
-        
-        db.collection('Goals').add({ userId: user?.uid, price: values.prize, industry: values.industry, name: values.objective, startDate: values.starttime, endDate: values.endtime, subtasks: [], isDone: false, isTime: values.isTime });
+
+        db.collection('Goals').add({
+            userId: user?.uid,
+            price: values.prize,
+            industry: values.industry,
+            name: values.objective,
+            startDate: values.starttime,
+            endDate: values.endtime,
+            subtasks: [],
+            isDone: false,
+            isTime: values.isTime
+        });
         history.push(Routes.AddSubtask);
     };
 

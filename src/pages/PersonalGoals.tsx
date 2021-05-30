@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button } from 'react-rainbow-components';
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import Szpila from '../assets/png/cat/Head.png';
@@ -12,20 +12,53 @@ import { AiOutlineUser } from 'react-icons/ai';
 import { Avatar } from 'react-rainbow-components';
 import { useHistory } from 'react-router-dom';
 import { Routes } from '../routing/router';
-import { useAuthContext } from '../contexts/Auth';
+import { AuthContext } from '../contexts/Auth';
+import 'firebase/auth';
+import 'firebase/firestore';
 import { AchievementsComponent } from '../components/AchievementsComponent';
+import firebase from 'firebase';
+import { useAuthContext } from '../contexts/Auth';
 import { Animals } from '../constants/user';
 import styled from 'styled-components';
 import { Goal } from '../components/Goal';
+import { db } from '../firebase';
+import { useCurrentGoalContext } from '../contexts/CurrentGoal';
 
 export const Goals = () => {
+    const [docx, setDoc] = useState();
     const history = useHistory();
-    const [achievements, setAchievements] = useState(false);
+    const { currentGoal, setGoal } = useCurrentGoalContext();
 
     const {
-        user: { displayName },
+        user: { displayName, uid },
         userData: { animal }
     } = useAuthContext();
+    const [achievements, setAchievements] = useState(false);
+const test=[]
+
+    db.collection('Goals')
+    .where('userId', '==', uid)
+    .get()
+    .then(querySnapshot => {
+        querySnapshot.forEach((doc): any => {
+            console.log('doc.data()',doc.data())
+            test.push(doc.data())
+            // setDoc(doc.data());
+       
+        });
+    })
+    .catch(error => {
+        console.log('Error getting documents: ', error);
+    });
+
+console.log('test',test)
+    // db.collection('Goals')
+    //     .doc('diceC0e4DwYyVKH00FtN')
+    //     .update({ nested: firebase.firestore.FieldValue.arrayUnion('12') });
+
+   
+   
+
     const firstName = displayName.split(' ')[0];
 
     const styleTab = {
@@ -56,18 +89,7 @@ export const Goals = () => {
         textAlign: 'center'
     };
 
-    const goalsMocked = [
-        {
-            description: 'test',
-            date: 'date',
-            industry: 'industry'
-        },
-        {
-            description: 'second test',
-            date: 'date',
-            industry: 'industry'
-        }
-    ];
+    const goalsMocked = test
 
     const achieveSet = [
         {
@@ -149,7 +171,7 @@ export const Goals = () => {
                         </Tab>
                     </TabList>
                 </Container>
-                {!achievements && goalsMocked.length > 0 && <Goal goals={goalsMocked} />}
+                {!achievements && test.length > 0 && <Goal goals={test} />}
                 {achievements && (lessons.length > 0 || achieveSet.length > 0) && (
                     <AchievementsComponent lessons={lessons} achievements={achieveSet} />
                 )}
@@ -187,7 +209,7 @@ export const Goals = () => {
                         </TabPanel>
                     </TabPanels>
                 )}
-                {!achievements && goalsMocked.length === 0 && (
+                {!achievements && test.length === 0 && (
                     <TabPanels>
                         <TabPanel style={styleBox as React.CSSProperties}>
                             <Image
