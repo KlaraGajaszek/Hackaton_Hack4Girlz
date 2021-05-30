@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import Szpila from '../assets/png/cat/Head.png';
 import Lila from '../assets/png/dog/Head.png';
@@ -6,6 +6,7 @@ import { Animals } from '../constants/user';
 import { useAuthContext } from '../contexts/Auth';
 import Cookies from 'universal-cookie';
 import SzpilaJump from '../assets/png/cat/Kitty.png';
+import { OnboardingContext } from '../contexts/OnboardingContext';
 
 const Container = styled.div`
     padding: 30px 30px 0 30px;
@@ -54,7 +55,7 @@ const styledBack = {
 
 const box = {
     width: '311px',
-    height: '283px',
+    height: 'auto',
     position: 'absolute',
     borderRadius: '15px',
     top: '300',
@@ -75,7 +76,21 @@ const imgStyle = {
     marginTop: '-5px'
 };
 
-const Greeting = () => {
+const StyledButton = styled.button`
+    color: ${props => props.theme.rainbow.palette.primary.main};
+    text-transform: uppercase;
+    padding: 30px 20px 0 20px;
+    font-size: 18px;
+`;
+
+const StyledButton2 = styled.button`
+    color: ${props => props.theme.rainbow.palette.text.lightGray};
+    text-transform: uppercase;
+    font-size: 18px;
+    padding: 30px 20px 0 20px;
+`;
+
+const Greeting = props => {
     const {
         user,
         userData: { animal }
@@ -85,23 +100,34 @@ const Greeting = () => {
     const [onboarding, setOnboarding] = useState(true);
     const [open, setOpen] = useState(true);
     const cookies = new Cookies('registered');
+    const [text, setText] = useState(
+        'Cześć! Jestem tutaj aby pomóc Ci w zaplanowaniu i realizacji Twoich celów zawodowych. Nie martw się, jeśi nie wiesz jak się do tego zabrać! Mentorki chętnie Ci w tym pomogą, masz także do dyspozycji społeczność dostępną na tablicy i czacie. Zaraz wszystko stanie się jasne!'
+    );
+    const [onBoard, setOnboard] = useContext(OnboardingContext);
 
     const handleClick = () => {
         let clicks = 0;
         clicks += 1;
-        let message = '';
-        if (clicks == 1) {
-            message =
-                'Przed ustaleniem swoich celów możesz użyć czatu i znaleźć Mentorkę. Skorzystaj z doświadczenia innych dziewczyn!';
-        } else if (clicks == 2) {
-            message =
-                'Wybierz tablicę, aby poszukać inspiracji wśród naszej społeczności. Możesz zadać pytanie lub poprosić o wsparcie. Jesteśmy tu po to, by wzajemnie motywować się do działania!';
-        } else if (clicks == 3) {
-            //for 6 clicks and above
-            message =
-                'Twoim pierwszym celem nie musi być lot na księżyc! Zacznij od przeczytania artykułów branżowych i wysłuchania wykładów. Wszystko w swoim czasie!';
-        } else {
+        const messageBox = document.getElementById('test');
+        console.log(messageBox.innerHTML);
+        const message = `Cześć! Jestem tutaj aby pomóc Ci w zaplanowaniu i realizacji Twoich celów zawodowych. Nie martw się, jeśi nie wiesz jak się do tego zabrać! Mentorki chętnie Ci w tym pomogą, masz także do dyspozycji społeczność dostępną na tablicy i czacie. Zaraz wszystko stanie się jasne!`;
+        const message1 = `Przed ustaleniem swoich celów możesz użyć czatu i znaleźć Mentorkę. Skorzystaj z doświadczenia innych dziewczyn!`;
+        const message2 = `Wybierz tablicę, aby poszukać inspiracji wśród naszej społeczności. Możesz zadać pytanie lub poprosić o wsparcie. Jesteśmy tu po to, by wzajemnie motywować się do działania!`;
+        const message3 =
+            'Twoim pierwszym celem nie musi być lot na księżyc! Zacznij od przeczytania artykułów branżowych i wysłuchania wykładów. Wszystko w swoim czasie!';
+        if (messageBox.innerHTML == message) {
+            setText(message1);
+            setOnboard('Czat');
+            console.log(onBoard);
+        } else if (messageBox.innerHTML == message1) {
+            setText(message2);
+            setOnboard('Tablica');
+        } else if (messageBox.innerHTML == message2) {
+            setText(message3);
+            setOnboard('Cele');
+        } else if (messageBox.innerHTML == message3) {
             setOpen(false);
+            setOnboard('');
         }
         document.getElementById('test').innerHTML = message;
     };
@@ -121,15 +147,17 @@ const Greeting = () => {
                 <div>
                     <div style={onboarding ? covered : styledBack}></div>
                     <div style={onboarding ? box : styledBack}>
-                        <p id="test">
-                            Cześć! Jestem tutaj aby pomóc Ci w zaplanowaniu i realizacji Twoich celów zawodowych.
-                            <br /> Nie martw się, jeśi nie wiesz jak się do tego zabrać! Mentorki chętnie Ci w tym
-                            pomogą, masz także do dyspozycji społeczność dostępną na tablicy i czacie. Zaraz wszystko
-                            stanie się jasne!
-                        </p>
-                        <div>
-                            <button onClick={() => setOpen(false)}>Pomiń</button>
-                            <button onClick={handleClick}>Dalej</button>
+                        <p id="test">{text}</p>
+                        <div style={{ marginLeft: '35px' }}>
+                            <StyledButton
+                                onClick={() => {
+                                    setOpen(false);
+                                    setOnboard('');
+                                }}
+                            >
+                                Pomiń
+                            </StyledButton>
+                            <StyledButton2 onClick={handleClick}>Dalej</StyledButton2>
                         </div>
                     </div>
                     <img style={onboarding ? imgStyle : styledBack} src={SzpilaJump} />

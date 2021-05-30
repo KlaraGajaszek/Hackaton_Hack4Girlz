@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { Card } from 'react-rainbow-components';
@@ -8,6 +8,7 @@ import { RiCalendarEventLine, RiDashboardLine, RiWechat2Line } from 'react-icons
 import { AiOutlineTrophy } from 'react-icons/ai';
 import { BsChatDots } from 'react-icons/bs';
 import { FaRegUserCircle } from 'react-icons/fa';
+import { OnboardingContext } from '../contexts/OnboardingContext';
 
 const Container = styled.div`
     min-height: 100vh;
@@ -28,7 +29,7 @@ const Menu = styled(Card)`
     background-color: ${props => props.theme.rainbow.palette.background.white};
 `;
 
-const Item = styled.div<{ isActive: boolean }>`
+const Item = styled.div<{ isActive: boolean; onboard: boolean }>`
     width: 20%;
     height: 100%;
     display: flex;
@@ -38,6 +39,7 @@ const Item = styled.div<{ isActive: boolean }>`
     color: ${props =>
         props.isActive ? props.theme.rainbow.palette.primary.main : props.theme.rainbow.palette.primary.main};
     border-top: ${props => (props.isActive ? props.theme.rainbow.palette.primary.main + ' solid' : 'none')};
+    background-color: ${props => (props.onboard ? props.theme.rainbow.palette.primary.light : 'white')};
 `;
 
 type Props = {
@@ -49,9 +51,10 @@ type Props = {
 const LinkItem: FC<Props> = ({ to, Icon, name }) => {
     const history = useHistory();
     const match = useRouteMatch(to);
+    const [onBoard, setOnboard] = useContext(OnboardingContext);
 
     return (
-        <Item isActive={!!match} onClick={() => history.push(to)}>
+        <Item onboard={onBoard == name} isActive={!!match} onClick={() => history.push(to)}>
             <Icon size="2em" />
             <div>{name}</div>
         </Item>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Center, Container, Box } from '@chakra-ui/react';
 import Carousel, { slidesToShowPlugin } from '@brainhubeu/react-carousel';
 import styled from 'styled-components';
 

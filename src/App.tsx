@@ -24,6 +24,7 @@ import { AddPost } from './pages/AddPost';
 import { AddResult } from './pages/AddResult';
 import { Chat } from './pages/Chat';
 import { ChatWindow } from './pages/ChatWindow';
+import { OnboardingProvider } from './contexts/OnboardingContext';
 
 const theme: DefaultTheme = {
     rainbow: {
@@ -67,39 +68,45 @@ const rainbowTheme = {
 const App = () => (
     <ThemeProvider theme={theme}>
         <Application theme={rainbowTheme}>
-            <GoalContextProvider>
-                <AuthProvider>
-                    <Router>
-                        <Switch>
-                            <Route exact path={Routes.Login} component={Login} />
-                            <Route exact path={Routes.Registration} component={Registration} />
-                            <PrivateRoute path={Routes.Setup} component={SetupPage} />
-                            <PrivateRoute exact path={Routes.ChatWindow} component={ChatWindow} />
-                            <Layout>
-                                <PrivateRoute exact path={Routes.Home} component={StartPage} />
-                                <PrivateRoute exact path={Routes.Profile} component={Profile} />
-                                <PrivateRoute exact path={Routes.AddTask} component={AddTask} />
-                                <PrivateRoute exact path={Routes.AddSubtask} component={AddSubtask} />
-                                <PrivateRoute exact path={Routes.TimelineGoals} component={TaskTimeline} />
-                                <PrivateRoute exact path={Routes.SaveTaskAndSubtask} component={SaveTaskAndSubTasks} />
-                                <PrivateRoute exact path={Routes.NewPost} component={AddPost} />
-                                <PrivateRoute exact path={Routes.AddSubTaskForm} component={AddSubTaskForm} />
-                                <PrivateRoute exact path={Routes.AddSubtask} component={AddSubtask} />
-                                <PrivateRoute exact path={Routes.Goals} component={Goals} />
-                                <PrivateRoute exact path={Routes.AddGoalReasults} component={AddResult} />
-                                <PrivateRoute
-                                    exact
-                                    path={Routes.AddedGoalsWithoutSubTarget}
-                                    component={AddedGoalsWithoutSubTarget}
-                                />
-                                <PrivateRoute exact path={Routes.EditGoal} component={EditGoal} />
-                                <PrivateRoute exact path={Routes.Chat} component={Chat} />
-                            </Layout>
-                            <Route path={'/'} component={() => <Redirect to={Routes.Login} />} />
-                        </Switch>
-                    </Router>
-                </AuthProvider>
-            </GoalContextProvider>
+            <OnboardingProvider>
+                <GoalContextProvider>
+                    <AuthProvider>
+                        <Router>
+                            <Switch>
+                                <Route exact path={Routes.Login} component={Login} />
+                                <Route exact path={Routes.Registration} component={Registration} />
+                                <PrivateRoute path={Routes.Setup} component={SetupPage} />
+                                <PrivateRoute exact path={Routes.ChatWindow} component={ChatWindow} />
+                                <Layout>
+                                    <PrivateRoute exact path={Routes.Home} component={StartPage} />
+                                    <PrivateRoute exact path={Routes.Profile} component={Profile} />
+                                    <PrivateRoute exact path={Routes.AddTask} component={AddTask} />
+                                    <PrivateRoute exact path={Routes.AddSubtask} component={AddSubtask} />
+                                    <PrivateRoute exact path={Routes.TimelineGoals} component={TaskTimeline} />
+                                    <PrivateRoute
+                                        exact
+                                        path={Routes.SaveTaskAndSubtask}
+                                        component={SaveTaskAndSubTasks}
+                                    />
+                                    <PrivateRoute exact path={Routes.NewPost} component={AddPost} />
+                                    <PrivateRoute exact path={Routes.AddSubTaskForm} component={AddSubTaskForm} />
+                                    <PrivateRoute exact path={Routes.AddSubtask} component={AddSubtask} />
+                                    <PrivateRoute exact path={Routes.Goals} component={Goals} />
+                                    <PrivateRoute exact path={Routes.AddGoalReasults} component={AddResult} />
+                                    <PrivateRoute
+                                        exact
+                                        path={Routes.AddedGoalsWithoutSubTarget}
+                                        component={AddedGoalsWithoutSubTarget}
+                                    />
+                                    <PrivateRoute exact path={Routes.EditGoal} component={EditGoal} />
+                                    <PrivateRoute exact path={Routes.Chat} component={Chat} />
+                                </Layout>
+                                <Route path={'/'} component={() => <Redirect to={Routes.Login} />} />
+                            </Switch>
+                        </Router>
+                    </AuthProvider>
+                </GoalContextProvider>
+            </OnboardingProvider>
         </Application>
     </ThemeProvider>
 );

@@ -4,13 +4,19 @@ export enum Animals {
 }
 
 export enum Industries {
-    Branza1 = 'Branża 1',
-    Branza2 = 'Branża 2',
-    Branza3 = 'Branża 3'
+    Branza1 = 'IT',
+    Branza2 = 'Marketing',
+    Branza3 = 'Finanse',
+    Branza4 = 'Sztuka',
+    Branza5 = 'Prawo'
 }
 
 export enum Specials {
-    Specials1 = 'specials 1',
-    Specials2 = 'specials 2',
-    Specials3 = 'specials 3'
+    Specials1 = 'Programowanie',
+    Specials2 = 'Grafika',
+    Specials3 = 'Analityka/Big Data',
+    Specials4 = 'Zarządzanie projektami',
+    Specials5 = 'UX/UI',
+    Specials6 = 'Testowanie oprogramowania',
+    Specials7 = 'Cyber security'
 }
