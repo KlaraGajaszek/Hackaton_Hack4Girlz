@@ -14,6 +14,7 @@ export enum Routes {
     Goals = '/cele',
     TimelineGoals = '/cele/nowy/timeline',
     Chat = '/czat',
+    ChatWindow = '/czat/:id',
     Events = '/wydarzenia',
     AddGoalReasults = '/cele/wyniki'
 }

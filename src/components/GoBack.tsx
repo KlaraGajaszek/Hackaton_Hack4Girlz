@@ -12,13 +12,13 @@ const CustomIcon = styled(AiOutlineArrowLeft)`
 export const GoBack = ({ url }) => {
     const history = useHistory();
     return (
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <button
-                style={{ marginLeft: '20px', marginTop: '13px', marginRight: '10px' }}
-                onClick={() => {
-                    history.push(url);
-                }}
-            >
+        <div
+            style={{ display: 'flex', flexDirection: 'row' }}
+            onClick={() => {
+                history.push(url);
+            }}
+        >
+            <button style={{ marginLeft: '20px', marginTop: '13px', marginRight: '10px' }}>
                 <CustomIcon />
             </button>
             <span

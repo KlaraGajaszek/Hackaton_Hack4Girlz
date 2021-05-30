@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
 import { Application } from 'react-rainbow-components';
 import { AuthProvider } from './contexts/Auth';
@@ -22,6 +22,8 @@ import { GoalContextProvider } from './contexts/CurrentGoal';
 import { AddSubTaskForm } from './pages/AddSubTaskForm';
 import { AddPost } from './pages/AddPost';
 import { AddResult } from './pages/AddResult';
+import { Chat } from './pages/Chat';
+import { ChatWindow } from './pages/ChatWindow';
 
 const theme: DefaultTheme = {
     rainbow: {
@@ -62,17 +64,17 @@ const rainbowTheme = {
     }
 };
 
-const App = () => {
-    return (
-        <ThemeProvider theme={theme}>
-            <Application theme={rainbowTheme}>
-                <GoalContextProvider>
-                    <AuthProvider>
-                        <Router>
+const App = () => (
+    <ThemeProvider theme={theme}>
+        <Application theme={rainbowTheme}>
+            <GoalContextProvider>
+                <AuthProvider>
+                    <Router>
+                        <Switch>
                             <Route exact path={Routes.Login} component={Login} />
                             <Route exact path={Routes.Registration} component={Registration} />
-
                             <PrivateRoute path={Routes.Setup} component={SetupPage} />
+                            <PrivateRoute exact path={Routes.ChatWindow} component={ChatWindow} />
                             <Layout>
                                 <PrivateRoute exact path={Routes.Home} component={StartPage} />
                                 <PrivateRoute exact path={Routes.Profile} component={Profile} />
@@ -91,14 +93,15 @@ const App = () => {
                                     component={AddedGoalsWithoutSubTarget}
                                 />
                                 <PrivateRoute exact path={Routes.EditGoal} component={EditGoal} />
+                                <PrivateRoute exact path={Routes.Chat} component={Chat} />
                             </Layout>
                             <Route path={'/'} component={() => <Redirect to={Routes.Login} />} />
-                        </Router>
-                    </AuthProvider>
-                </GoalContextProvider>
-            </Application>
-        </ThemeProvider>
-    );
-};
+                        </Switch>
+                    </Router>
+                </AuthProvider>
+            </GoalContextProvider>
+        </Application>
+    </ThemeProvider>
+);
 
 export default App;
