@@ -42,7 +42,7 @@ const MyInput = styled(Input)`
     margin-right: 8px;
 `;
 
-const Post = ({ id, displayName, photoURL, text, likes }: any) => {
+const Post = ({ id, displayName, photoURL, text, likes, likedBy }: any) => {
     const [comment, setComment] = useState('');
     const {
         user: { uid: myuid, displayName: mydisplayName, photoURL: myphotoURL }
@@ -50,11 +50,12 @@ const Post = ({ id, displayName, photoURL, text, likes }: any) => {
 
     const handleCommentAdd = async () => {
         setComment('');
-        const isSuccess = await addComment(
-            { uid: myuid, displayName: mydisplayName, photoURL: myphotoURL },
-            id,
-            comment
-        );
+        await addComment({ uid: myuid, displayName: mydisplayName, photoURL: myphotoURL }, id, comment);
+    };
+
+    const handleLike = () => {
+        if (likedBy?.some(id => id === myuid)) return;
+        addLike(likes, id, myuid);
     };
 
     return (
@@ -62,7 +63,7 @@ const Post = ({ id, displayName, photoURL, text, likes }: any) => {
             title={displayName}
             icon={<Avatar src={photoURL} />}
             actions={
-                <Heart onClick={() => addLike(likes, id)}>
+                <Heart onClick={handleLike}>
                     {likes}
                     <AiFillHeart size="1em" />
                 </Heart>
