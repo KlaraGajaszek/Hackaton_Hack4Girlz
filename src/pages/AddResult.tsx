@@ -121,7 +121,7 @@ export const AddResult = () => {
                 <ActivityTimeline>
                     {[...Array(3)].map(() => (
                         <TimelineMarker
-                            label="Znalezienie mentora/ki"
+                            label="Znalezienie liderki"
                             description="data"
                             icon={
                                 <button>

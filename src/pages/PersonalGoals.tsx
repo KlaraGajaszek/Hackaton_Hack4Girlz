@@ -94,7 +94,7 @@ export const Goals = () => {
                 'Nie brać na siebie zbyt wielu zadań i skupić się na priorytetyzowaniu tych najważniejszych. Podczas realizacji celu czułam się przytłoczona nadmiarem kroków, które sobie założyłam i nie byłam w stanie ukończyć zadania.'
         },
         {
-            description: 'Podwyżka w pracy',
+            description: 'Powinnam umieć odpuszczać',
             date: '28.05.2021 - 29.05.2022',
             conclusion:
                 'Nie brać na siebie zbyt wielu zadań i skupić się na priorytetyzowaniu tych najważniejszych. Podczas realizacji celu czułam się przytłoczona nadmiarem kroków, które sobie założyłam i nie byłam w stanie ukończyć zadania.'
@@ -164,7 +164,7 @@ export const Goals = () => {
                         <TabPanel style={styleBox as React.CSSProperties}>
                             <Image src={RunCat} alt="run cat" boxSize="180px" marginTop="10" />
                             <p style={{ maxWidth: 200, marginBottom: 20 }}>
-                                Nie masz jeszcze wyznaczonych żadnych celów
+                                Wszystko co najlepsze, jeszcze przed Tobą!
                             </p>
                             <Button
                                 variant="brand"
@@ -203,7 +203,7 @@ export const Goals = () => {
                                 marginTop="10"
                             />
                             <p style={{ maxWidth: 200, marginBottom: 20 }}>
-                                Nie masz jeszcze wyznaczonych żadnych celów
+                                Wszystko co najlepsze, jeszcze przed Tobą!
                             </p>
                             <Button
                                 variant="brand"

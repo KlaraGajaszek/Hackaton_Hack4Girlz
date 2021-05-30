@@ -101,7 +101,7 @@ const Greeting = props => {
     const [open, setOpen] = useState(true);
     const cookies = new Cookies('registered');
     const [text, setText] = useState(
-        'Cześć! Jestem tutaj aby pomóc Ci w zaplanowaniu i realizacji Twoich celów zawodowych. Nie martw się, jeśi nie wiesz jak się do tego zabrać! Mentorki chętnie Ci w tym pomogą, masz także do dyspozycji społeczność dostępną na tablicy i czacie. Zaraz wszystko stanie się jasne!'
+        'Cześć! Jestem tutaj aby pomóc Ci w zaplanowaniu i realizacji Twoich celów zawodowych. Nie martw się, jeśi nie wiesz jak się do tego zabrać! Liderki chętnie Ci w tym pomogą, masz także do dyspozycji społeczność dostępną na tablicy i czacie. Zaraz wszystko stanie się jasne!'
     );
     const [onBoard, setOnboard] = useContext(OnboardingContext);
 
@@ -110,8 +110,8 @@ const Greeting = props => {
         clicks += 1;
         const messageBox = document.getElementById('test');
         console.log(messageBox.innerHTML);
-        const message = `Cześć! Jestem tutaj aby pomóc Ci w zaplanowaniu i realizacji Twoich celów zawodowych. Nie martw się, jeśi nie wiesz jak się do tego zabrać! Mentorki chętnie Ci w tym pomogą, masz także do dyspozycji społeczność dostępną na tablicy i czacie. Zaraz wszystko stanie się jasne!`;
-        const message1 = `Przed ustaleniem swoich celów możesz użyć czatu i znaleźć Mentorkę. Skorzystaj z doświadczenia innych dziewczyn!`;
+        const message = `Cześć! Jestem tutaj aby pomóc Ci w zaplanowaniu i realizacji Twoich celów zawodowych. Nie martw się, jeśi nie wiesz jak się do tego zabrać! Liderki chętnie Ci w tym pomogą, masz także do dyspozycji społeczność dostępną na tablicy i czacie. Zaraz wszystko stanie się jasne!`;
+        const message1 = `Przed ustaleniem swoich celów możesz użyć czatu i znaleźć Liderkę. Skorzystaj z doświadczenia innych dziewczyn!`;
         const message2 = `Wybierz tablicę, aby poszukać inspiracji wśród naszej społeczności. Możesz zadać pytanie lub poprosić o wsparcie. Jesteśmy tu po to, by wzajemnie motywować się do działania!`;
         const message3 =
             'Twoim pierwszym celem nie musi być lot na księżyc! Zacznij od przeczytania artykułów branżowych i wysłuchania wykładów. Wszystko w swoim czasie!';
