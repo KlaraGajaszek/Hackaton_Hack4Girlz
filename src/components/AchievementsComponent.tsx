@@ -7,18 +7,20 @@ const Title = styled.span`
     font-family: Lato;
     font-style: normal;
     font-weight: 500;
-    font-size: 19px;
+    font-size: 13px;
     line-height: 100%;
-    color:'#000000'
-    letter-spacing: -0.01em; ;
+    color: #7c7878;
+    letter-spacing: -0.01em;
 `;
 
 const Data = styled.span`
     font-family: Lato;
     font-style: normal;
     font-weight: normal;
-    font-size: 11px;
-    color: '#9F9F9F';
+    font-weight: 500;
+    font-size: 14px;
+    padding-top: 10px;
+    color: black;
     margin-top: 5px;
 `;
 
@@ -28,6 +30,8 @@ const Test = styled.div`
     margin-left: 45px;
     flex-direction: column;
     color: black;
+    margin: 0 auto;
+    padding: 40px;
 `;
 
 const CarouselCard = styled.div`
@@ -141,7 +145,7 @@ export const AchievementsComponent = ({ lessons, achievements }) => {
     const [open, setOpen] = useState(false);
     return (
         <div>
-            <div style={{ position: 'relative' }}>
+            <div onClick={() => setOpen(false)} style={{ position: 'relative' }}>
                 <div style={open ? covered : styledBack}></div>
                 <StyledDiv>Cele, które udało Ci się zrealizować w tym tygodniu</StyledDiv>
                 <MainWrapper>
@@ -184,7 +188,6 @@ export const AchievementsComponent = ({ lessons, achievements }) => {
                         <View>
                             <Test>
                                 <Title>{l.date}</Title>
-                                <Data>{l.description}</Data>
                                 <Data>{l.conclusion}</Data>
                             </Test>
                         </View>
