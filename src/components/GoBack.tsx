@@ -13,7 +13,7 @@ export const GoBack = ({ url }) => {
     const history = useHistory();
     return (
         <div
-            style={{ display: 'flex', flexDirection: 'row' }}
+            style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
             onClick={() => {
                 history.push(url);
             }}

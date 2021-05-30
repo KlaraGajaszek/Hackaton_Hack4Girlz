@@ -14,6 +14,7 @@ import { AddedGoalsWithoutSubTarget } from './pages/AddedGoalsWithoutSubTarget';
 import { EditGoal } from './pages/EditGoal';
 import { Goals } from './pages/PersonalGoals';
 import { AddTask } from './pages/AddTask';
+import { Chat } from './pages/Chat';
 import { AddSubtask } from './pages/AddSubTask';
 import { Layout } from './components/Layout';
 import { TaskTimeline } from './pages/TaskTimeline';
@@ -22,7 +23,6 @@ import { GoalContextProvider } from './contexts/CurrentGoal';
 import { AddSubTaskForm } from './pages/AddSubTaskForm';
 import { AddPost } from './pages/AddPost';
 import { AddResult } from './pages/AddResult';
-import { Chat } from './pages/Chat';
 import { ChatWindow } from './pages/ChatWindow';
 import { OnboardingProvider } from './contexts/OnboardingContext';
 

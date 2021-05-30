@@ -11,6 +11,8 @@ import { getChatDocId, Message, newMessage } from '../db/newMessage';
 import { db } from '../firebase';
 import { Routes } from '../routing/router';
 import { sortByDateData } from '../utils/sortByDate';
+import { Avatar } from 'react-rainbow-components';
+import { AiOutlineUser } from 'react-icons/ai';
 
 const NewText = styled.div`
     padding: 12px 20px;
@@ -62,7 +64,7 @@ const ChatMsgs = ({ counterParty, me }) => {
     return (
         <div>
             {messages.sort(sortByDateData).map(({ content, sender }) => (
-                <div style={{ textAlign: sender === me.uid ? 'right' : 'left' }}>{content}</div>
+                <div style={{ textAlign: sender === me.uid ? 'right' : 'left', color: '#000' }}>{content}</div>
             ))}
             <NewMsg myId={me.uid} counterPartyId={counterParty.id} />
         </div>
@@ -70,6 +72,14 @@ const ChatMsgs = ({ counterParty, me }) => {
 };
 
 const ChatWindow = () => {
+    const goBackWithAvatarStyles = {
+        backgroundColor: '#E5E5E5',
+        color: '#000',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignContent: 'center'
+    };
+
     const path = useParams();
     const [user, loading] = useDocumentDataOnce(db.doc(`Users/${path.id}`));
     const { user: me } = useAuthContext();
@@ -84,7 +94,17 @@ const ChatWindow = () => {
 
     return (
         <>
-            <GoBack url={Routes.Chat} />
+            <div style={goBackWithAvatarStyles}>
+                <GoBack url={Routes.Chat} />{' '}
+                <div style={{ display: 'flex', alignItems: 'center', fontSize: '16px', padding: '0 10px' }}>
+                    {user.displayName}{' '}
+                    <Avatar
+                        style={{ width: 40, height: 40, backgroundColor: 'white', margin: 10 }}
+                        icon={<AiOutlineUser size="small" />}
+                        src={user.photoURL}
+                    />
+                </div>
+            </div>
             <ChatMsgs counterParty={{ ...user, id: path.id }} me={me} />
         </>
     );
