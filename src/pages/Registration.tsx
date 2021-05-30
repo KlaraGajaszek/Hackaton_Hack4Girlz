@@ -8,6 +8,7 @@ import { Button, Input } from 'react-rainbow-components';
 import { Center } from '@chakra-ui/react';
 import styled from 'styled-components';
 import { Routes } from '../routing/router';
+import { AiOutlineConsoleSql } from 'react-icons/ai';
 
 const SignUp = ({ history }) => {
     const [currentUser, setCurrentUser] = useState(null);
@@ -40,6 +41,8 @@ const SignUp = ({ history }) => {
         async event => {
             event.preventDefault();
             const { email, password } = event.target.elements;
+            setName(event.target[0].value);
+            setLastName(event.target[1].value);
             try {
                 await db.app
                     .auth()
@@ -80,27 +83,8 @@ const SignUp = ({ history }) => {
             <Wrapper>
                 <LogWithGoogle />
                 <form onSubmit={handleSignUp}>
-                    <Input
-                        labelAlignment="left"
-                        label="Imię"
-                        style={inputStyle}
-                        name="firstname"
-                        type="text"
-                        value={firstname}
-                        onChange={e => {
-                            e.preventDefault();
-                            setName(e.target.value);
-                        }}
-                    />
-                    <Input
-                        labelAlignment="left"
-                        label="Nazwisko"
-                        name="lastName"
-                        value={lastname}
-                        style={inputStyle}
-                        type="text"
-                        onChange={e => setLastName(e.target.value)}
-                    />
+                    <Input labelAlignment="left" label="Imię" style={inputStyle} name="firstname" type="text" />
+                    <Input labelAlignment="left" label="Nazwisko" name="lastName" style={inputStyle} type="text" />
                     <Input label="Email" labelAlignment="left" style={inputStyle} name="email" type="email" />
                     <Input label="Hasło" labelAlignment="left" style={inputStyle} name="password" type="password" />
                     <Center pt={10}>
