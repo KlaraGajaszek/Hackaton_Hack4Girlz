@@ -62,6 +62,13 @@ const ChatMsgs = ({ counterParty, me }) => {
             </div>
         );
 
+    const hrStyle = {
+        border: '0',
+        height: '1px',
+        margin: '20px 0 10px 0',
+        backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))'
+    };
+
     return (
         <div>
             {messages.sort(sortByDateData).map(({ content, createdAt, sender }) => (
@@ -73,6 +80,7 @@ const ChatMsgs = ({ counterParty, me }) => {
                     me={me}
                 />
             ))}
+            <div style={hrStyle}></div>
             <NewMsg myId={me.uid} counterPartyId={counterParty.id} />
         </div>
     );

@@ -17,6 +17,7 @@ import { Animals } from '../constants/user';
 import Szpila from '../assets/png/cat/Head.png';
 import Lila from '../assets/png/dog/Head.png';
 import ChatUser from '../components/ChatUser';
+import { ChatButton } from '../components/ChatButton';
 
 const Chat = () => {
     const ref = db.collection('Users');
@@ -51,6 +52,27 @@ const Chat = () => {
     };
 
     const firstName = displayName.split(' ')[0];
+
+    const handleFilterAll = () => {
+        console.log('filtering all');
+    };
+
+    const handleFilterMentors = () => {
+        console.log('filtering mentors');
+    };
+
+    const filterButtonStyles = {
+        display: 'flex',
+        padding: '5px',
+        margin: '0 15px'
+    };
+
+    const hrStyle = {
+        border: '0',
+        height: '1px',
+        marginBottom: '10px',
+        backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))'
+    };
 
     return (
         <Container>
@@ -93,8 +115,13 @@ const Chat = () => {
                     iconPosition="right"
                     icon={<FontAwesomeIcon icon={faSearch} className="rainbow-color_gray-3" />}
                 />
-                {/* pasek z ikonami i dostępnością  */}
 
+                {/* pasek z ikonami i dostępnością  */}
+                <div style={filterButtonStyles}>
+                    <ChatButton title="WSZYSCY" variant="brand" onClick={handleFilterAll} />
+                    <ChatButton title="MENTORKI" variant="success" onClick={handleFilterMentors} />
+                </div>
+                <div style={hrStyle}></div>
                 {users.docs
                     .map(doc => ({ id: doc.id, user: doc.data() }))
                     .map(({ id, user }) => (
