@@ -6,6 +6,7 @@ import Loader from './Loader';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { db } from '../firebase';
 import { format } from 'date-fns';
+import { sortByDate } from '../utils/sortByDate';
 
 const Container = styled.div`
     display: flex;
@@ -85,8 +86,6 @@ const Comment: FC = ({ children, photoURL, createdAt }) => {
     );
 };
 
-const sort = (a, b) => b.data().createdAt.seconds - a.data().createdAt.seconds;
-
 const Comments = ({ postId }) => {
     const ref = db.collection('Comments').where('postId', '==', postId);
     const [snapshot, loading, error] = useCollection(ref);
@@ -96,7 +95,7 @@ const Comments = ({ postId }) => {
 
     return (
         <>
-            {snapshot.docs.sort(sort).map(comment => (
+            {snapshot.docs.sort(sortByDate).map(comment => (
                 <Comment key={comment.id} photoURL={comment.data().photoURL} createdAt={comment.data().createdAt}>
                     {comment.data().text}
                 </Comment>

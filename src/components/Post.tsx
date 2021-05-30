@@ -49,6 +49,7 @@ const Post = ({ id, displayName, photoURL, text, likes }: any) => {
     } = useAuthContext();
 
     const handleCommentAdd = async () => {
+        setComment('');
         const isSuccess = await addComment(
             { uid: myuid, displayName: mydisplayName, photoURL: myphotoURL },
             id,
