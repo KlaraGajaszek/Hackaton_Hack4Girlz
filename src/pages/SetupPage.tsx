@@ -12,6 +12,7 @@ import { userSetup } from '../db/userSetup';
 import { Routes } from '../routing/router';
 import { useUserData } from '../hooks/useUserData';
 import Loader from '../components/Loader';
+import { faStar } from '@fortawesome/free-regular-svg-icons';
 
 const Container = styled.div`
     background-color: ${props => props.theme.rainbow.palette.background.grey};
@@ -37,7 +38,9 @@ export const SetupPage = () => {
         specialization: '',
         animal: Animals.Szpila
     });
-    const { uid } = useContext(AuthContext);
+    const {
+        user: { uid }
+    } = useContext(AuthContext);
     const history = useHistory();
     const { userData, loading } = useUserData();
 

@@ -2,18 +2,19 @@ import React from 'react';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { Card } from 'react-rainbow-components';
-import { NavLink, useHistory, useRouteMatch } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import { Routes } from '../routing/router';
 import { RiCalendarEventLine, RiDashboardLine, RiWechat2Line } from 'react-icons/ri';
 import { AiOutlineTrophy } from 'react-icons/ai';
 import { BsChatDots } from 'react-icons/bs';
+import { FaRegUserCircle } from 'react-icons/fa';
 
 const Container = styled.div`
     min-height: 100vh;
 `;
 
 const Menu = styled(Card)`
-    position: fixed;
+    position: sticky;
     bottom: 0;
     left: 0;
     height: 72px;
@@ -34,8 +35,9 @@ const Item = styled.div<{ isActive: boolean }>`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: ${({ isActive, theme }) =>
-        isActive ? theme.rainbow.palette.primary.dark : theme.rainbow.palette.primary.main};
+    color: ${props =>
+        props.isActive ? props.theme.rainbow.palette.primary.main : props.theme.rainbow.palette.primary.main};
+    border-top: ${props => (props.isActive ? props.theme.rainbow.palette.primary.main + ' solid' : 'none')};
 `;
 
 type Props = {
@@ -59,13 +61,13 @@ const LinkItem: FC<Props> = ({ to, Icon, name }) => {
 const Layout: FC = ({ children }) => {
     return (
         <Container>
-            {children}
+            <div style={{ minHeight: 'calc(100vh - 72px)' }}>{children}</div>
             <Menu>
                 <LinkItem key={Routes.Home} to={Routes.Home} name="Tablica" Icon={RiDashboardLine} />
                 <LinkItem key={Routes.Goals} to={Routes.Goals} name="Cele" Icon={AiOutlineTrophy} />
                 <LinkItem key={Routes.Events} to={Routes.Events} name="Wydarzenia" Icon={RiCalendarEventLine} />
-                <LinkItem key={Routes.Chat} to={Routes.Chat} name="Czat" Icon={RiWechat2Line} />
-                <LinkItem key={Routes.Profile} to={Routes.Profile} name="Profil" Icon={BsChatDots} />
+                <LinkItem key={Routes.Chat} to={Routes.Chat} name="Czat" Icon={BsChatDots} />
+                <LinkItem key={Routes.Profile} to={Routes.Profile} name="Profil" Icon={FaRegUserCircle} />
             </Menu>
         </Container>
     );

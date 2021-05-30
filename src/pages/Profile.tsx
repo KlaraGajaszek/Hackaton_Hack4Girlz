@@ -4,13 +4,14 @@ import styled from 'styled-components';
 import { Title } from '../components/Title';
 import { SectionTitle } from '../components/SectionTitle';
 import { UserInfo } from '../components/UserInfo';
-import profile from '../assets/png/profile.png';
 import { SectionInfo } from '../components/SectionInfo';
 import { Carouzel } from '../components/Carouzel';
-import { Box } from '@chakra-ui/react';
 import CustomProgressBar from './CustomProgressBar';
-import cori_cat from '../assets/png/cat/Walk (5).png';
+import Szpila from '../assets/gifs/cat_walking.gif';
+import Lila from '../assets/gifs/dog_walking.gif';
 import crown from '../assets/crown.svg';
+import { useAuthContext } from '../contexts/Auth';
+import { Animals } from '../constants/user';
 
 const Wrapper = styled.div`
     display: flex;
@@ -19,17 +20,26 @@ const Wrapper = styled.div`
 `;
 
 const MainWrapper = styled.div`
-    padding: 32px 19px 117px;
+    padding: 32px 20px 117px;
 `;
 export const Profile = () => {
+    const {
+        user,
+        userData: { animal }
+    } = useAuthContext();
+
     return (
         <MainWrapper>
-            <div style={{ backgroundColor: '#E5E5E5', margin: '-32px -19px 0 -19px', padding: '32px 21px' }}>
+            <div style={{ backgroundColor: '#E5E5E5', margin: '-32px -20px 0 -20px', padding: '32px 20px' }}>
                 <SectionTitle title="Profil" subtitle="W tym miejscu możesz zobaczyć swoje dotychczasowe osiągnięcia" />
             </div>
             <Wrapper>
                 <UserInfo />
-                <CustomProgressBar currentExp={25} levelCapExp={100} avatarIcon={cori_cat} />
+                <CustomProgressBar
+                    currentExp={25}
+                    levelCapExp={100}
+                    avatarIcon={animal === Animals.Szpila ? Szpila : Lila}
+                />
                 <div style={{ marginTop: '15px' }}>
                     <SectionInfo text="W jaki sposób mogę zbierać punkty?" />
                 </div>
@@ -42,11 +52,21 @@ export const Profile = () => {
                 </div>
                 <div style={{ marginTop: '11px', marginBottom: '30px' }}>
                     <Title title="UI/UX design" />
-                    <CustomProgressBar currentExp={25} levelCapExp={100} avatarIcon={cori_cat} levelIcon={crown} />
+                    <CustomProgressBar
+                        currentExp={25}
+                        levelCapExp={100}
+                        avatarIcon={animal === Animals.Szpila ? Szpila : Lila}
+                        levelIcon={crown}
+                    />
                 </div>
                 <div style={{ marginTop: '30px', marginBottom: '20px' }}>
                     <Title title="Frontend developer" />
-                    <CustomProgressBar currentExp={25} levelCapExp={100} avatarIcon={cori_cat} levelIcon={crown} />
+                    <CustomProgressBar
+                        currentExp={25}
+                        levelCapExp={100}
+                        avatarIcon={animal === Animals.Szpila ? Szpila : Lila}
+                        levelIcon={crown}
+                    />
                 </div>
                 <SectionInfo text="Kim jest mentor?" />
             </Wrapper>

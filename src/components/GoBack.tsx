@@ -28,7 +28,8 @@ export const GoBack = ({ url }) => {
                     fontStyle: 'normal',
                     fontWeight: 'bold',
                     fontSize: '14px',
-                    lineHeight: '17px'
+                    lineHeight: '17px',
+                    color: '#000'
                 }}
             >
                 Wróć

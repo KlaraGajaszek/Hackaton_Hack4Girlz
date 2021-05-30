@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { db } from '../firebase';
+import { useHistory } from 'react-router';
 
 import { GoBack } from '../components/GoBack';
+
+import { useCurrentGoalContext } from '../contexts/CurrentGoal';
 import { TaskCard } from '../components/TaskCard';
 import { Routes } from '../routing/router';
 import { AddGoalButton } from '../components/AddGoalButton';
 import { GoalButton } from '../components/GoalButton';
-import { Button } from 'react-rainbow-components';
+import { AuthContext } from '../contexts/Auth';
+import firebase from 'firebase';
 
 const View = styled.div`
     height: 750px;
@@ -21,6 +25,11 @@ const View = styled.div`
 
     right: 0;
     bottom: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
 `;
 
 const Main = styled.div`
@@ -46,15 +55,33 @@ const Title = styled.span`
 
 //Get data from fb
 export const AddSubtask = () => {
-    const history = useHistory();
-    const onSave = () => {
-        history.push('/cele/dodane/bezpodcelu');
-    };
+    const { currentGoal, setGoal } = useCurrentGoalContext();
     const { user }: any = useContext(AuthContext);
-
     const [id, setDocId] = useState(null);
+    const history = useHistory();
 
-    const temporaryArray = [];
+    const onSave = () => {
+        if (currentGoal?.objective && currentGoal?.userId) {
+            db.collection('Goals')
+                .where('name', '==', currentGoal?.objective)
+                .where('userId', '==', currentGoal?.userId)
+                .get()
+                .then(querySnapshot => {
+                    querySnapshot.forEach((doc): any => {
+                        console.log('XXXXX', doc.id);
+
+                        setTimeout(function () {
+                            setDocId(doc.id);
+                        }, 3000);
+                    });
+                })
+                .catch(error => {
+                    console.log('Error getting documents: ', error);
+                });
+
+            history.push('/cele/dodane/bezpodcelu');
+        }
+    };
 
     // db.collection('Goals')
     //     .where('userId', '==', 'y0LotDNde8MGDY677au6u8rn08y1')
@@ -64,32 +91,26 @@ export const AddSubtask = () => {
     //         querySnapshot.forEach(doc => console.log('doc.data()', doc));
     //     });
 
-    db.collection('Goals')
-        .where('name', '==', 'cel1')
-        .where('userId', '==', 'y0LotDNde8MGDY677au6u8rn08y1')
-        .get()
-        .then(querySnapshot => {
-            querySnapshot.forEach((doc): any => {
-                setDocId(doc.id);
-            });
-        })
-        .catch(error => {
-            console.log('Error getting documents: ', error);
-        });
     console.log('id', id);
 
     //UPDATE
-    if (id) {
-        db.collection('Goals')
-            .doc(id)
-            .update({
-                subtasks: firebase.firestore.FieldValue.arrayUnion({
-                    name: 'test',
-                    startDate: 'etetdsgvgcd',
-                    endDate: 'sdsfdvsdfvfgfvsdfvddd'
-                })
-            });
-    }
+    // if (id) {
+    //     db.collection('Goals')
+    //         .doc(id)
+    //         .update({
+    //             subtasks: firebase.firestore.FieldValue.arrayUnion({
+    //                 name: 'test',
+    //                 startDate: 'etetdsgvgcd',
+    //                 endDate: 'sdsfdvsdfvfgfvsdfvddd'
+    //             })
+    //         });
+    // }
+
+    // const allGoals = db.collection('Goals').doc('4NGXdhMPGGxbXG24GpSA');
+
+    // const onSave = () => {
+    //     history.push('/cele/dodane/bezpodcelu');
+    // };
 
     return (
         <Wrapper>
@@ -97,17 +118,20 @@ export const AddSubtask = () => {
                 <GoBack url={Routes.AddTask} />
             </Main>
             <View>
-                <Title>Twój cel</Title>
-                <div style={{ marginTop: '15px', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
-                    <TaskCard
-                        startData="27.05.2021"
-                        endData="27.05.2022"
-                        title="Zdobycie pierwszej pracy jako UX designer"
-                        editUrl="/cele/nowy"
-                    />
+                <div>
+                    <Title>Twój cel</Title>
+                    <div style={{ marginTop: '15px', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+                        <TaskCard
+                            startDate={currentGoal.starttime}
+                            endDate={currentGoal?.endtime}
+                            isTime={currentGoal?.isTime}
+                            title={currentGoal.objective}
+                            editUrl="/cele/nowy"
+                        />
+                    </div>
+                    <AddGoalButton url="/cele/nowy/podcel/formularz" />
                 </div>
-                <AddGoalButton url="/cele/nowy/podcel/formularz" />
-                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '330px' }}>
+                <div style={{ marginBottom: '60px' }}>
                     <GoalButton title="Zapisz tylko główny cel" onClick={onSave} />
                 </div>
             </View>

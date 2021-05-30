@@ -5,15 +5,12 @@ import { GoBack } from '../components/GoBack';
 import { TaskCard } from '../components/TaskCard';
 import { Routes } from '../routing/router';
 import { AddGoalButton } from '../components/AddGoalButton';
-import { Button } from 'react-rainbow-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 const View = styled.div`
     height: 750px;
     padding: 54px;
     background-color: white;
-    padding: 5px;
+    padding: 20px;
     border-radius: 20px 20px 0px 0px;
     /* align-items: end; */
     position: fixed;
@@ -55,13 +52,13 @@ export const SaveTaskAndSubTasks = () => {
                 <Title>Twój cel</Title>
                 <div style={{ marginTop: '15px', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
                     <TaskCard
-                        startData="27.05.2021"
-                        endData="27.05.2022"
+                        startDate="27.05.2021"
+                        endDate="27.05.2022"
+                        isTime="false"
                         title="Zdobycie pierwszej pracy jako UX designer"
                         editUrl="/cele/nowy"
                     />
                 </div>
-
                 <AddGoalButton url="/cele/nowy/podcel/formularz" />
             </View>
         </Wrapper>

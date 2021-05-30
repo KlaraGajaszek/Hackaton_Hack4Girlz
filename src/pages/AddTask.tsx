@@ -1,23 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Input } from 'react-rainbow-components';
 import { Select } from 'react-rainbow-components';
 import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../contexts/Auth';
 import { db } from '../firebase';
 import { GoBack } from '../components/GoBack';
+import { useCurrentGoalContext } from '../contexts/CurrentGoal';
 import { Routes } from '../routing/router';
 import { GoalButton } from '../components/GoalButton';
-import { userSetup } from '../db/userSetup';
-import { useUserData } from '../hooks/useUserData';
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/firestore';
 
 const View = styled.div`
     height: 750px;
     padding: 54px;
     background-color: white;
-    padding: 5px;
+    padding: 20px;
     border-radius: 20px 20px 0px 0px;
     /* align-items: end; */
     position: fixed;
@@ -25,10 +22,14 @@ const View = styled.div`
 
     right: 0;
     bottom: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `;
 
 const Main = styled.div`
-    background: '#E5E5E5';
+    background-color: ${props => props.theme.rainbow.palette.background.grey};
     height: 100vh;
 `;
 
@@ -36,6 +37,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
 `;
+
 const inputStyle = {
     maxWidth: 700,
     border: 1,
@@ -52,77 +54,28 @@ const CustomInput = styled(Input)`
     border: 1px solid #081449;
 `;
 
-
-
 export const AddTask = () => {
-
-  
-    // db.collection("Goals").add({
-    //     name: "Los Angeles",
-    //     industry: "IT",
-    //     country: "USA",
-    //     nested: ['1','2']
-    // })
-    //     .then(() => {
-    //         console.log("Document successfully written!");
-    //     })
-    //     .catch((error) => {
-    //         console.error("Error writing document: ", error);
-    //     });
-
-
- //   db.collection('Goals').doc('Aqd8aP8uLSvuAgsMs5aW').update({"nested": ['12','14']})
- //   db.collection('Goals').doc('Aqd8aP8uLSvuAgsMs5aW').set({ "nested": ['19', '20'] }, { merge: true });
-   // db.app.database().ref("Goals/").set({Aqd8aP8uLSvuAgsMs5aW: {nested: [4,8]}});
-
-    const cityRef = db.collection('Goals').doc('diceC0e4DwYyVKH00FtN');
-
-     cityRef.set({
-        nested: '6'
-    }, { merge: true });
- 
-    const [values, setValues] = useState({
-        objective: '',
-        starttime: '',
-        endtime: '',
-        isTime: false,
-        prize: '',
-        industry: '',
-        subtasks: []
-    });
-    
+    const { currentGoal, setGoal } = useCurrentGoalContext();
+    const { user } = useContext(AuthContext);
+    const [values, setValues] = useState(currentGoal);
     const history = useHistory();
+
     const onSave = () => {
-        // add to FB
-        console.log('values', values);
-        // when try
+        setGoal({ ...values, userId: user?.uid });
+
+        db.collection('Goals').add({
+            userId: user?.uid,
+            price: values.prize,
+            industry: values.industry,
+            name: values.objective,
+            startDate: values.starttime,
+            endDate: values.endtime,
+            subtasks: [],
+            isDone: false,
+            isTime: values.isTime
+        });
         history.push(Routes.AddSubtask);
     };
-    db.collection('Goals').where('name', '==', 'name1')
-    .where('name', '==', 'name1')
-    .get()
-    .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-
-            console.log(doc.id)
-        });
-    })
-    .catch(error => {
-        console.log('Error getting documents: ', error);
-    });
-
-    // db.collection('Goals').where('name', '==', 'name1')
-    // .where('name', '==', 'name1')
-    // .get()
-    // .then(querySnapshot => {
-    //     querySnapshot.forEach(doc => {
-           
-    //         console.log(doc.id)
-    //     });
-    // })
-    // .catch(error => {
-    //     console.log('Error getting documents: ', error);
-    // });
 
     const options = [
         { value: 'IT', label: 'IT' },
@@ -132,10 +85,10 @@ export const AddTask = () => {
     return (
         <Wrapper>
             <Main>
-                <GoBack url="/goals" />
+                <GoBack url="/cele" />
             </Main>
             <View>
-                <div style={{ margin: '23px' }}>
+                <div>
                     <h1
                         style={{
                             color: '#9F9F9F',
@@ -154,6 +107,7 @@ export const AddTask = () => {
                     </h1>
                     <CustomInput
                         label="Nazwa Celu"
+                        value={values.objective}
                         labelAlignment="left"
                         style={inputStyle}
                         name="objective"
@@ -163,6 +117,7 @@ export const AddTask = () => {
                     <Input
                         label="Rozpoczęcie"
                         labelAlignment="left"
+                        value={values.starttime}
                         style={inputStyleTime}
                         name="starttime"
                         type="datetime-local"
@@ -170,6 +125,7 @@ export const AddTask = () => {
                     />
                     <Input
                         label="Zakonczenie"
+                        value={values.endtime}
                         labelAlignment="left"
                         style={inputStyleTime}
                         name="endtime"
@@ -178,6 +134,7 @@ export const AddTask = () => {
                     />
                     <Input
                         labelAlignment="left"
+                        checked={values.isTime}
                         type="checkbox"
                         style={inputStyle}
                         name="isTime"
@@ -186,6 +143,7 @@ export const AddTask = () => {
                     />
                     <Input
                         label="Nagroda"
+                        value={values.prize}
                         labelAlignment="left"
                         style={inputStyle}
                         name="prize"
@@ -194,15 +152,16 @@ export const AddTask = () => {
                     />
                     <Select
                         label="Branża"
+                        value={values.industry}
                         labelAlignment="left"
                         options={options}
                         name="industry"
                         onChange={e => setValues({ ...values, industry: e.target.value })}
                     />
+                </div>
 
-                    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '31px' }}>
-                        <GoalButton title="Dalej" onClick={onSave} />
-                    </div>
+                <div style={{ marginBottom: '60px', display: 'flex', justifyContent: 'flex-end' }}>
+                    <GoalButton title="Dalej" onClick={onSave} />
                 </div>
             </View>
         </Wrapper>

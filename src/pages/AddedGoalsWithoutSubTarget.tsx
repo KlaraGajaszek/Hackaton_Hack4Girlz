@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Button } from 'react-rainbow-components';
 import { ButtonIcon } from 'react-rainbow-components';
 import { MdEdit } from 'react-icons/md';
 import { RiDeleteBin4Line } from 'react-icons/ri';
 import { Card } from 'react-rainbow-components';
+import { useHistory } from 'react-router';
+import { db } from '../firebase';
+import { useCurrentGoalContext } from '../contexts/CurrentGoal';
+import { GoalButton } from '../components/GoalButton';
+import { Notification } from 'react-rainbow-components';
 
 import SlideX from '../assets/png/cat/SlideX.png';
 
@@ -60,7 +65,7 @@ const EditIcon = styled(MdEdit)`
 `;
 
 const View = styled.div`
-    /* height: 400px; */
+    height: 450px;
     background-color: white;
     padding: 5px;
     border-radius: 20px 20px 0px 0px;
@@ -83,18 +88,54 @@ const Wrapper = styled.div`
 `;
 
 export const AddedGoalsWithoutSubTarget = () => {
+    const { currentGoal, setGoal } = useCurrentGoalContext();
+    const [sended, setSended] = useState(false);
+    const allGoals = db.collection('Goals').doc('4NGXdhMPGGxbXG24GpSA');
+    const history = useHistory();
     const onSave = () => {
-        console.log('onsave');
+        db.collection('Goals')
+            .doc('4NGXdhMPGGxbXG24GpSA')
+            .set({
+                userId: currentGoal.userId,
+                goals: currentGoal,
+                name: currentGoal.objective,
+                subtasks: currentGoal.subtasks
+            })
+            .then(() => {
+                setSended(true);
+                setGoal({
+                    userId: '',
+                    objective: '',
+                    starttime: '',
+                    endtime: '',
+                    isTime: false,
+                    prize: '',
+                    industry: '',
+                    subtasks: []
+                });
+                setTimeout(() => {
+                    history.push('/cele');
+                }, [1000]);
+            })
+            .catch(error => {
+                console.error('Error writing document: ', error);
+            });
     };
     const onEdit = () => {
-        console.log('onsave');
+        history.push('/cele/nowy');
     };
     const onDelete = () => {
         console.log('onsave');
     };
     return (
         <Wrapper>
-            <Main></Main>
+            <Main>
+                {sended && (
+                    <div className="rainbow-p-bottom_x-small" style={{ zIndex: '50000' }}>
+                        <Notification description="Cel został dodany" icon="success" />
+                    </div>
+                )}
+            </Main>
             <View>
                 <Navbar>
                     <div></div>
@@ -109,11 +150,11 @@ export const AddedGoalsWithoutSubTarget = () => {
                 </Navbar>
                 <img src={SlideX} style={{ width: '180px', height: '180px' }} />
                 <Test>
-                    <Title>Zdobycie pierwszej pracy jako UX</Title>
-                    <Data>27.05.2021 - 27.05.2022</Data>
+                    <Title>{currentGoal.objective}</Title>
+                    <Data>{`${currentGoal?.starttime} - ${currentGoal?.endtime} `}</Data>
                 </Test>
-                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '31px' }}>
-                    <Button label="Zapisz" onClick={onSave} variant="brand" className="rainbow-m-around_medium" />
+                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1px' }}>
+                    <GoalButton title="Zapisz" onClick={onSave} />
                 </div>
             </View>
         </Wrapper>

@@ -1,6 +1,7 @@
 export enum Routes {
     Setup = '/konfiguracja',
     Home = '/tablica',
+    NewPost = '/tablica/nowypost',
     Login = '/login',
     Registration = '/rejestracja',
     Profile = '/profil',
@@ -8,9 +9,11 @@ export enum Routes {
     EditGoal = '/cele/edycja',
     AddTask = '/cele/nowy',
     AddSubtask = '/cele/nowy/podcel',
-    AddSubtaskForm = '/cele/nowy/podcel/formularz',
+    AddSubTaskForm = '/cele/nowy/podcel/formularz',
     SaveTaskAndSubtask = '/cele/zapisz',
     Goals = '/cele',
+    TimelineGoals = '/cele/nowy/timeline',
     Chat = '/czat',
-    Events = '/wydarzenia'
+    Events = '/wydarzenia',
+    AddGoalReasults = '/cele/wyniki'
 }
