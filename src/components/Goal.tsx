@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { Routes } from '../routing/router';
 
 export const Goal = ({ goals }) => {
-    console.log("goals",goals)
+    console.log('goals', goals);
     const history = useHistory();
     const Date = styled.p`
         font-size: 11px;
@@ -22,6 +22,7 @@ export const Goal = ({ goals }) => {
         display: block;
         color: black;
         line-height: 16px;
+        margin-top: 15px;
     `;
     const CarouselCard = styled.div`
         display: flex;
@@ -52,6 +53,7 @@ export const Goal = ({ goals }) => {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        margin-top: 15px;
     `;
 
     const buttonStyles = {
@@ -68,7 +70,7 @@ export const Goal = ({ goals }) => {
                     <CarouselCard>
                         <Wrapper>
                             <Subtitle>{g.name}</Subtitle>
-                            {/* <Date>{g.date}</Date>  */}
+                            <Date>{g.endDate}</Date>
                         </Wrapper>
                     </CarouselCard>
                 ))}

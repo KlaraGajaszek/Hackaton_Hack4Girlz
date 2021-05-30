@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from 'react-rainbow-components';
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import Szpila from '../assets/png/cat/Head.png';
@@ -25,7 +25,7 @@ import { db } from '../firebase';
 import { useCurrentGoalContext } from '../contexts/CurrentGoal';
 
 export const Goals = () => {
-    const [docx, setDoc] = useState();
+    const [docx, setDoc] = useState([]);
     const history = useHistory();
     const { currentGoal, setGoal } = useCurrentGoalContext();
 
@@ -34,21 +34,21 @@ export const Goals = () => {
         userData: { animal }
     } = useAuthContext();
     const [achievements, setAchievements] = useState(false);
-    const test = [];
 
-    db.collection('Goals')
-        .where('userId', '==', uid)
-        .get()
-        .then(querySnapshot => {
-            querySnapshot.forEach((doc): any => {
-                console.log('doc.data()', doc.data());
-                test.push(doc.data());
-                // setDoc(doc.data());
+    useEffect(() => {
+        db.collection('Goals')
+            .where('userId', '==', uid)
+            .get()
+            .then(querySnapshot => {
+                querySnapshot.forEach((doc): any => {
+                    console.log(doc.data());
+                    setDoc([...docx, doc.data()]);
+                });
+            })
+            .catch(error => {
+                console.log('Error getting documents: ', error);
             });
-        })
-        .catch(error => {
-            console.log('Error getting documents: ', error);
-        });
+    }, []);
 
     // db.collection('Goals')
     //     .doc('diceC0e4DwYyVKH00FtN')
@@ -84,8 +84,6 @@ export const Goals = () => {
         textAlign: 'center'
     };
 
-    const goalsMocked = test;
-
     const achieveSet = [
         {
             description: 'Mój pierwszy warsztat w apce Networkya',
@@ -99,18 +97,20 @@ export const Goals = () => {
 
     const lessons = [
         {
-            description: 'Mój pierwszy warsztat w apce Networkya',
-            date: '27.05.2021 - 27.05.2022',
+            description: 'Wniosek - zbyt wiele zadań',
+            date: '29.05.2021 - 30.05.2021',
             conclusion:
                 'Nie brać na siebie zbyt wielu zadań i skupić się na priorytetyzowaniu tych najważniejszych. Podczas realizacji celu czułam się przytłoczona nadmiarem kroków, które sobie założyłam i nie byłam w stanie ukończyć zadania.'
         },
         {
             description: 'Podwyżka w pracy',
-            date: '27.05.2021 - 27.05.2022',
+            date: '28.05.2021 - 29.05.2022',
             conclusion:
                 'Nie brać na siebie zbyt wielu zadań i skupić się na priorytetyzowaniu tych najważniejszych. Podczas realizacji celu czułam się przytłoczona nadmiarem kroków, które sobie założyłam i nie byłam w stanie ukończyć zadania.'
         }
     ];
+
+    console.log(docx);
 
     return (
         <div>
@@ -166,7 +166,7 @@ export const Goals = () => {
                         </Tab>
                     </TabList>
                 </Container>
-                {!achievements && test.length > 0 && <Goal goals={test} />}
+                {!achievements && docx.length > 0 && <Goal goals={docx} />}
                 {achievements && (lessons.length > 0 || achieveSet.length > 0) && (
                     <AchievementsComponent lessons={lessons} achievements={achieveSet} />
                 )}
@@ -204,7 +204,7 @@ export const Goals = () => {
                         </TabPanel>
                     </TabPanels>
                 )}
-                {!achievements && test.length === 0 && (
+                {!achievements && docx.length == 0 && (
                     <TabPanels>
                         <TabPanel style={styleBox as React.CSSProperties}>
                             <Image
