@@ -73,12 +73,12 @@ const Message: FC = ({ children, photoURL, createdAt, bgColor, side, bubbleSide 
     );
 };
 
-export const MessageDisplay = ({ content, createdAt, sender, me }) => {
+export const MessageDisplay = ({ content, createdAt, sender, me, counterParty }) => {
     const messageStyles = {
         color: '#000',
         backgroundColor: '#fff'
     };
-    const userPhoto = sender === me.uid ? me.photoURL : sender.photoURL;
+    const userPhoto = sender === me.uid ? me.photoURL : counterParty.photoURL;
     const bgColor = sender === me.uid ? '#01B6F5' : '#FF507A';
     const side = sender === me.uid ? 'flex-end' : 'flex-start';
     return (

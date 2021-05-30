@@ -65,7 +65,13 @@ const ChatMsgs = ({ counterParty, me }) => {
     return (
         <div>
             {messages.sort(sortByDateData).map(({ content, createdAt, sender }) => (
-                <MessageDisplay content={content} createdAt={createdAt} sender={sender} me={me} />
+                <MessageDisplay
+                    content={content}
+                    createdAt={createdAt}
+                    sender={sender}
+                    counterParty={counterParty}
+                    me={me}
+                />
             ))}
             <NewMsg myId={me.uid} counterPartyId={counterParty.id} />
         </div>
