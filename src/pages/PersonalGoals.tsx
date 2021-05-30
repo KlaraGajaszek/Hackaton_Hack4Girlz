@@ -23,6 +23,8 @@ import styled from 'styled-components';
 import { Goal } from '../components/Goal';
 import { db } from '../firebase';
 import { useCurrentGoalContext } from '../contexts/CurrentGoal';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+import Loader from '../components/Loader';
 
 export const Goals = () => {
     const [docx, setDoc] = useState([]);
@@ -35,24 +37,13 @@ export const Goals = () => {
     } = useAuthContext();
     const [achievements, setAchievements] = useState(false);
 
-    useEffect(() => {
-        db.collection('Goals')
-            .where('userId', '==', uid)
-            .get()
-            .then(querySnapshot => {
-                querySnapshot.forEach((doc): any => {
-                    console.log(doc.data());
-                    setDoc([...docx, doc.data()]);
-                });
-            })
-            .catch(error => {
-                console.log('Error getting documents: ', error);
-            });
-    }, []);
+    const [docs, loading] = useCollectionData(db.collection('Goals').where('userId', '==', uid));
 
-    // db.collection('Goals')
-    //     .doc('diceC0e4DwYyVKH00FtN')
-    //     .update({ nested: firebase.firestore.FieldValue.arrayUnion('12') });
+    if (loading) {
+        return <Loader />;
+    }
+
+    console.log(docs);
 
     const firstName = displayName.split(' ')[0];
 
@@ -110,8 +101,6 @@ export const Goals = () => {
         }
     ];
 
-    console.log(docx);
-
     return (
         <div>
             <Tabs isFitted variant="enclosed">
@@ -166,7 +155,7 @@ export const Goals = () => {
                         </Tab>
                     </TabList>
                 </Container>
-                {!achievements && docx.length > 0 && <Goal goals={docx} />}
+                {!achievements && docs.length > 0 && <Goal goals={docs} />}
                 {achievements && (lessons.length > 0 || achieveSet.length > 0) && (
                     <AchievementsComponent lessons={lessons} achievements={achieveSet} />
                 )}
@@ -204,7 +193,7 @@ export const Goals = () => {
                         </TabPanel>
                     </TabPanels>
                 )}
-                {!achievements && docx.length == 0 && (
+                {!achievements && docs.length == 0 && (
                     <TabPanels>
                         <TabPanel style={styleBox as React.CSSProperties}>
                             <Image
