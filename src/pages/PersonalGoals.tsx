@@ -34,30 +34,25 @@ export const Goals = () => {
         userData: { animal }
     } = useAuthContext();
     const [achievements, setAchievements] = useState(false);
-const test=[]
+    const test = [];
 
     db.collection('Goals')
-    .where('userId', '==', uid)
-    .get()
-    .then(querySnapshot => {
-        querySnapshot.forEach((doc): any => {
-            console.log('doc.data()',doc.data())
-            test.push(doc.data())
-            // setDoc(doc.data());
-       
+        .where('userId', '==', uid)
+        .get()
+        .then(querySnapshot => {
+            querySnapshot.forEach((doc): any => {
+                console.log('doc.data()', doc.data());
+                test.push(doc.data());
+                // setDoc(doc.data());
+            });
+        })
+        .catch(error => {
+            console.log('Error getting documents: ', error);
         });
-    })
-    .catch(error => {
-        console.log('Error getting documents: ', error);
-    });
 
-console.log('test',test)
     // db.collection('Goals')
     //     .doc('diceC0e4DwYyVKH00FtN')
     //     .update({ nested: firebase.firestore.FieldValue.arrayUnion('12') });
-
-   
-   
 
     const firstName = displayName.split(' ')[0];
 
@@ -89,7 +84,7 @@ console.log('test',test)
         textAlign: 'center'
     };
 
-    const goalsMocked = test
+    const goalsMocked = test;
 
     const achieveSet = [
         {
